@@ -1,0 +1,1949 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>校园二手交易平台-需求规格说明书 | SunnyALion</title><meta name="keywords" content="软件工程"><meta name="author" content="舜桀BB"><meta name="copyright" content="舜桀BB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="校园二手交易平台-需求规格说明书编写人员：杨顺杰、魏泽弘、高时玉、赵任生、龚云基、杨笑千 指导老师：张大林 编写日期：2022.3.28 本说明书版权与一切解释权归蓝瞳团队所有 [TOC] 一、引言1.1 定位与目标目前我校的校园二手交易市场多是利用超级课程表上的“跳蚤市场”以及本校的贴吧进行，两者都形成了一定的规模。但是贴吧上的交易不够规范，而超级课程表改版之后对“跳蚤市场”这一模块也不够重视，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="校园二手交易平台-需求规格说明书">
+<meta property="og:url" content="https://sunnyalion.com/2022/05/17/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6/index.html">
+<meta property="og:site_name" content="SunnyALion">
+<meta property="og:description" content="校园二手交易平台-需求规格说明书编写人员：杨顺杰、魏泽弘、高时玉、赵任生、龚云基、杨笑千 指导老师：张大林 编写日期：2022.3.28 本说明书版权与一切解释权归蓝瞳团队所有 [TOC] 一、引言1.1 定位与目标目前我校的校园二手交易市场多是利用超级课程表上的“跳蚤市场”以及本校的贴吧进行，两者都形成了一定的规模。但是贴吧上的交易不够规范，而超级课程表改版之后对“跳蚤市场”这一模块也不够重视，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png">
+<meta property="article:published_time" content="2022-05-17T13:18:21.330Z">
+<meta property="article:modified_time" content="2022-05-17T13:28:37.561Z">
+<meta property="article:author" content="舜桀BB">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png"><link rel="shortcut icon" href="https://s3.bmp.ovh/imgs/2022/05/17/cf2ee01082c7d055.png"><link rel="canonical" href="https://sunnyalion.com/2022/05/17/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '校园二手交易平台-需求规格说明书',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-17 21:28:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="mycss.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SunnyALion</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">校园二手交易平台-需求规格说明书</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-17T13:18:21.330Z" title="发表于 2022-05-17 21:18:21">2022-05-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-17T13:28:37.561Z" title="更新于 2022-05-17 21:28:37">2022-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9E%84%E6%80%9D%E7%BB%BC%E5%90%88%E8%AE%AD%E7%BB%83/">软件系统构思综合训练</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">13.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>41分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="校园二手交易平台-需求规格说明书"><a href="#校园二手交易平台-需求规格说明书" class="headerlink" title="校园二手交易平台-需求规格说明书"></a>校园二手交易平台-需求规格说明书</h1><p><strong>编写人员：杨顺杰、魏泽弘、高时玉、赵任生、龚云基、杨笑千</strong></p>
+<p><strong>指导老师：张大林</strong></p>
+<p><strong>编写日期：2022.3.28</strong></p>
+<p><strong>本说明书版权与一切解释权归蓝瞳团队所有</strong></p>
+<p>[TOC]</p>
+<h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><h3 id="1-1-定位与目标"><a href="#1-1-定位与目标" class="headerlink" title="1.1 定位与目标"></a>1.1 定位与目标</h3><p>目前我校的校园二手交易市场多是利用超级课程表上的“跳蚤市场”以及本校的贴吧进行，两者都形成了一定的规模。但是贴吧上的交易不够规范，而超级课程表改版之后对“跳蚤市场”这一模块也不够重视，对其入口进行了更改，进入不方便了，导致流量减少，目前在上面发布交易信息的人寥寥无几。因此我们建立二手交易市场的目的是：</p>
+<p>1、为我校师生提供一个比较规范、方便的二手交易平台。</p>
+<p>2、为学生提供廉价、有用的二手物品。目前我校的二手交易需求还是比较旺盛的，建立校内二手交易市场，可以让校内的师生将自己闲置的教材、数码设备、体育用具、自行车甚至是自己手工制作的小装饰品等物品挂上交易市场进行交易。这样既避免了手中有闲置品的师生废弃了这些物品，又可以让有需要的师生用较低的价格获得自己需要的物品。</p>
+<p>3、每到毕业季，毕业的学长学姐都会有大量的物品无法带离学校的，这时学长学姐们都会在固定的几天时间，在学校的某个地点将自己不需要的物品拿出来摆卖，但是由于摆卖的时间短，有很多闲置物品不能及时出售。因此建立二手交易市场可以方便毕业离校的学长学姐将自己不需要的物品早早挂上交易市场进行出售。</p>
+<h3 id="1-2-对象"><a href="#1-2-对象" class="headerlink" title="1.2 对象"></a>1.2 对象</h3><p><strong>本《软件需求规格说明书》的预期读者是：</strong> </p>
+<ul>
+<li>二手交易平台平台开发经理</li>
+<li>项目组所有人员</li>
+<li>测试组人员</li>
+<li>开发团队授权调阅本文档的其他人员</li>
+</ul>
+<h3 id="1-3-软件需求分析理论"><a href="#1-3-软件需求分析理论" class="headerlink" title="1.3 软件需求分析理论"></a><strong>1.3 软件需求分析理论</strong></h3><p>​	软件需求分析是研究用户需求得到的东西，完全理解用户对软件需求的完整功能，确认用户软件功能需求， 建立可确认的、可验证的一个基本依据。软件需求分析是一个项目的开端， 也是项目实施最重要的关键点。 据有关的机构分析结果表明， 设计的软件产品存在不完整性、 不正确性等问题 <strong>80％</strong>以上是需求分析错误所导致的，而且由于需求分析错误造成根本性的功能问题尤为突出。因此，一个项目的成功软件需求分析是关键的一步。</p>
+<h3 id="1-4-软件需求分析目标"><a href="#1-4-软件需求分析目标" class="headerlink" title="1.4 软件需求分析目标"></a><strong>1.4 软件需求分析目标</strong></h3><p>​	对实现软件的功能做全面的描述，帮助用户判断实现功能的正确性、一致性和完整性，促使用户在软件设计启动之前周密地、全面地思考软件需求。了解和描述软件实现所需的全部信息，为软件设计、确认和验证提供一个基准。</p>
+<p>​	为软件管理人员进行软件成本计价和编制软件开发计划书提供依据。</p>
+<p>​	需求分析的具体内容可以归纳为六个方面： 软件的功能需求， 软件与硬件或其他外部系统接口，软件的非功能性需求， 软件的反向需求， 软件设计和实现上的限制，阅读支持信息。</p>
+<p>​	软件需求分析应尽量提供软件实现功能需求的全部信息， 使得软件设计人员和软件测试人员不再需要需求方的接触。 这就要求软件需求分析内容应正确、 完整、一致和可验证。此外，为保证软件设计质量，便于软件功能的休整和验证，软件需求表达无岔意性，具有可追踪性和可修改性。</p>
+<h3 id="1-5-参考资料"><a href="#1-5-参考资料" class="headerlink" title="1.5 参考资料"></a>1.5 参考资料</h3><p>1、张海藩 《软件工程导论》        清华大学出版社</p>
+<p>2、侯爱民 《面向对象分析与设计（UML）》  清华大学出版社</p>
+<p>3、王珊  《数据库系统概论》      高等教育出版社</p>
+<h2 id="二、需求概述"><a href="#二、需求概述" class="headerlink" title="二、需求概述"></a><strong>二、需求概述</strong></h2><h3 id="2-1-项目背景"><a href="#2-1-项目背景" class="headerlink" title="2.1 项目背景"></a><strong>2.1 项目背景</strong></h3><p>将要开发的软件名为《校园二手交易网站》，本项目的提出者是北京交通大学软件学院蓝瞳研发团队，而开发者是蓝瞳研发团队，主要用户是北京交通大学全体学生， 该软件独立于其他系统，自成一个完整的系统，应用方便。</p>
+<h3 id="2-2-需求概述"><a href="#2-2-需求概述" class="headerlink" title="2.2 需求概述"></a><strong>2.2 需求概述</strong></h3><p>下面就对校园二手交易网站分模块进行需求分析。</p>
+<h4 id="用户信息模块"><a href="#用户信息模块" class="headerlink" title="用户信息模块"></a>用户信息模块</h4><table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">需求</span></th>
+<th>详细分析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>注册功能</td>
+<td>系统应该为用户提供手机号注册和邮箱注册两个方式，为用户发送验证码，并确认验证码，设置账号密码时密码隐藏显示，并且提供确认密码输入框以避免出现差错，相关协议默认未勾中，账号和用户学号绑定。</td>
+</tr>
+<tr>
+<td>登录功能</td>
+<td>系统应该为用户提供输入框可以输入账号密码进行登陆，如果密码错误显示提示，输入密码错误超过三次需要输入验证码，密码显示为隐藏</td>
+</tr>
+<tr>
+<td>忘记密码</td>
+<td>系统应该给用户手机号发送验证码，确认验证码正确过后再提供重新设置密码的机会，设置完成后，退回到登录界面</td>
+</tr>
+<tr>
+<td>修改密码</td>
+<td>系统应该与用户确认原来密码，确认密码正确过后再提供重新设置密码的机会，设置完成后，退回到登录界面</td>
+</tr>
+<tr>
+<td>注销用户</td>
+<td>系统应该弹出确认注销的窗口，并在窗口提示用户，注销用户将删除一切用户信息</td>
+</tr>
+</tbody></table>
+<h4 id="展示模块"><a href="#展示模块" class="headerlink" title="展示模块"></a>展示模块</h4><table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">需求</span></th>
+<th>详细分析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>智能推荐</td>
+<td>系统应该通过一系列最优算法为用户提供满足其需求的二手物品推荐，具体表现为通过用户类型，最近浏览的物品种类以及倾向于购买的物品种类等信息为其推荐最适合的二手物品</td>
+</tr>
+<tr>
+<td>视频展示</td>
+<td>系统应该能够稳定流畅运行，通过录制新手使用指导视频对该项目的全部功能进行一个介绍和展示，让用户可以通过视频去直观的了解该项目的使用方式，从而轻松入手购买自己心怡的二手物品。</td>
+</tr>
+<tr>
+<td>独家活动</td>
+<td>系统应该举行一些独家活动激励卖家主动出售自己不需要的二手物品，同时鼓励买家积极购买平台的二手物品，通过活动提高平台的知名度，让买家与卖家享受到平台的便利实惠，打赢信誉战。</td>
+</tr>
+<tr>
+<td>用户指南</td>
+<td>系统应该配备一本便于新用户使用的用户指南。一份精心制作、对用户友好的用户指南可谓一件必需品，其影响着客户体验的优劣程度，对于新用户来说， 用户指南能够帮助它们快速了解本产品的用法，减少自己摸索使用所花费的时间，同时提高对产品的满意度。</td>
+</tr>
+</tbody></table>
+<h4 id="交易模块"><a href="#交易模块" class="headerlink" title="交易模块"></a>交易模块</h4><table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">需求</span></th>
+<th>详细分析</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>搜索信息</td>
+<td>系统应该为想要搜索特定信息的用户提供文本输入框，当在文本输入框输入搜索的信息，如好友名，物品名，历史订单，活动名等，点击“搜索”按钮后，系统应该弹出相应主页给用户。</td>
+<td></td>
+</tr>
+<tr>
+<td>删除信息</td>
+<td>系统应该为想要删除特定信息的用户提供删除，用户可在个人主页简介处，历史订单主页，好友页面，活动页面，点击选择所要删除的特定好友、历史订单、简介等，点击“删除”按钮后，系统将从数据库中删去该信息。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="活动模块"><a href="#活动模块" class="headerlink" title="活动模块"></a>活动模块</h4><table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">需求</span></th>
+<th>详细分析</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>以物易物—物品登记功能</td>
+<td>系统应该为想要交换的用户提供交易物品登记表去登记想要交换的物品的基本信息，登记完之后点击提交，如果提交成功，系统将记录所登记的物品信息，如果登记的信息中含有敏感信息，则系统不会通过用户的提交。</td>
+<td></td>
+</tr>
+<tr>
+<td>以物易物—双方联系功能</td>
+<td>系统应该为想要进行以物易物的双方提供一个临时的聊天框，让用户双方进行交流，如果交谈的过程中出现敏感词句，系统将删除敏感语句，并对违规用户进行警告。</td>
+<td></td>
+</tr>
+<tr>
+<td>捐赠二手物品—物品登记功能</td>
+<td>系统应该为想要捐赠的用户提供捐赠物品登记表去登记想要去捐赠的物品的基本信息，登记完之后点击提交，如果提交成功，系统将记录所登记的物品信息，如果登记的信息中含有敏感信息，则系统不会通过用户的提交。</td>
+<td></td>
+</tr>
+<tr>
+<td>捐赠二手物品—捐赠情况反馈功能</td>
+<td>系统应该为捐赠二手物品的用户提供一个反馈的渠道，让用户可以知道自己捐赠的物品的最终的去向</td>
+<td></td>
+</tr>
+<tr>
+<td>义卖—物品登记功能</td>
+<td>系统应该为想要义卖的用户提供义卖物品登记表去登记想要义卖的物品的基本信息，登记完之后点击提交，如果提交成功，系统将记录所登记的物品信息，如果登记的信息中含有敏感信息，则系统不会通过用户的提交。</td>
+<td></td>
+</tr>
+<tr>
+<td>义卖—捐赠情况反馈功能</td>
+<td>系统应该为义卖的用户提供一个反馈的渠道，让用户可以知道最后义卖所卖出的金额，和这些钱的使用情况和捐赠情况。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="社区模块"><a href="#社区模块" class="headerlink" title="社区模块"></a>社区模块</h4><table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">需求</span></th>
+<th>详细分析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>私信交流</td>
+<td>系统应该在用户信息处设置私聊按钮，以供点击后可以通过发信息、图片进行相互交流</td>
+</tr>
+<tr>
+<td>发布留言</td>
+<td>系统应该在社区的帖子中添加发布留言按钮，让用户对某件商品或事务发表看法</td>
+</tr>
+<tr>
+<td>查看留言</td>
+<td>系统应该为每个进入社区的用户提供他所查看的帖子的所有留言</td>
+</tr>
+<tr>
+<td>删除留言</td>
+<td>系统应该在用户已经发布的留言下添加删除按钮，让用户可以删除自己的留言</td>
+</tr>
+<tr>
+<td>社区群聊</td>
+<td>系统应该让用户能够在社区中点击按钮创建群聊，让更多对相关话题感兴趣的用户加入聊天，通过发送消息或图片进行多人讨论</td>
+</tr>
+<tr>
+<td>发布动态</td>
+<td>系统应该支持用户通过添加图片，配写文案等方式发布自己的动态</td>
+</tr>
+<tr>
+<td>删除动态</td>
+<td>系统应该支持在用户已经发布的动态下添加删除按钮，支持用户删除自己的动态</td>
+</tr>
+<tr>
+<td>动态评论</td>
+<td>系统应该在每位用户发表的动态下添加评论功能，其他用户可以通过输入框输入个人的评论</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-需求获取"><a href="#2-3-需求获取" class="headerlink" title="2.3 需求获取"></a>2.3 需求获取</h3><p>采用问卷调查法，线上了解需求，根据需求做出调整，具体的问卷附在文末。</p>
+<h2 id="三、系统功能需求"><a href="#三、系统功能需求" class="headerlink" title="三、系统功能需求"></a><strong>三、系统功能需求</strong></h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><table>
+<thead>
+<tr>
+<th align="center"><span style="display:inline-block;width: 80px">概念</span></th>
+<th>具体定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">活动图</td>
+<td>活动图是UML用于对系统的动态行为建模的另一种常用工具，它描述活动的顺序，展现从一个活动到另一个活动的控制流。活动图在本质上是一种流程图。虽然活动图与状态图都是状态机的表现形式，但是两者还是有本质区别：活动图着重表现从一个活动到另一个活动的控制流，是内部处理驱动的流程；而状态图着重描述从一个状态到另一个状态的流程，主要有外部事件的参与。</td>
+</tr>
+<tr>
+<td align="center">用例图</td>
+<td>用例图（英语：use case diagram）是用户与系统交互的最简表示形式，展现了用户和与他相关的用例之间的关系。通过用例图，人们可以获知系统不同种类的用户和用例。用例图也经常和其他图表配合使用。</td>
+</tr>
+<tr>
+<td align="center">时序图</td>
+<td>时序图（Sequence Diagram），又名序列图、循序图，是一种UML交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，其中的每条消息对应一个类操作或状态机中引起转换的触发事件。</td>
+</tr>
+<tr>
+<td align="center">类图</td>
+<td>类图(Class diagram)由许多（静态）说明性的模型元素（例如类、包和它们之间的关系，这些元素和它们的内容互相连接）组成。类图可以组织在（并且属于）包中，仅显示特定包中的相关内容。类图(Class diagram)是最常用的UML图，显示出类、接口以及它们之间的静态结构和关系；它用于描述系统的结构化设计。类图(Class diagram)最基本的元素是类或者接口。<br/>类图主要用在面向对象软件开发的分析和设计阶段，描述系统的静态结构。类图图示了所构建系统的所有实体、实体的内部结构以及实体之间的关系。即．类图中包含从用户的客观世界模型中抽象出来的类、类的内部结构和类与类之间的关系。它是构建其他设计模型的基础，没有类图，就没有对象图、状态图、协作图等其他UMI．动态模型图．也就无法表示系统的动态行为。类图也是面向对象编程的起点和依据。<br/>类图用于描述系统中所包含的类以及它们之间的相互关系，帮助人们简化对系统的理解，它是系统分析和设计阶段的重要产物，也是系统编码和测试的重要模型依据。</td>
+</tr>
+<tr>
+<td align="center">状态图</td>
+<td>状态图(Statechart Diagram)是描述一个实体基于事件反应的动态行为，显示了该实体如何根据当前所处的状态对不同的事件做出反应。通常我们创建一个UML状态图是为了以下的研究目的：研究类、角色、子系统、或组件的复杂行为。UML通过使用状态图来支持基于事件的模型，状态图用来来描述一个类对象在不同用例间状态的迁移。当一个用例或某个事件发生时，类对象的状态就会发生迁移，状态图有助于分析人员审核业务逻辑，以及完善静态模型。</td>
+</tr>
+<tr>
+<td align="center">数据流图</td>
+<td>数据流图或数据流程图（Data Flow Diagram），缩写为DFD。数据流图DFD是描述系统中数据流程的一种图形工具，它标志了一个系统的逻辑输入和逻辑输出，以及把逻辑输入转换逻辑输出所需的加工处理。DFD显示系统将输入和输出什么样的信息，数据如何通过系统前进以及数据将被存储在何处。它不显示关于进程计时的信息，也不显示关于进程将按顺序还是并行运行的信息，而不像传统的关注控制流的结构化流程图，或者UML活动工作流程图，它将控制流和数据流作为一个统一的模型。<br/>数据流图从数据传递和加工的角度，以图形的方式刻画数据流从输入到输出的移动变换过程。</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-功能总览"><a href="#3-1-功能总览" class="headerlink" title="3.1 功能总览"></a><strong>3.1 功能总览</strong></h3><table>
+<thead>
+<tr>
+<th align="center"><span style="display:inline-block;width: 120px">功能</span></th>
+<th align="left">具体内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">用户注册</td>
+<td align="left">学生可利用自已学号进行注册，注册实现实名制</td>
+</tr>
+<tr>
+<td align="center">用户登录</td>
+<td align="left">只有登录用户才能进行信息发布。管理员登录后可以进行系统管理</td>
+</tr>
+<tr>
+<td align="center">发布信息</td>
+<td align="left">普通用户和管理员登录后都可以发布信息</td>
+</tr>
+<tr>
+<td align="center">修改信息</td>
+<td align="left">普通用户可以修改自己发布的信息，管理员可以修改所有信息</td>
+</tr>
+<tr>
+<td align="center">删除信息</td>
+<td align="left">普通用户可以删除自己发布的信息，管理员可以删除所有信息</td>
+</tr>
+<tr>
+<td align="center">浏览信息</td>
+<td align="left">游客、普通用户和管理员可以浏览所有发布的信息</td>
+</tr>
+<tr>
+<td align="center">搜索信息</td>
+<td align="left">游客、普通用户和管理员可以用关键字搜索所有发布的信息。普通用户可以搜索自己发布的所有信息</td>
+</tr>
+<tr>
+<td align="center">发表留言</td>
+<td align="left">普通用户和管理员登录后都可以对发布信息进行留言</td>
+</tr>
+<tr>
+<td align="center">查看留言</td>
+<td align="left">游客、普通用户和管理员都可以查看发布信息的留言</td>
+</tr>
+<tr>
+<td align="center">删除留言</td>
+<td align="left">管理员可以删除留言</td>
+</tr>
+<tr>
+<td align="center">添加二手指南</td>
+<td align="left">管理员可以添加二手指南</td>
+</tr>
+<tr>
+<td align="center">查看二手指南</td>
+<td align="left">游客、普通用户和管理员都可以查看二手指南</td>
+</tr>
+<tr>
+<td align="center">修改二手指南</td>
+<td align="left">管理员可以修改二手指南</td>
+</tr>
+<tr>
+<td align="center">删除二手指南</td>
+<td align="left">管理员可以删除二手指南</td>
+</tr>
+<tr>
+<td align="center">私信交流</td>
+<td align="left">用户之间可以相互私信交流</td>
+</tr>
+<tr>
+<td align="center">智能推荐</td>
+<td align="left">智能推荐用户喜欢的产品</td>
+</tr>
+<tr>
+<td align="center">图像识别</td>
+<td align="left">自动识别客户上传的图片</td>
+</tr>
+<tr>
+<td align="center">社区交流</td>
+<td align="left">用户可以在社区当中发帖交流</td>
+</tr>
+<tr>
+<td align="center">爱心公益</td>
+<td align="left">用户可以将自己不需要的物品进行爱心捐献</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-功能结构图"><a href="#3-2-功能结构图" class="headerlink" title="3.2 功能结构图"></a><strong>3.2 功能结构图</strong></h3><p>![未命名文件 (软件需求规格说明书.assets&#x2F;未命名文件 (2).png)](..&#x2F;..&#x2F;Download&#x2F;未命名文件 (2).png)</p>
+<h3 id="3-3-数据流分析"><a href="#3-3-数据流分析" class="headerlink" title="3.3 数据流分析"></a><strong>3.3 数据流分析</strong></h3><p>[^用户信息模块数据流图]: </p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/1647483600024.png" alt="1647483600024"></p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/1647483620846.png" alt="1647483620846"></p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/1647483630850.png" alt="1647483630850"></p>
+<h3 id="3-4-功能分析"><a href="#3-4-功能分析" class="headerlink" title="3.4 功能分析"></a>3.4 功能分析</h3><p>在此部分将从用例图、活动图、时序图、状态图和类图从不同视角对用户信息模块、交易模块、展示模块、社区模块、活动模块进行刻画和描述。</p>
+<h4 id="3-4-1-用户信息模块"><a href="#3-4-1-用户信息模块" class="headerlink" title="3.4.1 用户信息模块"></a>3.4.1 用户信息模块</h4><h5 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%94%A8%E4%BE%8B%E5%9B%BE-1648648796754.png" alt="用例图"></p>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>注册</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例允许用户将用户名，密码，电话号码三段信息提交至系统注册账号</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>打开网页点击注册</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>①用户输入用户名，密码，电话号码三段信息， ②用户点击获取验证码，并将其填入到验证码一栏中， ③用户点击注册按钮，注册成功.</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>①若用户未输入用户名，密码，电话号码三段信息，则无法点击获取验证码，并在缺失信息的一栏提示 ②若用户未点击发送验证码，则无法点击注册按钮，并在验证码一栏提示 ③若用户输入错误的验证码，点击会提示验证码错误</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，用户信息在系统的数据库中，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>注册</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例允许用户将用户名，密码，两段信息提交至系统登录账号</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>打开网页点击登录</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>①用户输入用户名，密码三段信息， ②用户点击登录按钮，登录成功.</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>①若用户未输入用户名，密码，则无法点击登录，并在缺失的一栏提示 ②若用户输入不存在的用户名，点击登录会提示该用户不存在 ③若用户输入错误的密码，点击登录会提示密码错误 ④若用户输入密码错误五次则登录失败，一小时内不可再次登录。</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，系统向用户展示主界面。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>修改密码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例允许用户将手机号，新密码提交至系统修改密码</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>打开个人信息界面点击修改密码</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>①用户输入电话号码，新密码， ②用户点击获取验证码，并将其填入到验证码一栏中， ③用户点击修改密码按钮，修改成功.</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>①若用户未输入新密码或手机号，则无法获取验证吗，并在缺失的一栏提示 ②若用户未点击发送验证码，则无法点击注册按钮，并在验证码一栏提示 ③若用户输入错误的验证码，点击会提示验证码错误</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，在系统的数据库中修改用户信息，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<h5 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h5><p>活动图1 中简单描述了，从开始到登录有账号则直接登录结束，没有账号则填写相关信息来注册账号最后回到登录账号再结束。 </p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%B4%BB%E5%8A%A8%E5%9B%BE1-1648648746339.png" alt="活动图1"></p>
+<p>活动图2 中简单描述了，从开始填写信息，填写验证码，最后成功修改密码直接结束。</p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%B4%BB%E5%8A%A8%E5%9B%BE2-1648648753740.png" alt="活动图2"></p>
+<h5 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%97%B6%E5%BA%8F%E5%9B%BE-1648648763772.jpg" alt="时序图"></p>
+<h5 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%8A%B6%E6%80%81%E5%9B%BE-1648648785838.png" alt="状态图"></p>
+<h5 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%B1%BB%E5%9B%BE-1648648780872.png" alt="类图"></p>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">类图综述</span></th>
+<th>类图名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目的</td>
+<td>围绕用户注册模块分析类图</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>用户-登录-账号</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>提供用户登录功能</td>
+</tr>
+<tr>
+<td>组织</td>
+<td>大体上以为LoginBO类为中心</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>LoginForm</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>展示登录界面</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>login: LoginBO</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>LoginForm(), validate( String account, String password) : void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>LoginForm类没有子类或父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>LoginBO</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>登录业务逻辑类，封装实现登录功能的业务逻辑类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>userDAO : IUserDAO</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>setlUserDAO(UserDAO userDAO) : void,  validate( String account, String password ) : boolean</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>LoginBO类没有子类或父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>lUserDAO</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>抽象数据访问类接口，声明对User表的数据操作方法，</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>–</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>findUserByAccAndPwd( String account, String password ) : boolean</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>lUserDAO类没有子类或父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>UserDAO</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>狊体数据访问类，实现对User表的数据操作方法</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>–</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>findUserByAccAndPwd( String account, String password ) : boolean</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>UserDAO类没有子类或父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 100px">关联描述</span></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关联一</td>
+<td>LoginForm类 和 LoginBO类是组合关系，LoginForm类是LoginBO类的整体部分且控制其生命周期。</td>
+</tr>
+<tr>
+<td>关联二</td>
+<td>LoginBO类 和 lUserDAO类是聚合关系，LoginBO类是lUserDAO类的整体部分，但部分lUserDAO类可以脱离整体部分单独存在。</td>
+</tr>
+<tr>
+<td>关联三</td>
+<td>UserDAO类是lUserDAO类的实现接口，在UserDAO类中具体声明了一些方法。</td>
+</tr>
+</tbody></table>
+<h4 id="3-4-2-交易模块"><a href="#3-4-2-交易模块" class="headerlink" title="3.4.2 交易模块"></a>3.4.2 交易模块</h4><h5 id="用例图-1"><a href="#用例图-1" class="headerlink" title="用例图"></a>用例图</h5><img src="软件需求规格说明书.assets/交易模块用例图.png" alt="交易模块用例图" style="zoom: 80%;" />
+
+<table>
+<thead>
+<tr>
+<th align="center"><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>搜索信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">简述</td>
+<td>该用例允许用户输入所需要搜索的信息，该信息包括所需要购买的物品名，好友名，历史订单以及现有开放活动。</td>
+</tr>
+<tr>
+<td align="center">参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td align="center">前置条件</td>
+<td>用户需要进入搜索框，并且输入对应所需查找的物品、好友、历史订单或活动名。当用户单击“搜索”按钮时，该用例启动。</td>
+</tr>
+<tr>
+<td align="center">正常流</td>
+<td>① 当用户输入物品名，并点击”搜索“按钮时，系统显示用户搜索的物品售卖页面。② 当用户输入好友名，并点击”搜索“按钮时，系统显示用户搜索的好友主页。③ 当用户输入历史订单名，并点击”搜索“按钮时，系统显示用户搜索的历史订单详情页面。④ 当用户输入活动名，并点击”搜索“按钮时，系统显示</td>
+</tr>
+<tr>
+<td align="center">替代流</td>
+<td>① 当用户未输入物品名，并点击”搜索“按钮时，系统显示弹窗提示用户未输入文本。② 当用户未输入好友名，并点击”搜索“按钮时，系统显示弹窗提示用户未输入文本。③ 当用户未输入历史订单名，并点击”搜索“按钮时，系统显示弹窗提示用户未输入文本。④ 当用户未输入活动名，并点击”搜索“按钮时，系统显示弹窗提示用户未输入文本。</td>
+</tr>
+<tr>
+<td align="center">后置条件</td>
+<td>如果用例成功，搜索记录在系统的数据库中，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>删除信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">简述</td>
+<td>该用例允许用户删除信息，该信息包括所需要曾经历史订单，好友，所参与活动的记录，个人主页，售卖物品主页。</td>
+</tr>
+<tr>
+<td align="center">参与者</td>
+<td>用户、管理员</td>
+</tr>
+<tr>
+<td align="center">前置条件</td>
+<td>用户需要进入个人主页，在不同模块如好友、历史订单、活动、个人主页处点击”删除“按钮，该用例启动。</td>
+</tr>
+<tr>
+<td align="center">正常流</td>
+<td>① 当用户进入个人主页，并点击”删除简介“按钮时，系统删除用户的个人主页信息（如签名，简介）。② 当用户进入个人主页-售卖物品主页，选择要删除的物品，并点击”删除“按钮时，系统删除用户的所售卖物品主页。③ 当用户进入好友主页，选择要删除的好友，并点击”删除“按钮时，系统删除用户的对应好友。④ 当用户进入历史订单主页，选择要删除的历史订单，并点击”删除“按钮时，系统删除用户的对应历史订单。⑤ 当用户进入活动主页，选择要删除的参与过的活动，并点击”删除“按钮时，系统删除用户的对应参与过活动。</td>
+</tr>
+<tr>
+<td align="center">替代流</td>
+<td>① 当用户未选择售卖物品，并点击”删除“按钮时，系统显示弹窗提示用户未选择售卖物品。② 当用户未选择好友，并点击”删除“按钮时，系统显示弹窗提示用户未选择好友。③ 当用户未选择历史订单，并点击”删除“按钮时，系统显示弹窗提示用户未选择历史订单。④ 当用户未选择活动，并点击”删除“按钮时，系统显示弹窗提示用户未选择活动。⑤ 当用户未选择个人主页简介，并点击”删除“按钮时，系统显示弹窗提示用户未选择简介。</td>
+</tr>
+<tr>
+<td align="center">后置条件</td>
+<td>如果用例成功，对应的删除记录会在系统的数据库消失中，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>浏览信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">简述</td>
+<td>该用例允许用户浏览好友、物品、个人主页和活动信息，该信息包括历史订单，好友，所参与活动的记录，个人主页，售卖物品主页等。</td>
+</tr>
+<tr>
+<td align="center">参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td align="center">前置条件</td>
+<td>用户需要进入个人主页、好友主页、物品主页、活动主页等，点击图片或名字，该用例启动。</td>
+</tr>
+<tr>
+<td align="center">正常流</td>
+<td>① 当用户进入个人主页，并点击下方个人主页按钮时，系统显示用户的个人主页信息（如签名，简介）。② 当用户进入个人主页-售卖物品主页，点击售卖的物品，系统显示用户的所售卖物品主页。③ 当用户进入好友主页，点击要选择的好友，系统显示用户的对应好友主页。④ 当用户进入历史订单主页，选择要点击的历史订单，系统显示用户的对应历史订单。⑤ 当用户进入活动主页，选择要参与过的活动，系统显示用户的对应参与过活动。</td>
+</tr>
+<tr>
+<td align="center">替代流</td>
+<td>① 当用户未选择个人主页，系统不会显示个人主页。② 当用户未选择好友，系统不会显示好友主页。③ 当用户未选择历史订单主页，系统不会显示历史订单主页。④ 当用户未选择物品，系统不会显示物品主页。⑤ 当用户未选择活动，系统不会显示活动主页。</td>
+</tr>
+<tr>
+<td align="center">后置条件</td>
+<td>如果用例成功，系统会显示相应点击的详情主页，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>修改信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">简述</td>
+<td>该用例允许用户修改信息，该信息包括个人主页，自己所售卖物品的价格、图片、简介信息。</td>
+</tr>
+<tr>
+<td align="center">参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td align="center">前置条件</td>
+<td>用户需要进入个人主页，在不同模块如签名简介或售卖物品的主页点击修改，该用例启动。</td>
+</tr>
+<tr>
+<td align="center">正常流</td>
+<td>① 当用户进入个人主页，并点击”修改“按钮时，用户的个人主页信息（如签名，简介）显示可修改状态。② 当用户进入个人主页-售卖物品主页，选择要修改的物品，并点击”修改“按钮时，用户的所售卖物品主页显示可修改状态。</td>
+</tr>
+<tr>
+<td align="center">替代流</td>
+<td>① 当用户未选择售卖物品，并点击”修改“按钮时，系统显示弹窗提示用户未选择售卖物品。</td>
+</tr>
+<tr>
+<td align="center">后置条件</td>
+<td>如果用例成功，对应的修改记录会在系统的数据库出现并覆盖之前的信息，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>发布信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">简述</td>
+<td>该用例允许用户发布信息，该信息包括售卖物品主页。</td>
+</tr>
+<tr>
+<td align="center">参与者</td>
+<td>用户、管理员</td>
+</tr>
+<tr>
+<td align="center">前置条件</td>
+<td>用户需要进入个人主页-物品主页，点击发布“按钮，该用例启动。</td>
+</tr>
+<tr>
+<td align="center">正常流</td>
+<td>① 当用户进入个人主页，并点击”发布“按钮时，系统会发布用户的所售卖的物品主页信息。</td>
+</tr>
+<tr>
+<td align="center">替代流</td>
+<td>① 当用户未选择售卖物品，并点击”发布“按钮时，系统显示弹窗提示用户未选择售卖物品。</td>
+</tr>
+<tr>
+<td align="center">后置条件</td>
+<td>如果用例成功，发布售卖物品记录会在系统的数据库出现中，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<h5 id="活动图-1"><a href="#活动图-1" class="headerlink" title="活动图"></a>活动图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%90%9C%E7%B4%A2%E4%BF%A1%E6%81%AF-1648647967592.png" alt="搜索信息"></p>
+<p>![删除信息 (软件需求规格说明书.assets&#x2F;删除信息 (2)-1648648030631.png)](C:&#x2F;Users&#x2F;Lenovo&#x2F;Desktop&#x2F;交易模块&#x2F;删除信息 (2).png)</p>
+<h5 id="时序图-1"><a href="#时序图-1" class="headerlink" title="时序图"></a>时序图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%B7%BB%E5%8A%A0%E5%87%BA%E5%85%A5%E5%BA%93%E8%AE%B0%E5%BD%95%E5%BA%8F%E5%88%97%E5%9B%BE.png" alt="添加出入库记录序列图"></p>
+<h5 id="状态图-1"><a href="#状态图-1" class="headerlink" title="状态图"></a>状态图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%8A%B6%E6%80%81%E5%9B%BE-1648648042817.png" alt="状态图"></p>
+<h5 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h5><p>![未命名文件 (软件需求规格说明书.assets&#x2F;未命名文件 (11).png)](G:&#x2F;Download&#x2F;未命名文件 (11).png)</p>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">类图综述</span></th>
+<th>类图名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目的</td>
+<td>围绕交易模块分析类图</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>界面-控制-实体</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>提供了二手物品交易功能、二手物品发布功能，可以进行二手物品信息的设置，包括名称，价格，是否包邮等等</td>
+</tr>
+<tr>
+<td>组织</td>
+<td>大体上以交易功能为中心</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>DealPart类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>用于验证用户信息和交易信息</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>- string userName - string dealInfo</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+ getShopInfo(): string<br/>+ validate( String account , String password ) : void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>有两个子类：<strong>DealDonePart</strong>类和<strong>ReleaseInfoPart</strong>类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>DealDonePart</strong>类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>用于判断交易是否成功以及展示交易信息</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>- string passWord</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+ dealSuccess():bool<br/>+ dealInfo(string dealNum):string</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>是DealPart类的子类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>ReleaseInfoPart</strong>类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>用于验证用户信息和交易信息</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>- string Info<br/>- string nameOfSell<br/>- string prize<br/>- bool postal<br/>- bool release</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+ setInfo(): void<br/>+ getInfo(int dealNum): string<br/>+ getReleaseOrNot(int dealNum): bool<br/>+ getPostalOrNot(int dealNum): bool<br/>+ releaseNew(string info): void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>是DealPart类的子类</td>
+</tr>
+</tbody></table>
+<h4 id="3-4-3-展示模块"><a href="#3-4-3-展示模块" class="headerlink" title="3.4.3 展示模块"></a>3.4.3 展示模块</h4><h5 id="用例图-2"><a href="#用例图-2" class="headerlink" title="用例图"></a>用例图</h5><img src="软件需求规格说明书.assets/用例图-1648648353326.png" alt="用例图" style="zoom: 33%;" />
+
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>视频展示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例将系统的使用以及注意事项通过视频的方式展现给用户，并可供用户下载</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>用户进入系统主页面，该页面显示系统各种功能，当用户单击“视频简介”按钮时，该用例启动。</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>①系统打开视频展示视频 ②用户观看视频，可暂停，跳转等 ③系统提供下载该视频功能</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>① 若系统打开视频失败，用户可提交投诉将错误及时反馈。 ② 若客户下载视频失败，用户可联系工作人员获取备用下载地址。</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，播放展示视频并提共下载源，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>智能推荐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例将用户最希望购置到的物品和最热门的物品推荐给用户，并提供评价服务。</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>客户进入购物页面，该页面显示各类二手物品及其价格，当用户单击“智能推荐”按钮时，该用例启动</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>①系统显示客户最希望购买的和最热门的商品列表供客户选择 ②客户选择心怡的物品，使用“购买”功能，选择付款方式，系统给订单唯一的订单编号，将订单信息存储到数据库.</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>①若客户未购买物品，返回主页面 ②若客户未选择付款方式，选择“购买”功能，则无法提交，仍然回到订单页面提示客户选择付款方式(网上支付&#x2F;货到付款)</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，购物订单记录在系统的数据库中，更新智能推荐物品列表，否则系统状态不变</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>用户指南</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例将系统的使用以及注意事项通过文本的方式展现给用户。</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>客户进入系统主页面，该页面显示系统各种功能，当用户单击“用户指南”按钮时，该用例启动</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>① 系统显示系统的使用指南和注意事项。</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>① 若客户打开用户指南失败，用户可提交投诉将错误及时反馈。</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，打开用户指南，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<h5 id="活动图-2"><a href="#活动图-2" class="headerlink" title="活动图"></a>活动图</h5><p>图中简单描述了：从打开视频简介开始，若视频打开失败则向客户发送错误反馈，若打开成功则可以查看视频，观看时有四个功能选项，即全屏播放、挑战进度、调节音量、暂停播放，播放完成后用户可选择是否下载，若选择下载且下载成功后，返回主界面；若下载失败，向客服发送错误反馈；若不下载则返回主页面，结束该活动。</p>
+<img src="软件需求规格说明书.assets/活动图1-1648648358013.png" alt="活动图1" style="zoom: 50%;" />
+
+<p>图中简单描述了：从打开智能推荐开始，可以选择三种功能，即心意物品推荐、热门物品推荐和查看评价，找到自己想要购买的二手物品后，进行购买，选择付款方式后进行付款，付款成功后返回主界面，结束活动。</p>
+<img src="软件需求规格说明书.assets/活动图2-1648648366272.png" alt="活动图2" style="zoom:50%;" />
+
+<p>图中简单描述了：从打开用户指南开始，若打开失败则自动提交错误反馈；若打开成功开始查看指南，结束后返回主界面，结束活动。</p>
+<img src="软件需求规格说明书.assets/活动图3.png" alt="活动图3" style="zoom:50%;" />
+
+<h5 id="时序图-2"><a href="#时序图-2" class="headerlink" title="时序图"></a>时序图</h5><p>图中展示的是展示模块场景下的序列图。</p>
+<img src="软件需求规格说明书.assets/序列图.png" alt="序列图" style="zoom: 50%;" />
+
+<h5 id="状态图-2"><a href="#状态图-2" class="headerlink" title="状态图"></a>状态图</h5><p>图中描述了展示模块在其生命周期内所经历的状态。</p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%8A%B6%E6%80%81%E5%9B%BE-1648648386871.png" alt="状态图"></p>
+<h5 id="类图-2"><a href="#类图-2" class="headerlink" title="类图"></a>类图</h5><img src="软件需求规格说明书.assets/类图-1648648392587.png" alt="类图"  />
+
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">类图综述</span></th>
+<th>展示模块</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目的</td>
+<td>围绕展示的目的将该产品的使用方法和建议介绍给用户</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>展示界面控制用户使用这三个功能</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>提供视频介绍、用户指南、智能推荐购买功能</td>
+</tr>
+<tr>
+<td>组织</td>
+<td>大体上以智能推荐购买功能为中心</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>user类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>记录用户相关信息</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-ID : int  -name: String</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+show() : void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>无子类、父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>recommend类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>推荐用户心意和热门的二手物品</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-judge : bool<br/> -ID : String<br/>  -type : int</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+recommendationAlgorithm() : void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>无子类、父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>buy类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>用户购买物品</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-Buy : bool<br/>-price : double</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+ifBuy() : void<br/>+pay() : void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>无子类、父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>video类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>播放以及下载介绍视频</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-judge : bool<br/>-type : int</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+ifDownload() : void<br/>+ifOpen() : void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>无子类、父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>guide类描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>查看用户指南</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-judge : bool<br/>-type : int<br/>-content : String</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+ifOpen() : void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>无子类、父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>关联描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关联一</td>
+<td>user与recommend是聚合关系，推荐与用户功能是部分与整体之间的关系，且可以脱离整体单独存在</td>
+</tr>
+<tr>
+<td>关联二</td>
+<td>user与video是聚合关系，视频与用户功能是部分与整体之间的关系，且可以脱离整体单独存在</td>
+</tr>
+<tr>
+<td>关联三</td>
+<td>user与guide是聚合关系，用户指南与用户功能是部分与整体之间的关系，且可以脱离整体单独存在</td>
+</tr>
+<tr>
+<td>关联四</td>
+<td>recommend与buy是聚合关系，购买与推荐系统是部分与整体之间的关系，且可以脱离整体单独存在</td>
+</tr>
+</tbody></table>
+<h4 id="3-4-4-社区模块"><a href="#3-4-4-社区模块" class="headerlink" title="3.4.4 社区模块"></a>3.4.4 社区模块</h4><h5 id="用例图-3"><a href="#用例图-3" class="headerlink" title="用例图"></a>用例图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%94%A8%E4%BE%8B%E5%9B%BE-1648647112149.png" alt="用例图"></p>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>用户交流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例用户交流部分让用户通过点击其他用户或社区进行私信聊天或者社区群聊。</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>用户进入社区界面，该界面显示所有与该用户有关的其他用户和社区，用户单击其他用户或社区时，用例启动。</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>1.系统显示与单个用户或社区内聊天的历史记录。2.系统支持用户在聊天框中添加文字、语音、图片和视频等内容。3.用户点击“发送”，聊天框中的内容储存至数据库并发送至聊天模块。</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>1.若用户没有在聊天框中添加任何信息，则消息不会发送。2.若用户添加内容过大，则显示发送失败3.若用户发送的文本内容或图片、视频涉嫌传播非法或淫秽信息，则不会发送消息。</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，聊天内容储存在数据库中并显示于聊天模块，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>帖子留言</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例帖子留言部分让用户可以查看他人在各个帖子下的留言，并可以在各个帖子下发布留言或删除自己已发布的留言。</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>用户进入贴吧界面，该页面显示各个帖子标题和简介，用户可以点击进入各个帖子，当用户进入帖子时，该用例启动。</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>1.系统显示该帖下所有用户的留言，若用户自己有历史留言，则在个人用户端高亮置顶显示。2.系统支持用户在输入框中添加文字、图片和视频等内容。3.用户点击“发布”，输入框中的内容储存至数据库并发送至留言模块。4.用户自己发送的留言下有”删除“按钮，用户点击“删除”，留言在留言面板上抹除并在数据库中删除该记录。</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>1.若用户没有在输入框中添加任何信息，则无法发布留言。2.若用户添加内容过大，则显示发送失败。3.若用户发送的文本内容或图片、视频涉嫌传播非法或淫秽信息，则不会发布留言。</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，发布的留言将储存至数据库并显示在留言面板，删除的留言将在数据库中删除该记录并在留言面板上抹除，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>动态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例动态部分让用户可以发布自己的动态并进行修改或删除。</td>
+</tr>
+<tr>
+<td>参与者</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>用户进入动态界面，该界面显示用户自己发布的历史动态，当用户点击“发布动态”或“管理动态”时，该用例启动。</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>1.系统显示用户自己发布的历史动态。2.系统支持用户在输入框中添加文字、图片和视频等内容。3.用户点击“发布动态”，输入框中的内容储存至数据库并发送至动态模块。4.用户点击“管理动态”，可以选择修改动态文本内容或删除该动态，并于数据库中做相应修改。</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>1.若用户没有在输入框中添加任何信息，则无法发布动态。2.若用户添加内容过大，则显示发送失败。3.若用户发送的文本内容或图片涉嫌传播非法或淫秽信息，则不会发布动态。</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，发布的动态将储存至数据库并显示在动态面板，删除或修改的动态将在数据库中删除或修改该记录并在动态面板上抹除，否则系统状态不变。</td>
+</tr>
+</tbody></table>
+<h5 id="活动图-3"><a href="#活动图-3" class="headerlink" title="活动图"></a>活动图</h5><p>用户打开聊天界面，如私信聊天或社区群聊，在聊天框中输入文字或编辑语音、图片、视频等内容，点击发送，系统检测文本内容和图片视频是否含有非法淫秽信息，如果有则发送失败，提示用户“内容含有非法信息，发送失败” ；如果没有，则发送成功并将内容储存至数据库，在聊天面板显示发送的内容，退出聊天界面后结束。</p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%B4%BB%E5%8A%A8%E5%9B%BE-1648647098082.png" alt="活动图"></p>
+<h5 id="时序图-3"><a href="#时序图-3" class="headerlink" title="时序图"></a>时序图</h5><p>下图展示的是用户交流场景下的时序图</p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%97%B6%E5%BA%8F%E5%9B%BE-1648647104487.png" alt="时序图"></p>
+<h5 id="状态图-3"><a href="#状态图-3" class="headerlink" title="状态图"></a>状态图</h5><p>下图描述了用户交流在其生命周期内所经历的状态</p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%8A%B6%E6%80%81%E5%9B%BE-1648647108348.png" alt="状态图"></p>
+<h5 id="类图-3"><a href="#类图-3" class="headerlink" title="类图"></a>类图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%B1%BB%E5%9B%BE%E6%96%B0.png" alt="类图新"></p>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">类图综述</span></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目的</td>
+<td>围绕用户交流分析类图</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>用户—聊天室—信息</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>提供用户交流功能</td>
+</tr>
+<tr>
+<td>组织</td>
+<td>大体上以message类为中心</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>定义用户类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-ID:int<br/>-name:String<br/>-password:String</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+login():void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>User类没有子类或父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Chatroom</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>定义聊天室类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-userName:String</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+sendMessage():void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>Chatroom类没有子类或父类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>定义信息类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-content:String<br/>-type:int</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+sendMsg():void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>Message有三个子类，分别是textMessage、picMessage、videoMessage</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>textMessage</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>定义文本信息类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-content:String<br/>-type:int</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+sendText():void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>textMessage有父类message</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>picMessage</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>定义图片信息类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-content:Image<br/>-type:int</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+sendPicture():void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>picMessage有父类message</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>videoMessage</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td>定义视频信息类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td>-src:String   <br/>-type:int</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td>+sendVideo():void</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td>videoMessage有父类message</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>关联描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关联一</td>
+<td>用户进入聊天室</td>
+</tr>
+<tr>
+<td>关联二</td>
+<td>聊天室编辑并发送信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>继承描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>继承一</td>
+<td>textMessage是message子类，因为其文本信息属于信息中的一种</td>
+</tr>
+<tr>
+<td>继承二</td>
+<td>picMessage是message子类，因为其图片信息属于信息中的一种</td>
+</tr>
+<tr>
+<td>继承三</td>
+<td>videoMessage是message子类，因为其视频信息属于信息中的一种</td>
+</tr>
+</tbody></table>
+<h4 id="3-4-5-活动模块"><a href="#3-4-5-活动模块" class="headerlink" title="3.4.5 活动模块"></a>3.4.5 活动模块</h4><h5 id="用例图-4"><a href="#用例图-4" class="headerlink" title="用例图"></a>用例图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%94%A8%E4%BE%8B%E5%9B%BE-1648649896513.png" alt="用例图"></p>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>活动模块—以物易物</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例允许用户填写一份物品登记表，该物品登记表包括用户信息、物品信息、交换需求，完成填写后将数据存进数据库，当发现可匹配的用户后，双方进行联系，并且进行交换</td>
+</tr>
+<tr>
+<td>参与</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>用户登录系统</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>① 系统显示登记表供客户确认 ② 系统请求客户填写用户信息、物品信息、交换需求 ③ 客户选择“提交”功能，将登记表存储到数据库</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>① 若用户未填写用户信息，选择“提交”功能，则无法提交，仍然回到登记表页面提示用户填写用户信息 ② 若用户未填写物品信息，选择“提交”功能，仍然回到登记表页面提示用户填写物品信息</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，登记表记录在系统的数据库中，否则系统状态不变</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>活动模块—捐赠二手物品</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例允许用户填写一份物品登记表，该物品登记表包括用户信息、物品信息、需求，完成填写后将数据存进数据库，当物品被捐赠后，系统会对用户进行反馈</td>
+</tr>
+<tr>
+<td>参与</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>用户登录系统</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>① 系统显示登记表供客户确认 ② 系统请求客户填写用户信息、物品信息、需求 ③ 客户选择“提交”功能，将登记表存储到数据库</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>① 若用户未填写用户信息，选择“提交”功能，则无法提交，仍然回到登记表页面提示用户填写用户信息 ② 若用户未填写物品信息，选择“提交”功能，仍然回到登记表页面提示用户填写物品信息</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，登记表记录在系统的数据库中，否则系统状态不变</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">用例名称</span></th>
+<th>活动模块—义卖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>该用例允许用户填写一份物品登记表，该物品登记表包括用户信息、物品信息、需求，完成填写后将数据存进数据库，最终义卖的结果系统会对用户进行反馈</td>
+</tr>
+<tr>
+<td>参与</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>用户登录系统</td>
+</tr>
+<tr>
+<td>正常流</td>
+<td>① 系统显示登记表供客户确认 ② 系统请求客户填写用户信息、物品信息、需求 ③ 客户选择“提交”功能，将登记表存储到数据库</td>
+</tr>
+<tr>
+<td>替代流</td>
+<td>① 若用户未填写用户信息，选择“提交”功能，则无法提交，仍然回到登记表页面提示用户填写用户信息 ② 若用户未填写物品信息，选择“提交”功能，仍然回到登记表页面提示用户填写物品信息</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>如果用例成功，登记表记录在系统的数据库中，否则系统状态不变</td>
+</tr>
+</tbody></table>
+<h5 id="活动图-4"><a href="#活动图-4" class="headerlink" title="活动图"></a>活动图</h5><p>​	 图中简单描述了，用户从打开登记表到填写表中的信息，填写完毕后点击提交，系统将对表中的内容进行审核，如果不存在违规的词句就提示用户填写完成，等待之后售卖的结果，退出界面并结束；如果存在违规的词句就警告用户再退出界面直接结束。 </p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E6%B4%BB%E5%8A%A8%E5%9B%BE-1648649902753.png" alt="活动图"></p>
+<h5 id="时序图-4"><a href="#时序图-4" class="headerlink" title="时序图"></a>时序图</h5><p>图中展示的是填写登记表场景下的序列图</p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E5%A1%AB%E5%86%99%E7%99%BB%E8%AE%B0%E8%A1%A8%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt="填写登记表时序图"></p>
+<h5 id="状态图-4"><a href="#状态图-4" class="headerlink" title="状态图"></a>状态图</h5><p>图中描述了登记物品信息活动在其生命周期内所经历的状态</p>
+<p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%8A%B6%E6%80%81%E5%9B%BE-1648649918190.png" alt="状态图"></p>
+<h5 id="类图-4"><a href="#类图-4" class="headerlink" title="类图"></a>类图</h5><p><img src="/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.assets/%E7%B1%BB%E5%9B%BE-1648649924522.png" alt="类图"></p>
+<table>
+<thead>
+<tr>
+<th>类图综述</th>
+<th>类图名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目的</td>
+<td>围绕类的关系分析类图</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>父类-子类-依赖</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>提供填写二手物品登记表并写入数据库功能</td>
+</tr>
+<tr>
+<td>组织</td>
+<td>大体上以填写二手物品登记表为中心</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">登记表类描述</span></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td align="left">这是所有登记表的父类</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td align="left">UserName：用户姓名；<br/>UserIphoneNumber：用户联系方式；<br/>Adress：用户地址；<br/>ObjectName：物品名称；<br/>ObjectDescribe：物品描述；<br/>ObjectPrice：物品价格；<br/>ObjectInformation：物品附加信息说明</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td align="left">Write（）：填写登记表 ；<br/>Confirm（）：确认登记表信息；<br/>Submit（）：提交登记表；</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td align="left">无父类；Table1；Table2；Table3 是他的子类；</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">登记表类描述</span></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td align="left">以物易物的二手物品物品信息登记表</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td align="left">UserName：用户姓名；<br/>UserIphoneNumber：用户联系方式；<br/>Adress：用户地址；<br/>ObjectName：物品名称；<br/>ObjectDescribe：物品描述；<br/>ObjectPrice：物品价格；<br/>ObjectInformation：物品附加信息说明</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td align="left">Write（）：填写登记表 ；<br/>Confirm（）：确认登记表信息； <br/>Submit（）：提交登记表；</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td align="left">Table是他的父类；无子类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">登记表类描述</span></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td align="left">捐赠的二手物品物品信息登记表</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td align="left">UserName：用户姓名；<br/>UserIphoneNumber：用户联系方式；<br/>Adress：用户地址；<br/>ObjectName：物品名称；<br/>ObjectDescribe：物品描述；<br/>ObjectPrice：物品价格；<br/>ObjectInformation：物品附加信息说明</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td align="left">Write（）：填写登记表 ；<br/>Confirm（）：确认登记表信息； <br/>Submit（）：提交登记表；</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td align="left">Table是他的父类；无子类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">登记表类描述</span></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td align="left">义卖的二手物品物品信息登记表</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td align="left">UserName：用户姓名；<br/>UserIphoneNumber：用户联系方式；<br/>Adress：用户地址；<br/>ObjectName：物品名称；<br/>ObjectDescribe：物品描述；<br/>ObjectPrice：物品价格；<br/>ObjectInformation：物品附加信息说明</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td align="left">Write（）：填写登记表 ；<br/>Confirm（）：确认登记表信息； <br/>Submit（）：提交登记表；</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td align="left">Table是他的父类；无子类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">登记表类描述</span></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整体说明</td>
+<td align="left">不同物品信息登记表在数据库中的读写</td>
+</tr>
+<tr>
+<td>属性说明</td>
+<td align="left">-Table：需要操作的物品信息登记表</td>
+</tr>
+<tr>
+<td>操作说明</td>
+<td align="left">TableWriteIntoDBS（Object table）：物品信息登记表写入数据库；ReadTableFromDBS（）：物品信息登记表从数据库读出</td>
+</tr>
+<tr>
+<td>关系说明</td>
+<td align="left">无父类；无子类</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">继承描述</span></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>继承一</td>
+<td>Table1是Table的子类；Table1是以物易物的二手物品物品信息登记表，二手物品物品信息登记表类型之一</td>
+</tr>
+<tr>
+<td>继承二</td>
+<td>Table2是Table的子类；Table2是捐赠的二手物品物品信息登记表，二手物品物品信息登记表类型之一</td>
+</tr>
+<tr>
+<td>继承三</td>
+<td>Table3是Table的子类；Table3是义卖的二手物品物品信息登记表，二手物品物品信息登记表类型之一</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><span style="display:inline-block;width: 120px">依赖描述</span></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>依赖一</td>
+<td>DBS类依赖于Table1类，Table3类，或者Table3类；因为数据库的读写需要表格</td>
+</tr>
+</tbody></table>
+<h2 id="四、软硬件及外部系统接口需求"><a href="#四、软硬件及外部系统接口需求" class="headerlink" title="四、软硬件及外部系统接口需求"></a>四、软硬件及外部系统接口需求</h2><h3 id="4-1-用户界面"><a href="#4-1-用户界面" class="headerlink" title="4.1 用户界面"></a><strong>4.1 用户界面</strong></h3><p>​	用户界面是程序中用户能看见并与之交互作用的部分,设计一个好的用户界面是非常重要的,本设计将为用户提供美观,大方,直观,操作简单的用户界面。</p>
+<h3 id="4-2-硬件需求"><a href="#4-2-硬件需求" class="headerlink" title="4.2 硬件需求"></a><strong>4.2 硬件需求</strong></h3><p>​	移动终端硬件配置应遵循如下原则：具有高的可靠性，可用性和安全性。【描述系统中软件和硬件每一接口的特征。这种描述可能包括支持的硬件类型、软硬件之间的交流的数据和控制信息的性质以及使用的通信协议。】</p>
+<h3 id="4-3-运行环境"><a href="#4-3-运行环境" class="headerlink" title="4.3 运行环境"></a><strong>4.3 运行环境</strong></h3><ul>
+<li><strong>Web 浏览器：</strong>0+、Chrome、Opera、Safari、Firefox及任何支持HTML5标准的浏览器。</li>
+<li><strong>标准分辨率：</strong>1024<em>768、1920</em>1080、2K</li>
+</ul>
+<h2 id="五、可靠性与可用性需求"><a href="#五、可靠性与可用性需求" class="headerlink" title="五、可靠性与可用性需求"></a><strong>五、可靠性与可用性需求</strong></h2><h3 id="5-1-性能需求"><a href="#5-1-性能需求" class="headerlink" title="5.1 性能需求"></a><strong>5.1 性能需求</strong></h3><h4 id="处理能力"><a href="#处理能力" class="headerlink" title="处理能力"></a>处理能力</h4><p>​	由于是在线二手交易平台，其处理能力主要考虑系统能承载的最大并发用户数，按照实际情况的规划，系统至少能承载的最大并发用户数要求达到全校学生总人数*φ，φ为0至1的常数，随服务器容量而定。</p>
+<h4 id="应时间"><a href="#应时间" class="headerlink" title="应时间"></a>应时间</h4><p>​	为了能够快捷地提供在线测评服务，系统应该能够快速地响应在线测评请求。用户最终得到结果的响应时间除了与系统响应速度有关外，还与网络状况有关。因此对Web服务器端需要较高的要求。</p>
+<h3 id="5-2-安全性需求"><a href="#5-2-安全性需求" class="headerlink" title="5.2 安全性需求"></a><strong>5.2 安全性需求</strong></h3><p>​	传输的数据都采用高强度的加密算法加密 (DES)，使得数据即使泄漏、被截获后，也无法识别相关的数据内容，确保数据安全。对于客户端与服务器交互的数据，使用安全套接子层 (SSL,SSL 加密传输主要是针对 WEB的数据传输，基于重要信息的传输安全考虑而设计的) 进行信息交换，并在客户移动终端和服务器之间重要的信息的交换。</p>
+<h2 id="六、附录"><a href="#六、附录" class="headerlink" title="六、附录"></a>六、附录</h2><h3 id="大学生二手交易平台问卷调查"><a href="#大学生二手交易平台问卷调查" class="headerlink" title="大学生二手交易平台问卷调查"></a>大学生二手交易平台问卷调查</h3><p>在校园里，网购已成为一种趋势，足不出户便达成买卖。而二手商品交易也逐步走进我们的生活中，为我们大多数人所接纳。无论网购或二手交易，于商家于买家都是一种既实际又环保的途径。为此，我们针对北京交通大学展开此次调查，了解本校学生对二手交易的需求，更好地构建一个满足本校学生们的校园App二手交易平台。希望同学们能积极参与，感谢您的配合与合作！</p>
+<p>1、性别 【单选题】</p>
+<p> ○ 男</p>
+<p> ○ 女</p>
+<p>2、您有在二手市场购买或卖出东西的经历么？ 【单选题】</p>
+<p> ○ 有</p>
+<p> ○ 没有</p>
+<p> ○ 有想过但没实施过</p>
+<p>3、您对购买二手物品持何种态度？ 【单选题】</p>
+<p> ○ 质量差，不支持</p>
+<p> ○ 只要价钱合理，质量可靠就可以购买</p>
+<p> ○ 看物品而定</p>
+<p> ○ 二手物品价格低廉，很喜欢购买</p>
+<p>4、您购买二手货的原因是？ 【单选题】</p>
+<p> ○ 价格便宜</p>
+<p> ○ 实用价值高</p>
+<p> ○ 物超所值</p>
+<p>5、对于二手物品多少程度的磨损您可以接受？ 【单选题】</p>
+<p> ○ 一成到两成</p>
+<p> ○ 三成到五成</p>
+<p> ○ 六成到八成</p>
+<p> ○ 九成到十成</p>
+<p>6、您在购买二手商品过程中存在的疑虑？ 【单选题】</p>
+<p> ○ 质量问题</p>
+<p> ○ 卫生问题</p>
+<p> ○ 心理作用</p>
+<p> ○ 购买机会</p>
+<p>7、您对二手物品交易网网站上的哪些物品比较感兴趣？（多项） 【多选题】</p>
+<p> □ 专业书籍</p>
+<p> □ 娱乐书籍或杂志</p>
+<p> □ 服装</p>
+<p> □ 饰物、精品类</p>
+<p> □ 文体用品</p>
+<p> □ 电器类</p>
+<p> □ 鞋类</p>
+<p> □ 电子产品</p>
+<p>8、如果建立一个专门的校园二手物品交易网上交易平台，您的态度是？ 【单选题】</p>
+<p> ○ 非常欢迎，能在交易平台上交易</p>
+<p> ○ 持续关注，会推荐给同学</p>
+<p> ○ 偶尔关注</p>
+<p> ○ 持怀疑观望态度</p>
+<p> ○ 不看好网站的发展</p>
+<p>9、对于本校二手网站你最希望淘到什么二手物品？（多项） 【多选题】</p>
+<p> □ 二手教科书</p>
+<p> □ 二手期末复习资料</p>
+<p> □ 二手电脑MP3等数码物品</p>
+<p> □ 二手运动器械</p>
+<p> □ 其它二手物品</p>
+<p>10、如本校二手平台向您收购商品，您一般有哪些物品愿意出售？（多项） 【多选题】</p>
+<p> □ 专业书籍</p>
+<p> □ 娱乐书籍或杂志</p>
+<p> □ 服装</p>
+<p> □ 饰物、精品类</p>
+<p> □ 文体用品</p>
+<p> □ 电器类</p>
+<p> □ 鞋类</p>
+<p> □ 电子产品</p>
+<p>11、您购买二手物品希望卖家能提供哪些信息？（多项） 【多选题】</p>
+<p> □ 购买时间</p>
+<p> □ 生产时间</p>
+<p> □ 物品使用情况</p>
+<p> □ 保修期是否已过</p>
+<p>12、您认为二手物品交易平台应提供哪些服务？ （多项） 【多选题】</p>
+<p> □ 提供物流服务</p>
+<p> □ 提供有信用的第三方支付体系服务</p>
+<p> □ 提供退货等售后服务</p>
+<p> □ 提供货到付款服务</p>
+<p> □ 提供手递手的送货</p>
+<p> □ 质量评价体系</p>
+<p>13、对即将出现的本校校园二手物品交易网站，有什么好的建议？ 【填空题】</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sunnyalion.com">舜桀BB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sunnyalion.com/2022/05/17/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6/">https://sunnyalion.com/2022/05/17/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sunnyalion.com" target="_blank">SunnyALion</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="post_share"><div class="social-share" data-image="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/17/9%E7%BB%84-%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92/"><img class="prev-cover" src="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">校园二手交易平台-项目开发计划</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/17/hello/"><img class="next-cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">欢迎来到舜桀BB的秘密基地！</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/17/%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" title="校园二手交易平台-可行性分析报告"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/df304d212540f97c.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-17</div><div class="title">校园二手交易平台-可行性分析报告</div></div></a></div><div><a href="/2022/05/17/9%E7%BB%84-%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92/" title="校园二手交易平台-项目开发计划"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-17</div><div class="title">校园二手交易平台-项目开发计划</div></div></a></div><div><a href="/2022/05/17/DeepAl%E7%9A%84%E5%BA%94%E7%94%A8/" title="DeepAI经典框架总结"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-17</div><div class="title">DeepAI经典框架总结</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjQyOC8zMjg5MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">舜桀BB</div><div class="author-info__description">一只舜桀BB的秘密基地</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FRank675"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里是舜桀BB记录生活和学习点滴的秘密基地~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%A1%E5%9B%AD%E4%BA%8C%E6%89%8B%E4%BA%A4%E6%98%93%E5%B9%B3%E5%8F%B0-%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6"><span class="toc-number">1.</span> <span class="toc-text">校园二手交易平台-需求规格说明书</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">一、引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%AE%9A%E4%BD%8D%E4%B8%8E%E7%9B%AE%E6%A0%87"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 定位与目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 软件需求分析理论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E7%9B%AE%E6%A0%87"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 软件需求分析目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.5 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%9C%80%E6%B1%82%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.</span> <span class="toc-text">二、需求概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 项目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%9C%80%E6%B1%82%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 需求概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">用户信息模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">展示模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">交易模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B4%BB%E5%8A%A8%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">活动模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">社区模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 需求获取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">三、系统功能需求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%8A%9F%E8%83%BD%E6%80%BB%E8%A7%88"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.1 功能总览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%8A%9F%E8%83%BD%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.2 功能结构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%95%B0%E6%8D%AE%E6%B5%81%E5%88%86%E6%9E%90"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.3 数据流分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">1.3.5.</span> <span class="toc-text">3.4 功能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">3.4.1 用户信息模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%9B%BE"><span class="toc-number">1.3.5.1.1.</span> <span class="toc-text">用例图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B4%BB%E5%8A%A8%E5%9B%BE"><span class="toc-number">1.3.5.1.2.</span> <span class="toc-text">活动图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">1.3.5.1.3.</span> <span class="toc-text">时序图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%9B%BE"><span class="toc-number">1.3.5.1.4.</span> <span class="toc-text">状态图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE"><span class="toc-number">1.3.5.1.5.</span> <span class="toc-text">类图</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-%E4%BA%A4%E6%98%93%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">3.4.2 交易模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%9B%BE-1"><span class="toc-number">1.3.5.2.1.</span> <span class="toc-text">用例图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B4%BB%E5%8A%A8%E5%9B%BE-1"><span class="toc-number">1.3.5.2.2.</span> <span class="toc-text">活动图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE-1"><span class="toc-number">1.3.5.2.3.</span> <span class="toc-text">时序图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%9B%BE-1"><span class="toc-number">1.3.5.2.4.</span> <span class="toc-text">状态图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE-1"><span class="toc-number">1.3.5.2.5.</span> <span class="toc-text">类图</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-3-%E5%B1%95%E7%A4%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.5.3.</span> <span class="toc-text">3.4.3 展示模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%9B%BE-2"><span class="toc-number">1.3.5.3.1.</span> <span class="toc-text">用例图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B4%BB%E5%8A%A8%E5%9B%BE-2"><span class="toc-number">1.3.5.3.2.</span> <span class="toc-text">活动图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE-2"><span class="toc-number">1.3.5.3.3.</span> <span class="toc-text">时序图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%9B%BE-2"><span class="toc-number">1.3.5.3.4.</span> <span class="toc-text">状态图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE-2"><span class="toc-number">1.3.5.3.5.</span> <span class="toc-text">类图</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-4-%E7%A4%BE%E5%8C%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.5.4.</span> <span class="toc-text">3.4.4 社区模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%9B%BE-3"><span class="toc-number">1.3.5.4.1.</span> <span class="toc-text">用例图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B4%BB%E5%8A%A8%E5%9B%BE-3"><span class="toc-number">1.3.5.4.2.</span> <span class="toc-text">活动图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE-3"><span class="toc-number">1.3.5.4.3.</span> <span class="toc-text">时序图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%9B%BE-3"><span class="toc-number">1.3.5.4.4.</span> <span class="toc-text">状态图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE-3"><span class="toc-number">1.3.5.4.5.</span> <span class="toc-text">类图</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-5-%E6%B4%BB%E5%8A%A8%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.5.5.</span> <span class="toc-text">3.4.5 活动模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%9B%BE-4"><span class="toc-number">1.3.5.5.1.</span> <span class="toc-text">用例图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B4%BB%E5%8A%A8%E5%9B%BE-4"><span class="toc-number">1.3.5.5.2.</span> <span class="toc-text">活动图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE-4"><span class="toc-number">1.3.5.5.3.</span> <span class="toc-text">时序图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%9B%BE-4"><span class="toc-number">1.3.5.5.4.</span> <span class="toc-text">状态图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE-4"><span class="toc-number">1.3.5.5.5.</span> <span class="toc-text">类图</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%8F%8A%E5%A4%96%E9%83%A8%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3%E9%9C%80%E6%B1%82"><span class="toc-number">1.4.</span> <span class="toc-text">四、软硬件及外部系统接口需求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 用户界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 硬件需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 运行环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%B8%8E%E5%8F%AF%E7%94%A8%E6%80%A7%E9%9C%80%E6%B1%82"><span class="toc-number">1.5.</span> <span class="toc-text">五、可靠性与可用性需求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%80%A7%E8%83%BD%E9%9C%80%E6%B1%82"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 性能需求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E8%83%BD%E5%8A%9B"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">处理能力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E6%97%B6%E9%97%B4"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">应时间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%AE%89%E5%85%A8%E6%80%A7%E9%9C%80%E6%B1%82"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 安全性需求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%99%84%E5%BD%95"><span class="toc-number">1.6.</span> <span class="toc-text">六、附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%AD%A6%E7%94%9F%E4%BA%8C%E6%89%8B%E4%BA%A4%E6%98%93%E5%B9%B3%E5%8F%B0%E9%97%AE%E5%8D%B7%E8%B0%83%E6%9F%A5"><span class="toc-number">1.6.1.</span> <span class="toc-text">大学生二手交易平台问卷调查</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" title="校园二手交易平台-可行性分析报告"><img src="https://s3.bmp.ovh/imgs/2022/05/16/df304d212540f97c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校园二手交易平台-可行性分析报告"/></a><div class="content"><a class="title" href="/2022/05/17/%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" title="校园二手交易平台-可行性分析报告">校园二手交易平台-可行性分析报告</a><time datetime="2022-05-17T13:18:21.336Z" title="发表于 2022-05-17 21:18:21">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/9%E7%BB%84-%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92/" title="校园二手交易平台-项目开发计划"><img src="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校园二手交易平台-项目开发计划"/></a><div class="content"><a class="title" href="/2022/05/17/9%E7%BB%84-%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92/" title="校园二手交易平台-项目开发计划">校园二手交易平台-项目开发计划</a><time datetime="2022-05-17T13:18:21.333Z" title="发表于 2022-05-17 21:18:21">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6/" title="校园二手交易平台-需求规格说明书"><img src="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校园二手交易平台-需求规格说明书"/></a><div class="content"><a class="title" href="/2022/05/17/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6/" title="校园二手交易平台-需求规格说明书">校园二手交易平台-需求规格说明书</a><time datetime="2022-05-17T13:18:21.330Z" title="发表于 2022-05-17 21:18:21">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/hello/" title="欢迎来到舜桀BB的秘密基地！"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="欢迎来到舜桀BB的秘密基地！"/></a><div class="content"><a class="title" href="/2022/05/17/hello/" title="欢迎来到舜桀BB的秘密基地！">欢迎来到舜桀BB的秘密基地！</a><time datetime="2022-05-17T09:31:33.888Z" title="发表于 2022-05-17 17:31:33">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/DeepAl%E7%9A%84%E5%BA%94%E7%94%A8/" title="DeepAI经典框架总结"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DeepAI经典框架总结"/></a><div class="content"><a class="title" href="/2022/05/17/DeepAl%E7%9A%84%E5%BA%94%E7%94%A8/" title="DeepAI经典框架总结">DeepAI经典框架总结</a><time datetime="2022-05-17T02:18:51.654Z" title="发表于 2022-05-17 10:18:51">2022-05-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 By 舜桀BB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://sunnyalion.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer" data-id="7408763913" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="/img/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
