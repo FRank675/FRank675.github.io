@@ -1,0 +1,8 @@
+@font-face{
+    font-family: 'FZZJ-FYJW'';
+    font-display: swap;
+    src: url('../font/FZZJ-FYJW.TTF') format("truetype");
+}
+body {
+    font-family: 'FZZJ-FYJW','HarmonyOS Sans SC';
+}
