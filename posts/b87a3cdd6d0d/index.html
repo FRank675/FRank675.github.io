@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Git相关 | SunnyALion</title><meta name="keywords" content="技术"><meta name="author" content="舜桀BB"><meta name="copyright" content="舜桀BB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Git取得项目的仓库在工作目录中初始化新仓库&#x2F;*在项目所在目录进行初始化，初始化后会得到一个名为.git的目录，存放所有Git需要的数据和资源*&#x2F;$ git init  &#x2F;*如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后提交：*&#x2F;$ git add *.c$ git add README$ git commit -m &amp;#x27;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git相关">
+<meta property="og:url" content="https://sunnyalion.com/posts/b87a3cdd6d0d/index.html">
+<meta property="og:site_name" content="SunnyALion">
+<meta property="og:description" content="Git取得项目的仓库在工作目录中初始化新仓库&#x2F;*在项目所在目录进行初始化，初始化后会得到一个名为.git的目录，存放所有Git需要的数据和资源*&#x2F;$ git init  &#x2F;*如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后提交：*&#x2F;$ git add *.c$ git add README$ git commit -m &amp;#x27;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png">
+<meta property="article:published_time" content="2022-12-30T05:00:34.124Z">
+<meta property="article:modified_time" content="2023-01-01T09:38:53.679Z">
+<meta property="article:author" content="舜桀BB">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png"><link rel="shortcut icon" href="https://s3.bmp.ovh/imgs/2022/05/17/cf2ee01082c7d055.png"><link rel="canonical" href="https://sunnyalion.com/posts/b87a3cdd6d0d/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b4495a2773355951d53ced4d5ee79d76";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Git相关',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-01 17:38:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SunnyALion</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Git相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-30T05:00:34.124Z" title="发表于 2022-12-30 13:00:34">2022-12-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-01T09:38:53.679Z" title="更新于 2023-01-01 17:38:53">2023-01-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Git/">Git</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Git取得项目的仓库"><a href="#Git取得项目的仓库" class="headerlink" title="Git取得项目的仓库"></a>Git取得项目的仓库</h2><h3 id="在工作目录中初始化新仓库"><a href="#在工作目录中初始化新仓库" class="headerlink" title="在工作目录中初始化新仓库"></a>在工作目录中初始化新仓库</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*在项目所在目录进行初始化，初始化后会得到一个名为.git的目录，存放所有Git需要的数据和资源*/</span></span><br><span class="line"></span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后提交：*/</span></span><br><span class="line"></span><br><span class="line">$ git add *.c</span><br><span class="line"></span><br><span class="line">$ git add README</span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&#x27;initial project version&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">/*这样我们就得到了一个实际维护着若干文件的Git仓库*/</span>    </span><br></pre></td></tr></table></figure>
+
+<h3 id="从现有仓库克隆"><a href="#从现有仓库克隆" class="headerlink" title="从现有仓库克隆"></a>从现有仓库克隆</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*如果想对某个开源项目出一份力，可以先把该项目的 Git 仓库复制一份出来，这就需要用到git clone 命令。*/</span></span><br><span class="line"><span class="comment">/*克隆仓库的命令格式为 git clone [url]。*/</span></span><br><span class="line"><span class="comment">/*比如，要克隆 Ruby 语言的 Git 代码仓库 Grit，可以用下面的命令：*/</span></span><br><span class="line"></span><br><span class="line">$ git clone git:<span class="comment">//github.com/schacon/grit.git</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*这会在当前目录下创建一个名为grit的目录，其中包含一个 .git 的目录，用于保存下载下来的所有版本记录，然后从中取出最新版本的文件拷贝。*/</span></span><br><span class="line"><span class="comment">/*如果进入这个新建的 grit 目录，你会看到项目中的所有文件已经在里边了，准备好后续的开发和使用。*/</span></span><br><span class="line"><span class="comment">/*如果希望在克隆的时候，自己定义要新建的项目目录名称，可以在上面的命令末尾指定新的名字：*/</span></span><br><span class="line"></span><br><span class="line">$ git clone git:<span class="comment">//github.com/schacon/grit.git mygrit</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*唯一的差别就是，现在新建的目录成了mygrit，其他的都和上边的一样。*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Git记录每次更新到仓库"><a href="#Git记录每次更新到仓库" class="headerlink" title="Git记录每次更新到仓库"></a>Git记录每次更新到仓库</h2><p>有了一个真实项目的 Git 仓库，并从这个仓库中取出了所有文件的工作拷贝。接下来，对这些文件作些修改，在完成了一个阶段的目标之后，提交本次更新到仓库。</p>
+<p>工作目录下面的所有文件有这两种状态：已跟踪或未跟踪。</p>
+<p>已跟踪的文件是指本来就被纳入版本控制管理的文件，在上次快照中有它们的记录，工作一段时间后，它们的状态可能是未更新，已修改或者已放入暂存区。</p>
+<p>而所有其他文件都属于未跟踪文件。它们既没有上次更新时的快照，也不在当前的暂存区域。初次克隆某个仓库时，工作目录中的所有文件都属于已跟踪文件，且状态为未修改。</p>
+<p>在编辑过某些文件之后，Git 将这些文件标为已修改。我们逐步把这些修改过的文件放到暂存区域，直到最后一次性提交所有这些暂存起来的文件，如此重复。</p>
+<h2 id="Git查看提交历史"><a href="#Git查看提交历史" class="headerlink" title="Git查看提交历史"></a>Git查看提交历史</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*在提交了若干更新之后，又或者克隆了某个项目，想回顾下提交历史，可以使用 `git log` 命令查看。*/</span></span><br><span class="line"></span><br><span class="line">$ git log</span><br><span class="line">    </span><br><span class="line"><span class="comment">/*默认不用任何参数的话，git log 会按提交时间列出所有的更新，最近的更新排在最上面。*/</span></span><br><span class="line"><span class="comment">/*每次更新都有一个 SHA-1 校验和、作者的名字和电子邮件地址、提交时间，最后缩进一个段落显示提交说明。*/</span></span><br><span class="line"><span class="comment">/*常用 -p 选项展开显示每次提交的内容差异，用 -2 则仅显示最近的两次更新：*/</span></span><br><span class="line">    </span><br><span class="line">$ git log -p -<span class="number">2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下表还列出了一些其他常用的选项及其释义。</p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-p</td>
+<td align="left">按补丁格式显示每个更新之间的差异。</td>
+</tr>
+<tr>
+<td align="left">–word-diff</td>
+<td align="left">按 word diff 格式显示差异。</td>
+</tr>
+<tr>
+<td align="left">–stat</td>
+<td align="left">显示每次更新的文件修改统计信息。</td>
+</tr>
+<tr>
+<td align="left">–shortstat</td>
+<td align="left">只显示 –stat 中最后的行数修改添加移除统计。</td>
+</tr>
+<tr>
+<td align="left">–name-only</td>
+<td align="left">仅在提交信息后显示已修改的文件清单。</td>
+</tr>
+<tr>
+<td align="left">–name-status</td>
+<td align="left">显示新增、修改、删除的文件清单。</td>
+</tr>
+<tr>
+<td align="left">–abbrev-commit</td>
+<td align="left">仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。</td>
+</tr>
+<tr>
+<td align="left">–relative-date</td>
+<td align="left">使用较短的相对时间显示（比如，“2 weeks ago”）。</td>
+</tr>
+<tr>
+<td align="left">–graph</td>
+<td align="left">显示 ASCII 图形表示的分支合并历史。</td>
+</tr>
+<tr>
+<td align="left">–pretty</td>
+<td align="left">使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。</td>
+</tr>
+<tr>
+<td align="left">–oneline</td>
+<td align="left">–pretty&#x3D;oneline –abbrev-commit 的简化用法。</td>
+</tr>
+</tbody></table>
+<p>限制输出长度</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*下面的命令列出所有最近两周内的提交：*/</span></span><br><span class="line"></span><br><span class="line">$ git log --since=<span class="number">2.</span>weeks</span><br><span class="line"></span><br><span class="line"><span class="comment">/*可以给出各种时间格式，比如说具体的某一天（“2008-01-15”），或者是多久以前（“2 years 1 day 3 minutes ago”）。*/</span></span><br><span class="line"><span class="comment">/*另一个真正实用的git log选项是路径(path)，如果只关心某些文件或者目录的历史提交，可以在 git log 选项的最后指定它们的路径。因为是放在最后位置上的选项，所以用两个短划线（--）隔开之前的选项和后面限定的路径名。*/</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-(n)</td>
+<td align="left">仅显示最近的 n 条提交</td>
+</tr>
+<tr>
+<td align="left">–since, –after</td>
+<td align="left">仅显示指定时间之后的提交。</td>
+</tr>
+<tr>
+<td align="left">–until, –before</td>
+<td align="left">仅显示指定时间之前的提交。</td>
+</tr>
+<tr>
+<td align="left">–author</td>
+<td align="left">仅显示指定作者相关的提交。</td>
+</tr>
+<tr>
+<td align="left">–committer</td>
+<td align="left">仅显示指定提交者相关的提交。</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*如果要查看 Git 仓库中，2008 年 10 月期间，Junio Hamano 提交的但未合并的测试脚本（位于项目的 t/ 目录下的文件），可以用下面的查询命令：*/</span></span><br><span class="line"></span><br><span class="line">$ git log --pretty=<span class="string">&quot;%h - %s&quot;</span> --author=gitster --since=<span class="string">&quot;2008-10-01&quot;</span> \ --before=<span class="string">&quot;2008-11-01&quot;</span> --no-merges -- t/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Git撤销操作"><a href="#Git撤销操作" class="headerlink" title="Git撤销操作"></a>Git撤销操作</h2><h3 id="修改最后一次提交"><a href="#修改最后一次提交" class="headerlink" title="修改最后一次提交"></a>修改最后一次提交</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*提交完了才发现漏掉了几个文件没有加，或者提交信息写错了。想要撤消刚才的提交操作，可以使用 --amend 选项重新提交*/</span></span><br><span class="line"></span><br><span class="line">$ git commit --amend</span><br><span class="line"></span><br><span class="line"><span class="comment">/*此命令将使用当前的暂存区域快照提交。*/</span></span><br><span class="line"><span class="comment">/*如果刚才提交完没有作任何改动，直接运行此命令的话，相当于有机会重新编辑提交说明，但将要提交的文件快照和之前的一样。*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*启动文本编辑器后，会看到上次提交时的说明，编辑它确认没问题后保存退出，就会使用新的提交说明覆盖刚才失误的提交。*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*如果刚才提交时忘了暂存某些修改，可以先补上暂存操作，然后再运行 --amend 提交：*/</span></span><br><span class="line"></span><br><span class="line">$ git commit -m <span class="string">&#x27;initial commit&#x27;</span></span><br><span class="line">    </span><br><span class="line">$ git add forgotten_file</span><br><span class="line">    </span><br><span class="line">$ git commit --amend</span><br><span class="line">    </span><br><span class="line"><span class="comment">/*上面的三条命令最终只是产生一个提交，第二个提交命令修正了第一个的提交内容。*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取消已经暂存的文件"><a href="#取消已经暂存的文件" class="headerlink" title="取消已经暂存的文件"></a>取消已经暂存的文件</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*有两个修改过的文件，想要分开提交，但不小心用 git add . 全加到了暂存区域。该如何撤消暂存其中的一个文件呢？*/</span></span><br><span class="line"></span><br><span class="line">$ git reset HEAD benchmarks.rb</span><br><span class="line"></span><br><span class="line"><span class="comment">/*现在 benchmarks.rb 文件又回到了之前已修改未暂存的状态。*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取消对文件的修改"><a href="#取消对文件的修改" class="headerlink" title="取消对文件的修改"></a>取消对文件的修改</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*该如何取消修改，回到之前的状态（也就是修改之前的版本）*/</span></span><br><span class="line"></span><br><span class="line">$ git checkout -- benchmarks.rb</span><br><span class="line"></span><br><span class="line"><span class="comment">/*在用这条命令前，请务必确定真的不再需要保留刚才的修改。*/</span></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sunnyalion.com">舜桀BB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sunnyalion.com/posts/b87a3cdd6d0d/">https://sunnyalion.com/posts/b87a3cdd6d0d/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sunnyalion.com" target="_blank">SunnyALion</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></div><div class="post_share"><div class="social-share" data-image="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/491f272d9433/"><img class="prev-cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">舜桀的2023</div></div></a></div><div class="next-post pull-right"><a href="/posts/b0e37f2d3829/"><img class="next-cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">舜桀的单词表</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjQyOC8zMjg5MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">舜桀BB</div><div class="author-info__description">一个普通的学习者，在追寻自己的自由。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FRank675"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这个SunnyALion-Blog在2022/5/16诞生啦，开发了三天多，也遇到了很多问题，感谢大神们提供的帮助，在这里我会记载我的生活和学习，分享有趣的事情，我们大家一起成长呀。由于还是创建初期，网页的加载性能可能会比较差，还请多多包含呀！舜桀正在努力完善中~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%8F%96%E5%BE%97%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BB%93%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">Git取得项目的仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E4%B8%AD%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B0%E4%BB%93%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">在工作目录中初始化新仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%8E%B0%E6%9C%89%E4%BB%93%E5%BA%93%E5%85%8B%E9%9A%86"><span class="toc-number">1.2.</span> <span class="toc-text">从现有仓库克隆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">Git记录每次更新到仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2"><span class="toc-number">3.</span> <span class="toc-text">Git查看提交历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">Git撤销操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4"><span class="toc-number">4.1.</span> <span class="toc-text">修改最后一次提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E5%B7%B2%E7%BB%8F%E6%9A%82%E5%AD%98%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">取消已经暂存的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E5%AF%B9%E6%96%87%E4%BB%B6%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">4.3.</span> <span class="toc-text">取消对文件的修改</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/491f272d9433/" title="舜桀的2023"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="舜桀的2023"/></a><div class="content"><a class="title" href="/posts/491f272d9433/" title="舜桀的2023">舜桀的2023</a><time datetime="2023-01-01T08:50:31.313Z" title="发表于 2023-01-01 16:50:31">2023-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b87a3cdd6d0d/" title="Git相关"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git相关"/></a><div class="content"><a class="title" href="/posts/b87a3cdd6d0d/" title="Git相关">Git相关</a><time datetime="2022-12-30T05:00:34.124Z" title="发表于 2022-12-30 13:00:34">2022-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b0e37f2d3829/" title="舜桀的单词表"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="舜桀的单词表"/></a><div class="content"><a class="title" href="/posts/b0e37f2d3829/" title="舜桀的单词表">舜桀的单词表</a><time datetime="2022-12-30T04:52:16.433Z" title="发表于 2022-12-30 12:52:16">2022-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ecf024466033/" title="测试面试干货"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="测试面试干货"/></a><div class="content"><a class="title" href="/posts/ecf024466033/" title="测试面试干货">测试面试干货</a><time datetime="2022-12-26T11:30:24.603Z" title="发表于 2022-12-26 19:30:24">2022-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3521423e0c10/" title="面试记录"><img src="https://s3.bmp.ovh/imgs/2022/05/18/e72dedbe1e4faf4f.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试记录"/></a><div class="content"><a class="title" href="/posts/3521423e0c10/" title="面试记录">面试记录</a><time datetime="2022-12-26T10:54:17.655Z" title="发表于 2022-12-26 18:54:17">2022-12-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 舜桀BB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://sunnyalion.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer" data-id="7408763913" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><!--link(rel='stylesheet' href=url_for(theme.asset.aplayer_css) media="print" onload="this.media='all'")--><!--script(src=url_for(theme.asset.aplayer_js))--><!--script(src=url_for(theme.asset.meting_js))--><link rel="stylesheet" type="text/css" href="./css/APlayer.min.css"><script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.css"></script><script type="text/javascript" src="https://unpkg.com/meting@2.0.1/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://s3.bmp.ovh/imgs/2022/05/18/ced6f8e7ee5a954f.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
