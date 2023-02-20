@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SunnyALion | SunnyALion</title><meta name="author" content="舜桀BB"><meta name="copyright" content="舜桀BB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="知识图谱设计将列车运营网络定义为图，将网络上的站点定义为节点，并添加节点特征。定义车站之间的连线为边，相邻车站之间距离的倒数为边的权值，表示相邻车站之间的相互影响。 提出了一种基于多关注机制的MATGCN模型，用于预测某一时段内某一车站列车总延误次数;这种机制使得MATGCN能够在训练过程中根据不同属性的重要性来调整参数，从而具有更好的鲁棒性。   列车延误大致可分为车站延误、间隔延误、线路延误、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SunnyALion">
+<meta property="og:url" content="https://sunnyalion.com/posts/ec208d3a22c4/index.html">
+<meta property="og:site_name" content="SunnyALion">
+<meta property="og:description" content="知识图谱设计将列车运营网络定义为图，将网络上的站点定义为节点，并添加节点特征。定义车站之间的连线为边，相邻车站之间距离的倒数为边的权值，表示相邻车站之间的相互影响。 提出了一种基于多关注机制的MATGCN模型，用于预测某一时段内某一车站列车总延误次数;这种机制使得MATGCN能够在训练过程中根据不同属性的重要性来调整参数，从而具有更好的鲁棒性。   列车延误大致可分为车站延误、间隔延误、线路延误、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png">
+<meta property="article:published_time" content="2023-02-11T03:52:59.940Z">
+<meta property="article:modified_time" content="2023-02-12T11:21:53.467Z">
+<meta property="article:author" content="舜桀BB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png"><link rel="shortcut icon" href="https://s3.bmp.ovh/imgs/2022/05/17/cf2ee01082c7d055.png"><link rel="canonical" href="https://sunnyalion.com/posts/ec208d3a22c4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b4495a2773355951d53ced4d5ee79d76";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SunnyALion',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-12 19:21:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SunnyALion</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-11T03:52:59.940Z" title="发表于 2023-02-11 11:52:59">2023-02-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-12T11:21:53.467Z" title="更新于 2023-02-12 19:21:53">2023-02-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">9.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>29分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="知识图谱设计"><a href="#知识图谱设计" class="headerlink" title="知识图谱设计"></a>知识图谱设计</h2><p>将列车运营网络定义为图，将网络上的站点定义为节点，并添加节点特征。定义车站之间的连线为边，相邻车站之间距离的倒数为边的权值，表示相邻车站之间的相互影响。</p>
+<p>提出了一种基于多关注机制的MATGCN模型，用于预测某一时段内某一车站列车总延误次数;这种机制使得MATGCN能够在训练过程中根据不同属性的重要性来调整参数，从而具有更好的鲁棒性。</p>
+<p>  列车延误大致可分为车站延误、间隔延误、线路延误、单列延误、边界延误等。本文的工作重点是车站延误的预测，它是指在一定时间内通过一个车站的列车的延误。列车运行网络可以看作是一个无向图[16]。图中的节点代表一系列相互连接的车站，车站之间的连接由一列或多列列车的运行线路决定。在铁路网上运行的任何列车都有一个由车站组成的行程。此行程由出发站、目标站和一个或多个中间站组成。这些电台分布在不同的地点。对于某一站，S站的计划到达时间为，S站的计划出发时间为。根据铁路运营计划，这些数据应准确并严格执行。需要注意的是，起始站没有预定到达时间，目标站也没有预定发车时间。这样，通过对各站列车的分析，我们将现有的列车运行数据转换为时空数据，再加入中国天气网(<a target="_blank" rel="noopener" href="https://www.tianqi.com)的历史天气数据,以及重大节假日的信息/">https://www.tianqi.com)的历史天气数据，以及重大节假日的信息</a></p>
+<p> **1. 定义具体的业务问题  **</p>
+<p>具体业务问题:</p>
+<p>为什么选择知识图谱？（可不可以不用？）：</p>
+<p>1.有强烈的可视化需求</p>
+<p>2.经常涉及到关系的深度搜索</p>
+<p>3.对关系查询效率有实时性的要求</p>
+<p>4.数据多样化、解决数据孤岛问题</p>
+<p>5.有能力、有成本搭建系统</p>
+<p> <img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464462653.png" alt="img"> </p>
+<p>**2. 数据的收集 &amp; 预处理  **</p>
+<ol>
+<li>我们已经有哪些数据？ </li>
+<li>虽然现在没有，但有可能拿到哪些数据？ </li>
+<li>其中哪部分数据可以用来降低风险？</li>
+<li>哪部分数据可以用来构建知识图谱？</li>
+</ol>
+<p>并不是所有跟反欺诈相关的数据都必须要进入知识图谱 </p>
+<p> 反欺诈 ，容易想到这些数据源： 用户的基本信息、行为数据、运营商数据、网络上的公开信息等等。</p>
+<p>哪些数据需要进一步处理？</p>
+<p>​	对于非结构化数据我们或多或少都需要用到跟自然语言处理相关的技术。 </p>
+<p>  用户填写的基本信息基本上会存储在业务表里，除了个别字段需要进一步处理，很多字段则直接可以用于建模或者添加到知识图谱系统里。 </p>
+<p> 对于行为数据来说，我们则需要通过一些简单的处理，并从中提取有效的信息比如“用户在某个页面停留时长”等等。 </p>
+<p> 对于网络上公开的网页数据，则需要一些信息抽取相关的技术。 </p>
+<p> 对于用户的基本信息，我们很可能需要如下的操作。</p>
+<p>一方面，用户信息比如姓名、年龄、学历等字段可以直接从结构化数据库中提取并使用。</p>
+<p>但另一方面，对于填写的公司名来说，我们有可能需要做进一步的处理。</p>
+<p>比如部分用户填写“北京贪心科技有限公司”，另外一部分用户填写“北京望京贪心科技有限公司”，其实指向的都是同一家公司。</p>
+<p>所以，这时候我们需要做公司名的对齐，用到的技术细节可以参考前面讲到的<strong>实体对齐技术</strong>。﻿ </p>
+<p> <img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464462813.png" alt="img"> </p>
+<p>**3. 知识图谱的设计  **</p>
+<p>图谱设计：1.业务理解 2.未来业务变化预估（最贴近现状，性能高效）</p>
+<p> <strong>1. 需要哪些实体、关系和属性？ 2.  哪些属性可以做为实体，哪些实体可以作为属性？ 3. 哪些信息不需要放在知识图谱中？</strong> </p>
+<p> <img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464462717.png" alt="img"> </p>
+<p> 业务原则（Business Principle），它的含义是 “<strong>一切要从业务逻辑出发，并且通过观察知识图谱的设计也很容易推测其背后业务的逻辑，而且设计时也要想好未来业务可能的变化</strong>”。 </p>
+<p>图谱展示的业务逻辑应该是清晰的，是能够让别人清楚的看出业务流程。</p>
+<p> <strong>效率原则让知识图谱尽量轻量化、并决定哪些数据放在知识图谱，哪些数据不需要放在知识图谱</strong>。 </p>
+<p> 我们把常用的信息存放在知识图谱中，把那些访问频率不高，对关系分析无关紧要的信息放在传统的关系型数据库当中。 <strong>效率原则的核心在于把知识图谱设计成小而轻的存储载体。</strong> </p>
+<p> 比如在下面的知识图谱中，我们完全可以把一些信息比如“年龄”，“家乡”放到传统的关系型数据库当中，因为这些数据对于：a. 分析关系来说没有太多作用  b.  访问频率低，放在知识图谱上反而影响效率 </p>
+<p> <img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464463095.png" alt="img"> </p>
+<p> 从分析原则（Analytics Principle）的角度，我们不需要把跟关系分析无关的实体放在图谱当中；</p>
+<p>从冗余原则（Redundancy Principle）的角度，有些重复性信息、高频信息可以放到传统数据库当中。 </p>
+<p>**4. 把数据存入知识图谱 **</p>
+<p> 由于我们设计的知识图谱带有属性，图数据库可以作为首选。 </p>
+<p> 通常来讲，对于10亿节点以下规模的图谱来说Neo4j已经足够了。 </p>
+<p><strong>5. 上层应用的开发，以及系统的评估</strong> </p>
+<p> 等我们构建好知识图谱之后，接下来就要使用它来解决具体的问题。对于风控知识图谱来说，首要任务就是挖掘关系网络中隐藏的欺诈风险。<strong>从算法的角度来讲，有两种不同的场景：一种是基于规则的；另一种是基于概率的</strong>。鉴于目前AI技术的现状，基于规则的方法论还是在垂直领域的应用中占据主导地位，但随着数据量的增加以及方法论的提升，基于概率的模型也将会逐步带来更大的价值。 </p>
+<p><strong>基于规则的方法论</strong></p>
+<p>首先，我们来看几个基于规则的应用，分别是不一致性验证、基于规则的特征提取、基于模式的判断。</p>
+<p><strong>不一致性验证</strong></p>
+<p>为了判断关系网络中存在的风险，一种简单的方法就是做不一致性验证，也就是通过一些规则去找出潜在的矛盾点。这些规则是以人为的方式提前定义好的，所以在设计规则这个事情上需要一些业务的知识。比如在下面的这个图中，李明和李飞两个人都注明了同样的公司电话，但实际上从数据库中判断这俩人其实在不同的公司上班，这就是一个矛盾点。 类似的规则其实可以有很多，不在这里一一列出。</p>
+<p><img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464463189.png" alt="img"></p>
+<p><strong>基于规则提取特征</strong></p>
+<p>我们也可以基于规则从知识图谱中提取一些特征，而且这些特征一般基于深度的搜索比如2度，3度甚至更高维度。比如我们可以问一个这样的问题：“申请人二度关系里有多少个实体触碰了黑名单？”，从图中我们很容观察到二度关系中有两个实体触碰了黑名单（黑名单由红色来标记）。等这些特征被提取之后，一般可以作为风险模型的输入。在此还是想说明一点，如果特征并不涉及深度的关系，其实传统的关系型数据库则足以满足需求。</p>
+<p><img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464464276.png" alt="img"></p>
+<p><strong>基于模式的判断</strong></p>
+<p>这种方法比较适用于找出团体欺诈，它的核心在于通过一些模式来找到有可能存在风险的团体或者子图（sub-graph），然后对这部分子图做进一步的分析。 这种模式有很多种，在这里举几个简单的例子。 比如在下图中，三个实体共享了很多其他的信息，我们可以看做是一个团体，并对其做进一步的分析。</p>
+<p><img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464464353.png" alt="img"></p>
+<p>﻿再比如，我们也可以从知识图谱中找出强连通图，并把它标记出来，然后做进一步风险分析。强连通图意味着每一个节点都可以通过某种路径达到其他的点，也就说明这些节点之间有很强的关系。</p>
+<p><img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464464587.png" alt="img"></p>
+<p><strong>基于概率的方法</strong></p>
+<p>除了基于规则的方法，也可以使用概率统计的方法。 比如社区挖掘、标签传播、聚类等技术都属于这个范畴。 对于这类技术，在本文里不做详细的讲解，感兴趣的读者可以参考相关文献。</p>
+<p>社区挖掘算法的目的在于从图中找出一些社区。对于社区，我们可以有多种定义，但直观上可以理解为社区内节点之间关系的密度要明显大于社区之间的关系密度。下面的图表示社区发现之后的结果，图中总共标记了三个不同的社区。一旦我们得到这些社区之后，就可以做进一步的风险分析。</p>
+<p>由于社区挖掘是基于概率的方法论，好处在于不需要人为地去定义规则，特别是对于一个庞大的关系网络来说，定义规则这事情本身是一件很复杂的事情。</p>
+<p><img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464464702.png" alt="img"></p>
+<p>﻿标签传播算法的核心思想在于节点之间信息的传递。这就类似于，跟优秀的人在一起自己也会逐渐地变优秀是一个道理。因为通过这种关系会不断地吸取高质量的信息，最后使得自己也会不知不觉中变得更加优秀。具体细节不在这里做更多解释。</p>
+<p>相比规则的方法论，基于概率的方法的缺点在于：需要足够多的数据。如果数据量很少，而且整个图谱比较稀疏（Sparse），基于规则的方法可以成为我们的首选。尤其是对于金融领域来说，数据标签会比较少，这也是为什么基于规则的方法论还是更普遍地应用在金融领域中的主要原因。</p>
+<p><strong>基于动态网络的分析</strong></p>
+<p>以上所有的分析都是基于静态的关系图谱。所谓的静态关系图谱，意味着我们不考虑图谱结构本身随时间的变化，只是聚焦在当前知识图谱结构上。然而，我们也知道图谱的结构是随时间变化的，而且这些变化本身也可以跟风险有所关联。</p>
+<p>在下面的图中，我们给出了一个知识图谱T时刻和T+1时刻的结构，我们很容易看出在这两个时刻中间，图谱结构（或者部分结构）发生了很明显的变化，这其实暗示着潜在的风险。那怎么去判断这些结构上的变化呢？ 感兴趣的读者可以查阅跟“dynamic network mining”相关的文献。</p>
+<p><img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464464458-1676098933285.png" alt="img"></p>
+<p> <strong>知识图谱在其他行业中的应用</strong> </p>
+<p> 除了金融领域，知识图谱的应用可以涉及到很多其他的行业，包括医疗、教育、证券投资、推荐等等。其实，只要有关系存在，则有知识图谱可发挥价值的地方。  </p>
+<p> 比如对于教育行业，我们经常谈论个性化教育、因材施教的理念。其核心在于理解学生当前的知识体系，而且这种知识体系依赖于我们所获取到的数据比如交互数据、评测数据、互动数据等等。为了分析学习路径以及知识结构，我们则需要针对于一个领域的概念知识图谱，简单来讲就是概念拓扑结构。在下面的图中，我们给出了一个非常简单的概念图谱：比如为了学习逻辑回归则需要先理解线性回归；为了学习CNN，得对神经网络有所理解等等。所有对学生的评测、互动分析都离不开概念图谱这个底层的数据。 </p>
+<p> <img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464464517.png" alt="img"> </p>
+<p> ﻿在证券领域，我们经常会关心比如“一个事件发生了，对哪些公司产生什么样的影响？” 比如有一个负面消息是关于公司1的高管，而且我们知道公司1和公司2有种很密切的合作关系，公司2有个主营产品是由公司3提供的原料基础上做出来的。 </p>
+<p> <img src="/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1.assets/1529464465164.png" alt="img"> </p>
+<p> 其实有了这样的一个知识图谱，我们很容易回答哪些公司有可能会被这次的负面事件所影响。当然，仅仅是“有可能”，具体会不会有强相关性必须由数据来验证。所以在这里，知识图谱的好处就是把我们所需要关注的范围很快给我们圈定。接下来的问题会更复杂一些，比如既然我们知道公司3有可能被这次事件所影响，那具体影响程度有多大？ 对于这个问题，光靠知识图谱是很难回答的，必须要有一个影响模型、以及需要一些历史数据才能在知识图谱中做进一步推理以及计算。 </p>
+<p><strong>实践上的几点建议</strong></p>
+<p>首先，知识图谱是一个比较新的工具，它的主要作用还是在于分析关系，尤其是深度的关系。所以在业务上，首先要确保它的必要性，其实很多问题可以用非知识图谱的方式来解决。</p>
+<p>知识图谱领域一个最重要的话题是知识的推理。 而且知识的推理是走向强人工智能的必经之路。但很遗憾的，目前很多语义网络的角度讨论的推理技术（比如基于深度学习，概率统计）很难在实际的垂直应用中落地。其实目前最有效的方式还是基于一些规则的方法论，除非我们有非常庞大的数据集。</p>
+<p>最后，还是要强调一点，<strong>知识图谱工程本身还是业务为重心，以数据为中心。不要低估业务和数据的重要性。</strong></p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"> </span><br><span class="line">#读取cvs文件</span><br><span class="line">file=&quot;E:\data\test.csv&quot;</span><br><span class="line">csvPD=pd.read_csv(file)</span><br><span class="line"> </span><br><span class="line">#指定列名为hour的列</span><br><span class="line">csvPD[&#x27;hour&#x27;]</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">#在hour列中找到时间为23的行</span><br><span class="line">for i in range(len(csvPD)):</span><br><span class="line">    if str(csvPD[&#x27;hour&#x27;][i])==&quot;23&quot;:</span><br><span class="line">        print(csvPD[&#x27;hour&#x27;][i])</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">#在hour列中找到时间为23时1001A站点的AQI值</span><br><span class="line">keyWord=&quot;1001A&quot;</span><br><span class="line">for i in range(len(csvPD)):</span><br><span class="line">    if str(csvPD[&#x27;hour&#x27;][i])==&quot;23&quot; and str(csvPD[&#x27;type&#x27;][i])== &quot;AQI&quot;:</span><br><span class="line">        result=csvPD[keyWord][i]</span><br><span class="line">        print(result)</span><br></pre></td></tr></table></figure>
+
+<p>match p &#x3D; (a)-[r*..5]-(b)</p>
+<p>where a.name &#x3D; ‘China’ and b.name&#x3D;’Yongchuandong Railway Station’</p>
+<p>and ALL( n1 in nodes(p) where 1&#x3D;size([(n2 in nodes(p) where id(n1) &#x3D; id(n2)))&#x3D;1 ])</p>
+<p>return p</p>
+<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><h2 id="背景描述"><a href="#背景描述" class="headerlink" title="背景描述"></a><strong>背景描述</strong></h2><p>高铁运行数据是数据驱动研究中可靠而丰富的资源。然而，铁路公司发布的数据组织得很差，不够全面，无法直接有效地应用。目前还缺乏适合研究的高速铁路网络数据集。为了支持大规模复杂网络、复杂动态系统和智能交通的研究，我们开发了一个高速铁路网络数据集，包含2019年10月8日至2020年1月27日不同方向的列车运行数据、火车站的列车延误数据、枢纽站数据和相邻车站的里程数据。在该数据集中，天气、温度、风力和重大节假日被认为是影响列车运行的因素。</p>
+<h2 id="数据说明"><a href="#数据说明" class="headerlink" title="数据说明"></a><strong>数据说明</strong></h2><p>源数据收集：高速列车运行记录由历史时刻表和实际运行信息组成。我们使用Python的网页抓取方法从<a target="_blank" rel="noopener" href="https://www.12306.cn/">中国铁路客票系统</a> 获取了2019年10月8日至2020年1月27日共16周的3399列列车的2751713条运行数据。一列列车的运行记录包括停靠站、预定出发和到达时间、实际出发和到达时间等。该数据集可作为 4 个单独的 csv 文件使用，如下所述：<br>（1）high-speed trains operation data.csv：2019年10月8日至2020年1月27日3399列高铁运行数据，主要节假日及天气相关影响因素。</p>
+<p>（3）adjacent railway stations mileage data.csv：3399条列车运营线路相邻车站里程数据。<br>（4）junction station data.csv：2019年10月8日至2020年1月27日中国前十个枢纽站数据，包括不同方向通过一个车站的列车总数和晚点列车总数。</p>
+<h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a><strong>数据来源</strong></h2><p>下载：<a target="_blank" rel="noopener" href="https://figshare.com/articles/dataset/A_high-speed_railway_network_dataset_from_train_operation_records_and_weather_data/15087882/4">https://figshare.com/articles/dataset/A_high-speed_railway_network_dataset_from_train_operation_records_and_weather_data/15087882/4</a></p>
+<blockquote>
+<p>Zhang, Dalin; Peng, Yunjuan; Xu, Yi; Du, Chenyue; Zhang, Yumei; Wang, Nan; et al. (2021): A high-speed railway network dataset from train operation records and weather data. figshare. Dataset. <a target="_blank" rel="noopener" href="https://doi.org/10.6084/m9.figshare.15087882.v4">https://doi.org/10.6084/m9.figshare.15087882.v4</a></p>
+</blockquote>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a><strong>问题描述</strong></h2><p>该数据集的潜在研究价值包括但不限于复杂动态系统模式挖掘、社区检测和发现以及列车延误分析。此外，该数据集还可用于解决各种铁路运营和管理问题，如客运服务网络改进、列车实时调度和智能驾驶辅助。</p>
+<h1 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h1><h2 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h2><p>​	近年来，我国经济发展迅速，经济发展带来的城市化进程也渐渐的提速，高度城市化带来了巨大的交通流量。据国家统计局统计显示，2019 年年末中国的民用汽车保有量高达 2.6 亿，比 2018 年年末增加两千万余辆，并且预计将于2020 年末超过美国，这无疑会使交通数据日益庞大。目前如此大量的交通数据分散的存储于不同数据库中，若想对这些多源的交通数据进行查询和统计，需要很复杂的跨数据库查询。此外，汽车保有量的上涨无疑会带来更加严峻的交通拥堵问题。目前在对交通预测的研究中，用到的通常是机器学习或深度学习方法。这些方法可以很好的挖掘数据本身联系，但忽略了很多经验知识。 </p>
+<p>​	2008 年 11 月，IBM 公司提出的智慧交通引起了全世界人民的广泛关注[1]。智慧交通提出了解决交通拥堵问题的方案。随着大数据、信息通信等技术的发展，交通运输部门可以更好的分析庞大的多源交通数据，对交通态势进行预测和控制。城市交通信息的数字化已经是将来城市发展的大趋势。智慧交通系统将大数据、5G 通信、电子控制技术等先进技术结合，为交通决策提供依据[1]。通过交通决策，可以有效的对城市交通进行调控，减少交通拥堵的情况。目前我国道路上的线圈、摄像头等传感器已经成为了智慧交通的“眼睛”，为智慧交通提供了庞大的多源数据。如何形成智慧交通的“大脑”， 将这些多源数据进行融合，挖崛它们的潜在关系，对交通预测有着重要意义，也是目前的关键问题所在。 </p>
+<p>​	最近知识图谱技术广泛的应用在各个领域的研究。相比于传统的关系型数据库，知识图谱在存储多源异构数据时有着天然优势。并且由于其作为“图”这种数据结构的特 性，它对数据域数据之间的关系十分敏感，很容易挖掘到事物之间的潜在联系。将多源交通数据融合构建交通知识图谱不但可以简化对交通数据的查询和统计，而且其蕴含的大量知识可以为交通预测任务提供更加多元化的信息。因此，将知识图谱与深度学习结合将有效的提高交通预测的效果。 </p>
+<p>​	现阶段交通预测的方法很多。交通数据是典型的时间序列数据，传统的时间序列预测方法如历史均值模型（HA），差分自回归移动平均模型（ARIMA），Xgboost 模型、 向量自回归模型（VAR）等，曾经被广泛用于交通预测[2]。但他们只考虑了交通预测中的时间序列特征，忽略了空间相关性，很难在交通数据这种非线性时间序列预测上取得特别好的效果。 </p>
+<p>​	随着计算机硬件的发展，深度学习模型开始流行起来。深度学习以神经网络为结构，对数据进行深层次的特征提取[3]。神经网络模拟生物的神经网络结构，理论上可以拟合 任意函数[4]。诸如 LSTM[5]等很多深度学习模型被用到交通预测中。但他们同样因为无法捕捉空间关系而得不到好的结果。后来诞生了时空图神经网络，同时挖掘交通中的时 间相关性和空间相关性。但他们在空间相关性中只考虑了原始路网中的邻接关系，并不能全面的捕捉空间关系。 </p>
+<p>​	为了解决这些问题，本文在交通预测中引入知识图谱。知识图谱是一种语义网络，表达了实体之间的语义关系。在交通知识图谱中涵盖了包括路段邻接、路段与 POI 的临近等丰富的空间知识。对知识图谱的挖掘可以得到更全面的空间关系，形成空间关系更多元化的时空图。在这个时空图上运用时空图神经网络进行交通预测将会使预测结果进一步提高。 </p>
+<h2 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h2><h3 id="知识图谱研究现状"><a href="#知识图谱研究现状" class="headerlink" title="知识图谱研究现状"></a>知识图谱研究现状</h3><p>​	知识图谱的概念最早由谷歌提出，主要应用于增强搜索引擎的搜索功能[6]。用户在搜索一个词条时出现的关联项就是通过知识图谱实现的。知识图谱将知识与事实按照（实体，关系，实体）的三元组格式存储，这也是知识图谱最基本的表现形式[6]。另一种表现形式是将实体作为节点，关系作为边构成图的数据结构。现在的知识图谱在其存在意义方面有了很大的不同，泛指各种大规模的知识库。并且知识图谱包含的元素也在实体和关系的基础上扩展出了语义类、属性等。相应的，知识图谱的三元组也扩展成了两类，分别是（实体，关系，实体）和（实体，属性，值）[7]。 </p>
+<p>​	知识图谱按其作用的领域可以分为通用知识图谱和垂直领域知识图谱两大类[8]。通用知识图谱注重知识的广度，知识的涵盖面尽可能的广，实体和关系的种类通常很多， 其知识的来源常是一些百科知识。通用知识图谱对精度的要求较低，没有太高的专业 性[8]。而垂直领域知识图谱与之相反，它的专业性很强，注重知识的深度，对准确度的 要求非常高[8]。垂直领域知识图谱的数据来源通常是专家的知识，数据的获取难度通常较大，可能会涉及非公共的数据。 </p>
+<p>​	知识图谱从构建到应用分为以下的几个阶段，分别是知识建模、知识获取、知识融合、知识存储、知识推理和知识应用[9]。知识建模阶段主要根据知识图谱的用途设计知识图谱的模式层，即构建知识图谱的本体[9]。得到知识图谱的模式层后，通过爬虫等手段进行知识获取。获取到的知识通常是来自不同的数据库，这就会造成实体或关系的歧义，在知识融合步骤中需要针对性的将这些歧义消除，统一各个来源的数据。知识存储阶段选择合适的工具存储知识库。知识推理步骤的主要任务是丰富知识图谱的知识量，提供更多的查询功能。最后是知识图谱的应用，比如智能问答、智能搜索等[10]。 </p>
+<h3 id="知识图谱挖掘的研究现状"><a href="#知识图谱挖掘的研究现状" class="headerlink" title="知识图谱挖掘的研究现状"></a>知识图谱挖掘的研究现状</h3><p>​	知识图谱挖掘即用知识图谱中的知识挖掘两个实体之间的联系，是知识推理、知识融合等技术的基础。对知识图谱的挖掘主要有两个方向，一种是将知识图谱直接嵌入到 向量空间，从向量空间中挖掘实体之间的关系；另一种是通过实体在图中的路径连接挖掘节点的联系。前者的适应性较强，在知识推理等领域比较流行。而后者更能体现知识图谱作为图的特征，在研究节点在图中的关系时有更好的表现。 </p>
+<p>​	知识图谱嵌入比较流行的方法是基于翻译的模型。该方法将知识图谱翻译到向量空间之中。由于其采用的技术手段是直接翻译，因此对于任意的知识图谱都可以用这种方法进行图谱嵌入。基于翻译模型的思想是根据向量加法定义得分函数，正确三元组经得 分函数计算得到的得分很高，而错误三元组的得分应很低。在训练过程中尽可能拉大正 确三元组和错误三元组的得分差即可得到知识图谱的向量表示。基于翻译模型的最基础也是最代表的方法是 2013 年 Bordes 等人提出的 TransE 模型[11]。它的思想是基于向量加法的：对于任意一个知识三元组（h, r, t），如果这个三元组是正确的，那么h+r≈t。 TransE 的得分函数是。在训练过程中人为的将三元组（h，r，t）中任意一个元素随机替换构造出错误三元组，然后最大化正确三元组和错误三元组的得分差即可。 </p>
+<p>​	为了解决TransE只能进行一对一不能进行一对多、多对多的问题，Wang等人与2014年提出了 TransH 方法[12]。该方法在 TransE 的前提下将实体投影到关系的超平面内，在 超平面内的其他操作与 TransE 一样。这样同一个实体在不同的关系下就会有不同的向量表示，达到了多对多的目的。 </p>
+<p>​	Lin 等人于 2015 年提出了 TransR 算法[13]。该算法关注了属性的多样性，在 TransH的基础上考虑了实体和关系在考虑不同属性时有着不同的分类。该方法分别建立了单独的实体空间和关系空间，用一个转移矩阵将实体从实体空间映射到关系空间内。同年，Ji 等人考虑了实体和关系之间的交互，提出了 TransD 方法[14]。该方法将实体和关系分别用两个向量表示，一个表示实体本身，另一个动态的建立投影向量。实体的投影矩阵 由关系和实体的投影向量相乘得来。TransD 方法能解决实体和关系多样的问题。 </p>
+<p>​	可以看到，基于翻译的嵌入方法可进化型很强，发展很快。但它们只考虑了知识图谱中的直接关系，不能挖掘图中路径带来的间接关系。而另一类方法基于路径对知识图谱进行挖掘，基本思想是在知识图谱中进行随机游走，挖掘两节点相关的概率。 </p>
+<p>​	Lao 等人[15]提出了 PRA 算法来预测实体之间的关系。该方法将路径作为特征，先确定目标关系，找出含有目标关系的正例，替换头实体或尾实体构造负例；再构造特征 集合，将实体间的路径做为特征；随后用随机游走思想计算每一条路径的特征值；最后用 logistic 回归分类器进行训练。 </p>
+<p>​	Wei 等人[16]提出了以目标为导向的推理挖掘算法。该方法为每步都指定了推理目标，以此为引导进行随机游走，提高随机游走的效率 ，减少噪声。Liu 等人[17]提出层次随机游走模型（HiRi）。该模型是两层的随机游走模型，上层用于全局的发现路径，下层用于以局部视角抽取子图的信息。Perozzi 等人[18]提出了 Deep Walk 方法 ，是首个无监督学习的节点嵌入算法。它有些类似于词嵌入。该方法首先在图上进行随机游走生成节点序列，然后用 skip-gram 对该序列进行嵌入。Lin Y 等人在 PTransE[19]方法中用一个基于随机游走思想的资源分配算法对实体之间的路径置信度进行挖掘，得到知识图谱中的路径得分后与 TransE 的直接关系得分结合，提升知识图谱的嵌入效果。</p>
+<h3 id="时间序列预测的现状"><a href="#时间序列预测的现状" class="headerlink" title="时间序列预测的现状"></a>时间序列预测的现状</h3><p>​	交通预测是根据历史数据预测当前或未来某时刻交通情况，本质上是时间序列预测问题。时间序列在数学上可以用以时间顺序排列的离散函数表示，然后用差分方程对其求解，这个解就是以时间顺序增长的无穷级数数列[20]。其数学定义是：设 <em>f</em>(<em>t</em>)为区间[<em>t**min</em>,t<strong>max*]上的连续函数，以 T 为采样区间用 <em>f</em>(<em>kT</em>)对其离散化。其中 <em>k</em>&#x3D;0,1,2,3,…, *t</strong>min*&#x3D;0, <em>t**max</em>&#x3D;<em>nT</em>, n* 是正整数。那么时间序列预测可以定义为给定 <em>f</em>(<em>kT</em>), (k &#x3D; 0,1,2,…,<em>n</em>-1)，用一定的方法求得 <em>f</em>(<em>nT</em>)。 </p>
+<p>​	时间序列预测的最简单、古老的方法是取历史平均值的方法（History Average, HA）。该方法将历史的时序数据的平均值作为当前时刻的值，即已知 <em>x*<em>0</em></em>,x<strong>1</strong>,x<strong>2</strong>,…,x<em><em>n-1</em>，则第 <em>n</em> 个时刻的预测值 *x**n</em>&#x3D;(<em>x*<em>0</em></em>+x<strong>1</strong>+x<strong>2</strong>+…+x*<em>n-1</em>)&#x2F;<em>n</em>。很显然，取平均值来预测时间序列方法简单，且计算量小，效率很高。但也正是因为它过于简单，在预测交通数据时很难捕获周期性波动性等规律。此外，如何选取历史数据的观测长度也是个问题，观测长度过长预测不够敏感，观测长度过短会放大异常值对预测的影响。并且由于取平均值的计算方法对极 端值、突变点敏感的固有缺点，该方法在预测精度上很难有好的表现。 </p>
+<p>​	由于这些缺点导致预测结果不理想，因此产生了很多改进的模型，其中最广泛使用的是差分自回归移动平均模型（Autoregressive Integrated Moving Average model, ARIMA）[21]。该方法主要是 1926 年 Yule 提出的自回归模型（AR）、1937 年 Slutsky 提出的移动 平均模型（MA）的结合。这两种方法在刚提出时并没有产生很大影响，但后来有研究人员在预测时同时引入两种模型，提出了 ARMA 模型。在 ARMA 中人们发现只要自回 归模型的参数 p 和移动平均模型的参数 q 设置得当，即可模拟出任意的平稳时间序列[22]。1976 年，Box 和 Jenkins 提出 ARIMA 模型的 Box-Jenkins 方法。该方法是一套成熟的时间序列预测流程，在各种情况下都远超当时的时间序列模型。Box 等人于 2015 年对ARIMA 模型进行了再次改进[23]。 </p>
+<p>​	另一个常用的经典时间序列预测模型是向量自回归模型（Vector Autoregressive model，VAR）。该模型是个随机过程模型，可以捕获到几个时间序列 之间的线性依赖。 它的原理是先捕获所有目标时间序列临近每一时刻时相互的线性依赖性特征，再将每一 个特征加和得到预测目标。每一个时间序列的预测值都是由一个方程得到的。该方程计算了每一个时间序列变量以及其他时间序列变量的滞后值以及误差项。 </p>
+<p>​	这些经典模型曾广泛的应用于交通预测问题上，但人们发现这些线性模型只能捕获线性的时间依赖，无法捕获复杂的非线性时空依赖[24]。于是涌现出很多非线性模型如：阈值自动回归模型[25]，双线性模型[26]，自回归条件异方差模型[27]等。但由于计算机硬件的制约，非线性时间序列预测一直没有重大突破，直到深度学习的出现。这种数据驱动的模型一出现就撼动了经典统计预测模型的地位[28]。深度学习模型仅利用历史数据即可学习到历史与未来数据之间的随机相关性。20 世纪 80 年代，神经网络技术逐渐进入 人们的视野，人们发现神经网络可以用于非线性时间序列模型的预测。随着神经网络的发展，决策树、SVM、K-Means 等优秀模型逐渐被开发出来[29]。 </p>
+<p>​	Goller 和 Kuchler 于 1996 年提出的递归神经网络(Recursive Neural Network, RNN)在解决时间序列预测问题上引起了轰动[30]，但它依旧存在着指数爆炸和梯度消失问题。 Hochreiter 和 Schmidhuber 为解决这一问题，于 1997 年提出长短期记忆网络(Long short-term Memory Neural Network, LSTM)[5]。该方法通过记忆门、遗忘门等构件的协作提高了网络对时间序列的长期记忆。Greff[31]等人通过对 LSTM 进行变形，探究了遗忘 门和输出门的激活函数的重要性。 </p>
+<p>​	后来有研究人员发现广泛应用于图片挖掘的卷积神经网络（Convolutional Neural Network，CNN）经过一定的改进可以应用于交通路网中的非欧式空间的图结构中。这种在图结构上的卷积被称为图卷积神经网络（Graph Convolutional Network，GCN[32]。这类方法用到交通路网中的图结构信息，在交通预测上取得了很好的成绩。在 GCN 中最常用的是谱图卷积：其中是谱图卷积 的图卷积操作，x* 是输入的信号，是卷积核的参数。是标准化后的图拉普拉斯矩阵。 </p>
+<p>​	Yu B 等人[33]于 2018 年提出的 STGCN 模型在交通路网的时空图上进行谱图卷积，捕获空间相关性。作者在文中提出一种时空卷积块，是一个由两个捕获时间相关性的门控时间卷积层和一个捕获空间相关性的空间卷积层组成的“三明治”结构，取得了很好的预测效果。 </p>
+<p>​	Guo S 等人[34]在 STGCN 的基础上提出了 ASTGCN。该模型分别对临近性、和周期性时间特性建模，并在时空卷积中加入了时空注意力机制，动态的捕获时空相关性，将预测性能进一步提高。 </p>
+<p>​	可以看到，在深度学习方法用于交通预测的发展历程中，各个模型为了提升效果大多都从深度学习网络的结构上进行优化，使之更好的捕获时空相关性。然而他们对空间 相关性的捕获只是停留在通过检查点之间距离得来的临近关系上，深度学习网络的结构再好也会遇到瓶颈。本文另辟蹊径，研究在深度学习网络结构相同的前提下，用知识图谱挖掘更丰富的空间相关性对预测效果的影响，以求打破时空图中空间关系不足带来的瓶颈。</p>
+<h1 id="相关参考论文"><a href="#相关参考论文" class="headerlink" title="相关参考论文"></a>相关参考论文</h1><p>OpenKE：知识图谱表示学习工具包</p>
+<p><a target="_blank" rel="noopener" href="https://nlp.csai.tsinghua.edu.cn/project/openke/">https://nlp.csai.tsinghua.edu.cn/project/openke/</a></p>
+<p>中国主要城市信息知识图谱及其知识问答</p>
+<p><a target="_blank" rel="noopener" href="http://openkg.cn/dataset/cityknowledge">http://openkg.cn/dataset/cityknowledge</a></p>
+<p>知识计算价值逐渐凸显，决策智能重塑企业竞争优势</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/CVp_D8Md3hbPZrzmQafPlw">https://mp.weixin.qq.com/s/CVp_D8Md3hbPZrzmQafPlw</a></p>
+<p>基于时空图卷积网络的高速列车调度列车延误预测</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zuiyishihefang/article/details/128014330">https://blog.csdn.net/zuiyishihefang/article/details/128014330</a></p>
+<p>TKDE: 从时空大数据中挖掘隐含知识，支持城市多场景应用</p>
+<p> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/429403477">TKDE: 从时空大数据中挖掘隐含知识，支持城市多场景应用 - 知乎 (zhihu.com)</a> </p>
+<p> 基于多注意图卷积网络的火车站延误预测 </p>
+<p> <a target="_blank" rel="noopener" href="https://www.hindawi.com/journals/jat/2022/7580267/">Prediction of Train Station Delay Based on Multiattention Graph Convolution Network (hindawi.com)</a> </p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/yukiaustin/article/details/123255800?spm=1001.2014.3001.5502">(95条消息) 【毕业设计】【周记】STGCN模型的改进和可视化_改进stgcn_蝉鸣的夏天的博客-CSDN博客</a> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sunnyalion.com">舜桀BB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sunnyalion.com/posts/ec208d3a22c4/">https://sunnyalion.com/posts/ec208d3a22c4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sunnyalion.com" target="_blank">SunnyALion</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/40889dd62d68/"><img class="prev-cover" src="https://s3.bmp.ovh/imgs/2022/05/16/df304d212540f97c.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/posts/2674f79a35bd/"><img class="next-cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">自动化测试-Selenium</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjQyOC8zMjg5MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">舜桀BB</div><div class="author-info__description">一个普通的学习者，在追寻自己的自由。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FRank675"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这个SunnyALion-Blog在2022/5/16诞生啦，开发了三天多，也遇到了很多问题，感谢大神们提供的帮助，在这里我会记载我的生活和学习，分享有趣的事情，我们大家一起成长呀。由于还是创建初期，网页的加载性能可能会比较差，还请多多包含呀！舜桀正在努力完善中~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">知识图谱设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number"></span> <span class="toc-text">数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">背景描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AF%B4%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">数据说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">4.</span> <span class="toc-text">问题描述</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E6%96%87"><span class="toc-number"></span> <span class="toc-text">论文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">研究背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6%E7%8E%B0%E7%8A%B6"><span class="toc-number">2.</span> <span class="toc-text">研究现状</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%A0%94%E7%A9%B6%E7%8E%B0%E7%8A%B6"><span class="toc-number">2.1.</span> <span class="toc-text">知识图谱研究现状</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8C%96%E6%8E%98%E7%9A%84%E7%A0%94%E7%A9%B6%E7%8E%B0%E7%8A%B6"><span class="toc-number">2.2.</span> <span class="toc-text">知识图谱挖掘的研究现状</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B%E7%9A%84%E7%8E%B0%E7%8A%B6"><span class="toc-number">2.3.</span> <span class="toc-text">时间序列预测的现状</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E8%80%83%E8%AE%BA%E6%96%87"><span class="toc-number"></span> <span class="toc-text">相关参考论文</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/40889dd62d68/" title="无题"><img src="https://s3.bmp.ovh/imgs/2022/05/16/df304d212540f97c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/posts/40889dd62d68/" title="无题">无题</a><time datetime="2023-02-20T14:17:48.806Z" title="发表于 2023-02-20 22:17:48">2023-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ec208d3a22c4/" title="无题"><img src="https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/posts/ec208d3a22c4/" title="无题">无题</a><time datetime="2023-02-11T03:52:59.940Z" title="发表于 2023-02-11 11:52:59">2023-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2674f79a35bd/" title="自动化测试-Selenium"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自动化测试-Selenium"/></a><div class="content"><a class="title" href="/posts/2674f79a35bd/" title="自动化测试-Selenium">自动化测试-Selenium</a><time datetime="2023-01-25T11:09:17.550Z" title="发表于 2023-01-25 19:09:17">2023-01-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/72b1ae2f9336/" title="计算机网络"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"/></a><div class="content"><a class="title" href="/posts/72b1ae2f9336/" title="计算机网络">计算机网络</a><time datetime="2023-01-25T08:38:02.740Z" title="发表于 2023-01-25 16:38:02">2023-01-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3d9e214a9050/" title="毕设-知识图谱"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="毕设-知识图谱"/></a><div class="content"><a class="title" href="/posts/3d9e214a9050/" title="毕设-知识图谱">毕设-知识图谱</a><time datetime="2023-01-23T10:52:06.188Z" title="发表于 2023-01-23 18:52:06">2023-01-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/e5404ce657de463a.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 舜桀BB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://sunnyalion.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer" data-id="7408763913" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><!--link(rel='stylesheet' href=url_for(theme.asset.aplayer_css) media="print" onload="this.media='all'")--><!--script(src=url_for(theme.asset.aplayer_js))--><!--script(src=url_for(theme.asset.meting_js))--><link rel="stylesheet" type="text/css" href="./css/APlayer.min.css"><script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.css"></script><script type="text/javascript" src="https://unpkg.com/meting@2.0.1/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://s3.bmp.ovh/imgs/2022/05/18/ced6f8e7ee5a954f.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
