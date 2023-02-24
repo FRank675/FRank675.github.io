@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Linux命令——awk命令 | SunnyALion</title><meta name="keywords" content="Linux"><meta name="author" content="舜桀BB"><meta name="copyright" content="舜桀BB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Linux命令——awk命令1.简介AWK是一个优良的文本处理工具，Linux及Unix环境中现有的功能最强大的数据处理引擎之一。 数据可以来自标准输入(stdin)、一个或多个文件，或其它命令的输出。 它支持用户自定义函数和动态正则表达式等先进功能，是linux&#x2F;unix下的一个强大编程工具。 它在命令行中使用，但更多是作为脚本来使用。 awk有很多内建的功能，比如数组、函数等，这是它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令——awk命令">
+<meta property="og:url" content="https://sunnyalion.com/posts/658af63f600d/index.html">
+<meta property="og:site_name" content="SunnyALion">
+<meta property="og:description" content="Linux命令——awk命令1.简介AWK是一个优良的文本处理工具，Linux及Unix环境中现有的功能最强大的数据处理引擎之一。 数据可以来自标准输入(stdin)、一个或多个文件，或其它命令的输出。 它支持用户自定义函数和动态正则表达式等先进功能，是linux&#x2F;unix下的一个强大编程工具。 它在命令行中使用，但更多是作为脚本来使用。 awk有很多内建的功能，比如数组、函数等，这是它">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png">
+<meta property="article:published_time" content="2023-02-24T14:19:25.413Z">
+<meta property="article:modified_time" content="2023-02-24T14:15:01.862Z">
+<meta property="article:author" content="舜桀BB">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png"><link rel="shortcut icon" href="https://s3.bmp.ovh/imgs/2022/05/17/cf2ee01082c7d055.png"><link rel="canonical" href="https://sunnyalion.com/posts/658af63f600d/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b4495a2773355951d53ced4d5ee79d76";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux命令——awk命令',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-24 22:15:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SunnyALion</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux命令——awk命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-24T14:19:25.413Z" title="发表于 2023-02-24 22:19:25">2023-02-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-24T14:15:01.862Z" title="更新于 2023-02-24 22:15:01">2023-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Linux命令——awk命令"><a href="#Linux命令——awk命令" class="headerlink" title="Linux命令——awk命令"></a>Linux命令——awk命令</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>AWK是一个优良的文本处理工具，Linux及Unix环境中现有的功能最强大的数据处理引擎之一。</p>
+<p>数据可以来自标准输入(stdin)、一个或多个文件，或其它命令的输出。</p>
+<p>它支持用户自定义函数和动态正则表达式等先进功能，是linux&#x2F;unix下的一个强大编程工具。</p>
+<p>它在命令行中使用，但更多是作为脚本来使用。</p>
+<p>awk有很多内建的功能，比如数组、函数等，这是它和C语言的相同之处，灵活性是awk最大的优势。</p>
+<p>简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
+<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。</p>
+<p>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。</p>
+<p>实际上AWK的确拥有自己的语言： AWK程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。</p>
+<p>它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/bi?from=10680">报表</a>，还有无数其他的功能。</p>
+<h2 id="2-命令格式"><a href="#2-命令格式" class="headerlink" title="2.命令格式"></a>2.命令格式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">awk [options] <span class="string">&#x27;pattern + &#123;action&#125;&#x27;</span> [filenames...]</span><br></pre></td></tr></table></figure>
+
+<p>尽管操作可能会很复杂，但语法总是这样。awk通常用来格式化文本文件中的信息，是以文件的一行为处理单位，每接收文件的一行，然后执行相应的命令，来处理文本。其中pattern表示AWK在数据中查找的内容，而action是在找到匹配内容时所执行的一系列命令。花括号{}不需要在程序中始终出现，但它们用于根据特定的模式对一系列指令进行分组。pattern表示的正则表达式，用斜杠括起来，action 对匹配的行进行处理。</p>
+<p><strong>注意：</strong>  </p>
+<p>（1）pattern缺省为1，action缺省为{print}。  </p>
+<p>（2）pattern + {action}可以同时存在多个，每个pattern之间的关系是或，只要当前行匹配pattern，则执行pattern后大括号中的commands。</p>
+<h2 id="3-常用命令选项"><a href="#3-常用命令选项" class="headerlink" title="3.常用命令选项"></a>3.常用命令选项</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">-F fs,--field-separator fs：使用字符串fs作为域分隔符。可以同时指定多个域分隔符，此时需要使用一对中括号括起来。例如使用-和|可写作 -F <span class="string">&#x27;[-|]&#x27;</span>。如果用[]作为分隔符，可写作-F <span class="string">&#x27;[][]&#x27;</span>。不指定分隔符，默认为空格和<span class="title class_">Tab</span>。需要注意，awk命令使用-F<span class="string">&#x27; &#x27;</span>显示指定空格时，tab也会被作为分隔符。</span><br><span class="line">-v [<span class="keyword">var</span>]=[val],--assign [<span class="keyword">var</span>]=[val]：定义一个awk变量并赋值，可以将外部变量传递给awk；</span><br><span class="line">-f [program-file],--file [program-file]：从指定的awk脚本文件program-file读取awk指令；</span><br><span class="line">-m[f/r] <span class="attr">val</span>:对val值设置内在限制，-mf选项限制分配给val的最大块数目；-mr选项限制记录的最大数目。这两个功能是<span class="title class_">Bell</span>实验室版awk的扩展功能，在标准awk中不适用;</span><br><span class="line">-O,--optimize：在程序的内部表示上启用优化。目前，这只包括简单的常量折叠。gawk的维护者系统随着时间推移，增加额外的优化；</span><br><span class="line">-W compat,-W traditional,--compat,--traditional：是awk运行在兼容模式下，gawk的任何扩展都不会被识别；</span><br><span class="line">-W copyleft,--copyleft,-W copyright,--copyright：打印简短的版权信息；</span><br><span class="line">-W dump-variables[=file],--dump-variables[=file]：将awk的全局变量排序后打印到指定的文件file中，如果没有指定file，则在当前目录默认生成一个awkvars.<span class="property">out</span>；</span><br><span class="line">-W exec [file],--exec [file]:功能类似于命令选项-f，但脚本文件需要以#!开头；另外命令行的变量将不再生效；</span><br><span class="line">-W gen-po,--gen-<span class="attr">po</span>:解析awk程序，产生.<span class="property">po</span>格式的文件到标准输出，来标明程序中每一个可本地化的字符串位置（自己翻译的可能不准确）；</span><br><span class="line">-W help,-W usage,--help,--<span class="attr">usage</span>:打印全部awk选项和每个选项的简短说明;</span><br><span class="line">-W lint[=value],--lint[=value]:打印有关在其它版本awk中，出现可疑的或不可移植结构的警告。该选项提供了一个可选的参数fatal，即将警告视为致命的错误；</span><br><span class="line">-W lint-old,--lint-<span class="attr">old</span>:打印关于不能向传统unix平台移植的结构的警告；</span><br><span class="line">-W non-decimal-data,--non-decimal-data：识别输入数据中的八进制和十六进制数；</span><br><span class="line">-W posix,--posix：打开兼容模式，会出现以下限制：</span><br><span class="line">    不识别\x;</span><br><span class="line">    当域分隔fs是一个空格时，只有空格和tab能作为域分隔符，换行符将不能作为一个域分隔符；</span><br><span class="line">    在?和:之后，不能继续当前行；</span><br><span class="line">    函数关键字func将不能被识别；</span><br><span class="line">    操作符**和**=不能代替^和^=；</span><br><span class="line">    fflush函数无效。</span><br><span class="line">-W profile[=prof_file],--profile[=prof_file]：输出性能分析报告至指定的文件prof_file,如果prof_file缺省，默认输出到awkprof.<span class="property">out</span>；</span><br><span class="line">-W re-interval,--re-interval：允许间隔正则表达式的使用，参考(grep中的<span class="title class_">Posix</span>字符类)，如括号表达式[[:<span class="attr">alpha</span>:]]；</span><br><span class="line">-W source program-text,--source program-<span class="attr">text</span>:使用program-text作为源代码，可与-f命令混用；</span><br><span class="line">-W use-lc-numeric,--use-lc-<span class="attr">numeric</span>:是awk使用本地小数点解析输入的数据（自己翻译的可能不准确）；</span><br><span class="line">-W version,--<span class="attr">version</span>:打印awk版本信息；</span><br><span class="line">--:标识命令选项结束。（自己翻译的可能不准确）</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-调用awk方式"><a href="#4-调用awk方式" class="headerlink" title="4.调用awk方式"></a>4.调用awk方式</h2><p>有三种方式调用awk。</p>
+<h3 id="（1）命令行方式。"><a href="#（1）命令行方式。" class="headerlink" title="（1）命令行方式。"></a>（1）命令行方式。</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">awk [-F  field-separator]  <span class="string">&#x27;pattern + &#123;action&#125;&#x27;</span>  input-<span class="title function_">file</span>(s)</span><br></pre></td></tr></table></figure>
+
+<p>其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。  在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</p>
+<h3 id="（2）shell脚本方式。"><a href="#（2）shell脚本方式。" class="headerlink" title="（2）shell脚本方式。"></a>（2）shell脚本方式。</h3><p>  将所有的awk命令插入一个文件，脚本中在首行注明使用awk命令来解析执行，相当于将shell脚本首行的：<code>#!/bin/sh</code>换成：<code>#!/bin/awk</code>，最后通过键入脚本名称来调用。</p>
+<h3 id="（3）将所有的awk命令插入到一个单独文件，然后使用-f选项调用。"><a href="#（3）将所有的awk命令插入到一个单独文件，然后使用-f选项调用。" class="headerlink" title="（3）将所有的awk命令插入到一个单独文件，然后使用-f选项调用。"></a>（3）将所有的awk命令插入到一个单独文件，然后使用-f选项调用。</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">awk -f awk-script-file input-<span class="title function_">file</span>(s)</span><br></pre></td></tr></table></figure>
+
+<p>其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</p>
+<h2 id="5-awk内置变量"><a href="#5-awk内置变量" class="headerlink" title="5.awk内置变量"></a>5.awk内置变量</h2><p>awk有许多内置变量用来设置环境信息，这些变量可以被改变，下面给出常见的内置变量说明。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$n             当前记录的第n个字段，n从<span class="number">1</span>开始，字段间由<span class="variable constant_">FS</span>分隔</span><br><span class="line">$<span class="number">0</span>             当前完成的记录（当前处理行）</span><br><span class="line"><span class="variable constant_">ARGC</span>            命令行参数个数</span><br><span class="line"><span class="variable constant_">ARGIND</span>          命令行中当前处理文件的位置(从<span class="number">0</span>开始算)</span><br><span class="line"><span class="variable constant_">ARGV</span>            命令行参数数组</span><br><span class="line"><span class="variable constant_">CONVFMT</span>         数字转换格式，默认值为%.6g</span><br><span class="line"><span class="variable constant_">ENVIRON</span>         支持队列中系统环境变量的使用</span><br><span class="line"><span class="variable constant_">ERRNO</span>           最后一个系统错误的描述</span><br><span class="line"><span class="variable constant_">FIELDWIDTHS</span>     字段宽度列表(用空格键分隔)</span><br><span class="line"><span class="variable constant_">FILENAME</span>        awk浏览的文件名</span><br><span class="line"><span class="variable constant_">FNR</span>             当前被处理文件的记录数</span><br><span class="line"><span class="variable constant_">FS</span>              设置输入域分隔符，等价于命令行-F选项</span><br><span class="line"><span class="variable constant_">IGNORECASE</span>      如果为真，则进行忽略大小写的匹配</span><br><span class="line"><span class="variable constant_">LINT</span>            动态控制--lint选项是否生效，为<span class="literal">false</span>不生效，为<span class="literal">true</span>则生效；</span><br><span class="line"><span class="variable constant_">NF</span>              浏览记录的域的个数</span><br><span class="line"><span class="variable constant_">NR</span>              已读的记录数</span><br><span class="line"><span class="variable constant_">OFMT</span>            数字的输出格式，默认值是%.6g</span><br><span class="line"><span class="variable constant_">OFS</span>             输出域分隔符</span><br><span class="line"><span class="variable constant_">ORS</span>             输出记录分隔符             </span><br><span class="line"><span class="variable constant_">RS</span>              <span class="title class_">The</span> input record separator，输入记录的分隔符，默认为换行符</span><br><span class="line"><span class="variable constant_">RT</span>              <span class="title class_">The</span> record terminator，输入记录的结束符      </span><br><span class="line"><span class="variable constant_">RSTART</span>          由match函数所匹配的字符串的第一个位置</span><br><span class="line"><span class="variable constant_">RLENGTH</span>         由match函数所匹配的字符串的长度</span><br><span class="line"><span class="variable constant_">SUBSEP</span>          数组下标分隔符(默认值是\<span class="number">034</span>)</span><br><span class="line"><span class="variable constant_">TEXTDOMAIN</span>      awk程序所使用的文本所处的地域</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-awk编程示例"><a href="#6-awk编程示例" class="headerlink" title="6.awk编程示例"></a>6.awk编程示例</h2><h3 id="6-1基础打印输出"><a href="#6-1基础打印输出" class="headerlink" title="6.1基础打印输出"></a>6.1基础打印输出</h3><p>（1）假设last -n 5的输出如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[root@www ~]# last -n <span class="number">5</span> &lt;==仅取出前五行</span><br><span class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>  <span class="title class_">Tue</span> <span class="title class_">Feb</span> <span class="number">10</span> <span class="number">11</span>:<span class="number">21</span>   still logged <span class="keyword">in</span></span><br><span class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>  <span class="title class_">Tue</span> <span class="title class_">Feb</span> <span class="number">10</span> <span class="number">00</span>:<span class="number">46</span> - <span class="number">02</span>:<span class="number">28</span>  (<span class="number">01</span>:<span class="number">41</span>)</span><br><span class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>  <span class="title class_">Mon</span> <span class="title class_">Feb</span>  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">18</span>:<span class="number">30</span>  (<span class="number">06</span>:<span class="number">48</span>)</span><br><span class="line">dmtsai   pts/<span class="number">1</span>   <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>  <span class="title class_">Mon</span> <span class="title class_">Feb</span>  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">11</span>:<span class="number">41</span>  (<span class="number">00</span>:<span class="number">00</span>)</span><br><span class="line">root     tty1                   <span class="title class_">Fri</span> <span class="title class_">Sep</span>  <span class="number">5</span> <span class="number">14</span>:<span class="number">09</span> - <span class="number">14</span>:<span class="number">10</span>  (<span class="number">00</span>:<span class="number">01</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果只是显示最近登录的5个帐号:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">#last -n <span class="number">5</span> | awk  <span class="string">&#x27;&#123;print $1&#125;&#x27;</span></span><br><span class="line">root</span><br><span class="line">root</span><br><span class="line">root</span><br><span class="line">dmtsai</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+
+<p>awk工作流程是这样的：</p>
+<p>读入有’\n’换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，0则表示所有域,0则表示所有域,0则表示所有域,1表示第一个域,n表示第n个域。</p>
+<p>默认域分隔符是”空白键”或”[tab]键”,所以n表示第n个域。默认域分隔符是”空白键”或”[tab]键”,所以n表示第n个域。</p>
+<p>默认域分隔符是”空白键” 或 “[tab]键”,所以1表示登录用户，$3表示登录用户ip,以此类推。</p>
+<p>（2）如果想显示&#x2F;etc&#x2F;passwd配置文件中的账户以及账户对应的shell,而账户与shell之间以tab键分割。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">#cat /etc/passwd |awk  -F <span class="string">&#x27;:&#x27;</span>  <span class="string">&#x27;&#123;print $1&quot;\t&quot;$7&#125;&#x27;</span></span><br><span class="line">root    /bin/bash</span><br><span class="line">daemon  /bin/sh</span><br><span class="line">bin     /bin/sh</span><br><span class="line">sys     /bin/sh</span><br></pre></td></tr></table></figure>
+
+<p>注意，这里使用了-F指定域分隔符为’:’。</p>
+<p>（3）如果只是显示&#x2F;etc&#x2F;passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加”blue,&#x2F;bin&#x2F;nosh”。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">cat /etc/passwd |awk  -F <span class="string">&#x27;:&#x27;</span>  <span class="string">&#x27;BEGIN &#123;print &quot;name,shell&quot;&#125;  &#123;print $1&quot;,&quot;$7&#125; END &#123;print &quot;blue,/bin/nosh&quot;&#125;&#x27;</span></span><br><span class="line">name,shell</span><br><span class="line">root,<span class="regexp">/bin/</span>bash</span><br><span class="line">daemon,<span class="regexp">/bin/</span>sh</span><br><span class="line">bin,<span class="regexp">/bin/</span>sh</span><br><span class="line">sys,<span class="regexp">/bin/</span>sh</span><br><span class="line">....</span><br><span class="line">blue,<span class="regexp">/bin/</span>nosh</span><br></pre></td></tr></table></figure>
+
+<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有&#x2F;n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，0则表示所有域,0则表示所有域,0则表示所有域,1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
+<p>（4）搜索&#x2F;etc&#x2F;passwd有root关键字的所有行。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">#awk -<span class="attr">F</span>: <span class="string">&#x27;/root/&#x27;</span> /etc/passwd</span><br><span class="line"><span class="attr">root</span>:<span class="attr">x</span>:<span class="number">0</span>:<span class="number">0</span>:<span class="attr">root</span>:<span class="regexp">/root:/</span>bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>上面三种是awk的action的使用示例，而这种是pattern的使用示例，匹配了pattern(这里是root)的行才会执行action(没有指定action，默认输出每行的内容)。</p>
+<p>搜索支持正则表达式，例如找root开头的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">awk -<span class="attr">F</span>: <span class="string">&#x27;/^root/&#x27;</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>（5）搜索&#x2F;etc&#x2F;passwd有root关键字的所有行，并显示对应的shell。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"># awk -<span class="attr">F</span>: <span class="string">&#x27;/root/&#123;print $7&#125;&#x27;</span> /etc/passwd             </span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>这里是awk的pattern+action示例用法，同时指明了action是{print $7}。</p>
+<p>（6）打印&#x2F;etc&#x2F;passwd第三行的第一列和第二列。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">awk -<span class="attr">F</span>: <span class="string">&#x27;NR==3&#123;print $1,$2;&#125;&#x27;</span> /etc/passwd</span><br><span class="line"></span><br><span class="line">#输出结果：</span><br><span class="line">daemon x</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-awk在每一列后添加字符串后输出"><a href="#6-2-awk在每一列后添加字符串后输出" class="headerlink" title="6.2.awk在每一列后添加字符串后输出"></a>6.2.awk在每一列后添加字符串后输出</h3><p>设定变量内容：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a=<span class="string">&quot;/test.html /dir1 /abc.txt&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>希望得到</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">echo $a</span><br><span class="line">--exclude=<span class="regexp">/test.html --exclude=/</span>dir1 --exclude=/abc.<span class="property">txt</span></span><br></pre></td></tr></table></figure>
+
+<p>如何用awk实现。</p>
+<p>解决办法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">echo $a|awk <span class="string">&#x27;&#123;for(i=1;i&lt;=NF-1;++i)&#123;printf &quot;-execute=%s &quot;,$i&#125;&#125;&#123;print &quot;--exclude=&quot;$NF&quot;&quot;&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">#或者</span><br><span class="line">echo $a|awk <span class="string">&#x27;&#123;for(i=1;i&lt;=NF;i++)&#123;printf &quot;--exclude=&quot;$i&quot; &quot;&#125;&#123;print &quot;&quot;&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>后者是网友给出的答案，和我上面的写法是差不多的，只是对printf在使用形式上有所差别而已。第二种方法print “”是用于换行，print每次输出后默认进行换行。</p>
+<h3 id="6-3shell编程使用awk浮点运算保留两位小数"><a href="#6-3shell编程使用awk浮点运算保留两位小数" class="headerlink" title="6.3shell编程使用awk浮点运算保留两位小数"></a>6.3shell编程使用awk浮点运算保留两位小数</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a=<span class="number">3</span></span><br><span class="line">b=<span class="number">10</span></span><br><span class="line">c=$(awk <span class="string">&#x27;BEGIN&#123;printf &quot;%.2f&quot;,&#x27;</span>$a<span class="string">&#x27;*100/&#x27;</span>$b<span class="string">&#x27;&#125;&#x27;</span>)</span><br><span class="line">echo <span class="attr">c</span>:$c%</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">c=$(awk -v n=$a -v m=$b <span class="string">&#x27;BEGIN&#123;printf &quot;%.2f&quot;,n*100/m&#125;&#x27;</span>)</span><br><span class="line">echo <span class="attr">c</span>:$c%</span><br></pre></td></tr></table></figure>
+
+<p>-v表示定义awk的变量！v是variable的首字母。输出：c：30.00%。</p>
+<h3 id="6-4awk访问shell变量"><a href="#6-4awk访问shell变量" class="headerlink" title="6.4awk访问shell变量"></a>6.4awk访问shell变量</h3><p>awk默认是无法访问shell变量的，我所知道的有三种方法。  方法一：awk -v 选项让awk 里使用shell变量。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">var0=dablelv0</span><br><span class="line">var1=dablelv1</span><br><span class="line">awk -v tmpVar0=$var0 -v tmpVar1=$var1 <span class="string">&#x27;BEGIN&#123;print tmpVar0&quot; &quot;tmpVar1&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>输出：</strong> dablelv0 dablelv1  <strong>注意：</strong> BEGIN必须大写，awk的{action}必须要使用单引号括起来。</p>
+<p>方法二：<code>&#39;&quot;$var&quot;&#39;</code>  这种写法是老外常用的写法。如:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">&quot;test&quot;</span> </span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;print &quot;&#x27;</span>$var<span class="string">&#x27;&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种写法其实际是双括号变为单括号的常量,传递给了awk。</p>
+<p>如果var中含空格，为了shell不把空格作为分格符，应该如下使用：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">&quot;this is a test&quot;</span> </span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;print &quot;&#x27;</span><span class="string">&quot;$var&quot;</span><span class="string">&#x27;&quot;&#125;&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<p>方法三：export 变量，将变量设置为临时会话环境变量，仅在当前shell会话中有效。在awk中使用<code>ENVIRON[&quot;var&quot;]</code>形式访问变量。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">&quot;this is a test&quot;</span></span><br><span class="line"><span class="keyword">export</span> $var #或者 <span class="keyword">export</span> <span class="keyword">var</span></span><br><span class="line"></span><br><span class="line">#或者</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span>=<span class="string">&quot;this is a test&quot;</span></span><br><span class="line"></span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;print ENVIRON[&quot;var&quot;]&#125;&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="6-5awk执行shell命令"><a href="#6-5awk执行shell命令" class="headerlink" title="6.5awk执行shell命令"></a>6.5awk执行shell命令</h3><p>awk执行shell命令有两种方法。  方法一：使用awk的system()函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">var</span>=dablelv</span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;system(&quot;echo $var&quot;)&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>输出：</strong>dablelv  </p>
+<p><strong>注意：</strong>一定要使用export将变量设置为临时环境变量，因为awk的system()实际上是新建了一个shell进程来执行给定的shell命令，否则无法访问父进程的变量。</p>
+<p>方法二：使用<code>使用print cmd | &quot;/bin/bash&quot;</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span>=<span class="string">&quot;this is a test&quot;</span></span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;print &quot;echo &quot;&quot;&#x27;</span><span class="string">&quot;$var&quot;</span><span class="string">&#x27;&quot;|&quot;sh&quot;&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">#或者</span><br><span class="line"><span class="keyword">var</span>=<span class="string">&quot;this is a test&quot;</span></span><br><span class="line">awk -v varTmp=<span class="string">&quot;$var&quot;</span> <span class="string">&#x27;BEGIN&#123;print &quot;echo &quot;varTmp|&quot;sh&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出：this is a test  </p>
+<p><strong>注意：</strong>  </p>
+<p>（1）指定bash的时候需要双引号括起来；  </p>
+<p>（2）方法二与方法一的区别在于方法二是将变量在awk解析后再通过管道传给shell，所以无需将变量设置为临时环境变量，因为shell接收到的变量已经是变量的值。</p>
+<h2 id="7-awk常见问题"><a href="#7-awk常见问题" class="headerlink" title="7.awk常见问题"></a>7.awk常见问题</h2><p>（1）awk以空格为分隔符Tab也被作为域分隔符。现在只以空格为分隔符，需要使用中括号的方式。不使用中括号，则仍然会将Tab作为分隔符。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">#错误的写法</span><br><span class="line">awk -F<span class="string">&#x27; &#x27;</span> <span class="string">&#x27;&#123;print $1;&#125;&#x27;</span> test.<span class="property">txt</span></span><br><span class="line"></span><br><span class="line">#正确的写法</span><br><span class="line">awk -F<span class="string">&#x27;[ ]&#x27;</span> <span class="string">&#x27;&#123;print $1;&#125;&#x27;</span> test.<span class="property">txt</span> </span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sunnyalion.com">舜桀BB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sunnyalion.com/posts/658af63f600d/">https://sunnyalion.com/posts/658af63f600d/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sunnyalion.com" target="_blank">SunnyALion</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/44cb01cbd9f6/"><img class="prev-cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux命令——cat命令</div></div></a></div><div class="next-post pull-right"><a href="/posts/a1f5c5e2a0f5/"><img class="next-cover" src="https://s3.bmp.ovh/imgs/2022/05/18/2c94a7784c5f5233.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/d98ea350b62e/" title="Linux命令——touch命令"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-24</div><div class="title">Linux命令——touch命令</div></div></a></div><div><a href="/posts/86e40a8114e1/" title="Linux命令——sed命令"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-24</div><div class="title">Linux命令——sed命令</div></div></a></div><div><a href="/posts/3b4e095cdd12/" title="Linux命令——scp命令"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-24</div><div class="title">Linux命令——scp命令</div></div></a></div><div><a href="/posts/c0d06b4cf0bc/" title="Linux命令——ping命令"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-24</div><div class="title">Linux命令——ping命令</div></div></a></div><div><a href="/posts/5399fdb078dd/" title="Linux命令——ls命令"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-24</div><div class="title">Linux命令——ls命令</div></div></a></div><div><a href="/posts/4d9fc314d761/" title="Linux命令——lsof命令"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-24</div><div class="title">Linux命令——lsof命令</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjQyOC8zMjg5MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">舜桀BB</div><div class="author-info__description">一个普通的学习者，在追寻自己的自由。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FRank675"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这个SunnyALion-Blog在2022/5/16诞生啦，开发了三天多，也遇到了很多问题，感谢大神们提供的帮助，在这里我会记载我的生活和学习，分享有趣的事情，我们大家一起成长呀。由于还是创建初期，网页的加载性能可能会比较差，还请多多包含呀！舜桀正在努力完善中~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94awk%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">Linux命令——awk命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">2.命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%89%E9%A1%B9"><span class="toc-number">1.3.</span> <span class="toc-text">3.常用命令选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%B0%83%E7%94%A8awk%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">4.调用awk方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%96%B9%E5%BC%8F%E3%80%82"><span class="toc-number">1.4.1.</span> <span class="toc-text">（1）命令行方式。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89shell%E8%84%9A%E6%9C%AC%E6%96%B9%E5%BC%8F%E3%80%82"><span class="toc-number">1.4.2.</span> <span class="toc-text">（2）shell脚本方式。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%B0%86%E6%89%80%E6%9C%89%E7%9A%84awk%E5%91%BD%E4%BB%A4%E6%8F%92%E5%85%A5%E5%88%B0%E4%B8%80%E4%B8%AA%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BD%BF%E7%94%A8-f%E9%80%89%E9%A1%B9%E8%B0%83%E7%94%A8%E3%80%82"><span class="toc-number">1.4.3.</span> <span class="toc-text">（3）将所有的awk命令插入到一个单独文件，然后使用-f选项调用。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-awk%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F"><span class="toc-number">1.5.</span> <span class="toc-text">5.awk内置变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-awk%E7%BC%96%E7%A8%8B%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">6.awk编程示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1%E5%9F%BA%E7%A1%80%E6%89%93%E5%8D%B0%E8%BE%93%E5%87%BA"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1基础打印输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-awk%E5%9C%A8%E6%AF%8F%E4%B8%80%E5%88%97%E5%90%8E%E6%B7%BB%E5%8A%A0%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%8E%E8%BE%93%E5%87%BA"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2.awk在每一列后添加字符串后输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3shell%E7%BC%96%E7%A8%8B%E4%BD%BF%E7%94%A8awk%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97%E4%BF%9D%E7%95%99%E4%B8%A4%E4%BD%8D%E5%B0%8F%E6%95%B0"><span class="toc-number">1.6.3.</span> <span class="toc-text">6.3shell编程使用awk浮点运算保留两位小数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4awk%E8%AE%BF%E9%97%AEshell%E5%8F%98%E9%87%8F"><span class="toc-number">1.6.4.</span> <span class="toc-text">6.4awk访问shell变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5awk%E6%89%A7%E8%A1%8Cshell%E5%91%BD%E4%BB%A4"><span class="toc-number">1.6.5.</span> <span class="toc-text">6.5awk执行shell命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-awk%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.7.</span> <span class="toc-text">7.awk常见问题</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/d98ea350b62e/" title="Linux命令——touch命令"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux命令——touch命令"/></a><div class="content"><a class="title" href="/posts/d98ea350b62e/" title="Linux命令——touch命令">Linux命令——touch命令</a><time datetime="2023-02-24T14:19:25.443Z" title="发表于 2023-02-24 22:19:25">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/86e40a8114e1/" title="Linux命令——sed命令"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux命令——sed命令"/></a><div class="content"><a class="title" href="/posts/86e40a8114e1/" title="Linux命令——sed命令">Linux命令——sed命令</a><time datetime="2023-02-24T14:19:25.440Z" title="发表于 2023-02-24 22:19:25">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3b4e095cdd12/" title="Linux命令——scp命令"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux命令——scp命令"/></a><div class="content"><a class="title" href="/posts/3b4e095cdd12/" title="Linux命令——scp命令">Linux命令——scp命令</a><time datetime="2023-02-24T14:19:25.437Z" title="发表于 2023-02-24 22:19:25">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c0d06b4cf0bc/" title="Linux命令——ping命令"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux命令——ping命令"/></a><div class="content"><a class="title" href="/posts/c0d06b4cf0bc/" title="Linux命令——ping命令">Linux命令——ping命令</a><time datetime="2023-02-24T14:19:25.435Z" title="发表于 2023-02-24 22:19:25">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/5399fdb078dd/" title="Linux命令——ls命令"><img src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux命令——ls命令"/></a><div class="content"><a class="title" href="/posts/5399fdb078dd/" title="Linux命令——ls命令">Linux命令——ls命令</a><time datetime="2023-02-24T14:19:25.433Z" title="发表于 2023-02-24 22:19:25">2023-02-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 舜桀BB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://sunnyalion.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer" data-id="7408763913" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><!--link(rel='stylesheet' href=url_for(theme.asset.aplayer_css) media="print" onload="this.media='all'")--><!--script(src=url_for(theme.asset.aplayer_js))--><!--script(src=url_for(theme.asset.meting_js))--><link rel="stylesheet" type="text/css" href="./css/APlayer.min.css"><script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.css"></script><script type="text/javascript" src="https://unpkg.com/meting@2.0.1/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://s3.bmp.ovh/imgs/2022/05/18/ced6f8e7ee5a954f.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
