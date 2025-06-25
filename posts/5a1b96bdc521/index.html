@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用） | SunnyALion</title><meta name="keywords" content="Python"><meta name="author" content="舜桀BB"><meta name="copyright" content="舜桀BB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="装饰器可以说是 Python 最让人“又爱又恨”的语法糖之一。 刚开始我们觉得它只是个语法糖，可一旦深入，就发现它其实可以做很多：权限验证、日志记录、缓存、参数校验、接口拦截、自动重试……几乎所有能想到的“函数增强”都可以用装饰器实现。 但问题也随之而来：  装饰器到底是怎么“包裹函数”的？ 为什么装饰器函数要写三层？ @wraps 到底有什么用？ 装饰器能不能传参数？ 多个装饰器嵌套，顺序怎么搞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）">
+<meta property="og:url" content="https://frank675/FRank675.github.io/posts/5a1b96bdc521/index.html">
+<meta property="og:site_name" content="SunnyALion">
+<meta property="og:description" content="装饰器可以说是 Python 最让人“又爱又恨”的语法糖之一。 刚开始我们觉得它只是个语法糖，可一旦深入，就发现它其实可以做很多：权限验证、日志记录、缓存、参数校验、接口拦截、自动重试……几乎所有能想到的“函数增强”都可以用装饰器实现。 但问题也随之而来：  装饰器到底是怎么“包裹函数”的？ 为什么装饰器函数要写三层？ @wraps 到底有什么用？ 装饰器能不能传参数？ 多个装饰器嵌套，顺序怎么搞">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png">
+<meta property="article:published_time" content="2025-06-25T02:39:54.218Z">
+<meta property="article:modified_time" content="2025-06-25T02:41:01.261Z">
+<meta property="article:author" content="舜桀BB">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png"><link rel="shortcut icon" href="https://s3.bmp.ovh/imgs/2022/05/17/cf2ee01082c7d055.png"><link rel="canonical" href="https://frank675/FRank675.github.io/posts/5a1b96bdc521/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/FRank675.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b4495a2773355951d53ced4d5ee79d76";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/FRank675.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/FRank675.github.io/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-06-25 10:41:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/FRank675.github.io/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/FRank675.github.io/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/FRank675.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/FRank675.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/FRank675.github.io/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/FRank675.github.io/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/FRank675.github.io/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/FRank675.github.io/RW/"><i class="fa-fw fa fa-graduation-cap"></i><span> 圣光</span></a></li><li><a class="site-page child" href="/FRank675.github.io/record/"><i class="fa-fw fa fa-paper-plane"></i><span> 打卡</span></a></li><li><a class="site-page child" href="/FRank675.github.io/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 复盘</span></a></li><li><a class="site-page child" href="/FRank675.github.io/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/FRank675.github.io/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/FRank675.github.io/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/FRank675.github.io/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/FRank675.github.io/">SunnyALion</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/FRank675.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/FRank675.github.io/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/FRank675.github.io/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/FRank675.github.io/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/FRank675.github.io/RW/"><i class="fa-fw fa fa-graduation-cap"></i><span> 圣光</span></a></li><li><a class="site-page child" href="/FRank675.github.io/record/"><i class="fa-fw fa fa-paper-plane"></i><span> 打卡</span></a></li><li><a class="site-page child" href="/FRank675.github.io/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 复盘</span></a></li><li><a class="site-page child" href="/FRank675.github.io/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/FRank675.github.io/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/FRank675.github.io/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/FRank675.github.io/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-25T02:39:54.218Z" title="发表于 2025-06-25 10:39:54">2025-06-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-25T02:41:01.261Z" title="更新于 2025-06-25 10:41:01">2025-06-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/FRank675.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>装饰器可以说是 Python 最让人“又爱又恨”的语法糖之一。</p>
+<p>刚开始我们觉得它只是个语法糖，可一旦深入，就发现它其实可以做很多：<strong>权限验证、日志记录、缓存、参数校验、接口拦截、自动重试</strong>……几乎所有能想到的“函数增强”都可以用装饰器实现。</p>
+<p>但问题也随之而来：</p>
+<ul>
+<li>装饰器到底是怎么“包裹函数”的？</li>
+<li>为什么装饰器函数要写三层？</li>
+<li><code>@wraps</code> 到底有什么用？</li>
+<li>装饰器能不能传参数？</li>
+<li>多个装饰器嵌套，顺序怎么搞清楚？</li>
+</ul>
+<p>这篇文章，让我们<strong>不依赖死记硬背，把装饰器的原理和实际用法讲清楚讲透</strong>。</p>
+<hr>
+<h1 id="装饰器是啥？"><a href="#装饰器是啥？" class="headerlink" title="装饰器是啥？"></a>装饰器是啥？</h1><blockquote>
+<p>装饰器本质上是一个“接收函数，返回新函数”的函数。</p>
+</blockquote>
+<p>说白了就是：它接收一个函数，然后生成一个“升级版”的函数，把你想加的功能（比如打印日志）包在原函数前后。</p>
+<p>最小例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;before&quot;</span>)</span><br><span class="line">        func()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;after&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"><span class="meta">@outer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">say_hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>say_hello()</code>，你会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">before</span><br><span class="line">Hello!</span><br><span class="line">after</span><br></pre></td></tr></table></figure>
+
+<p>这就完成了“<strong>在不修改原函数的前提下，扩展了功能</strong>”。</p>
+<p>注意：<code>@outer</code> 实际上就是把 <code>say_hello = outer(say_hello)</code>。</p>
+<hr>
+<h1 id="为什么装饰器要嵌套这么多层？"><a href="#为什么装饰器要嵌套这么多层？" class="headerlink" title="为什么装饰器要嵌套这么多层？"></a>为什么装饰器要嵌套这么多层？</h1><p>你可能看到过这种结构：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+
+<p>为什么这么绕？因为你需要：</p>
+<ol>
+<li><code>decorator</code> 用来接收原函数；</li>
+<li><code>wrapper</code> 是新生成的函数，包裹逻辑写在这里；</li>
+<li><code>*args, **kwargs</code> 保证你可以装饰任意函数；</li>
+<li><code>return wrapper</code> 是把包装好的新函数交出去。</li>
+</ol>
+<p>换句话说，装饰器的“嵌套”是为了兼容性 + 可扩展性。</p>
+<hr>
+<h1 id="加个日志：第一个实战装饰器"><a href="#加个日志：第一个实战装饰器" class="headerlink" title="加个日志：第一个实战装饰器"></a>加个日志：第一个实战装饰器</h1><p>我们从最经典的“打印日志”开始：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">log</span>(<span class="params">func</span>):</span><br><span class="line"><span class="meta">    @wraps(<span class="params">func</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;调用函数 <span class="subst">&#123;func.__name__&#125;</span>&quot;</span>)</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;调用完成&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@log</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">say_hello</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>调用 <code>say_hello(&quot;Tom&quot;)</code> 输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">调用函数 say_hello</span><br><span class="line">Hello, Tom</span><br><span class="line">调用完成</span><br></pre></td></tr></table></figure>
+
+<p>注意两点：</p>
+<ul>
+<li><code>@wraps(func)</code> 这一行不是装饰器的核心逻辑，但<strong>是装饰器开发的必备礼仪</strong>。<ul>
+<li>它保留原函数的函数名、注释、签名信息；</li>
+<li>不然 <code>say_hello.__name__</code> 会变成 <code>wrapper</code>，会对调试和文档工具产生困扰。</li>
+</ul>
+</li>
+<li><code>*args, **kwargs</code> 是必须的，这是为了适配任意参数的函数。</li>
+</ul>
+<hr>
+<h1 id="装饰器能传参数吗？"><a href="#装饰器能传参数吗？" class="headerlink" title="装饰器能传参数吗？"></a>装饰器能传参数吗？</h1><p>很多人会误以为装饰器不能传参。其实可以，而且还很常用，比如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@retry(<span class="params">times=<span class="number">3</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">unstable_func</span>():</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>实现思路是：<strong>再套一层函数，把参数先收下，再生成装饰器</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">retry</span>(<span class="params">times</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line"><span class="meta">        @wraps(<span class="params">func</span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(times):</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">                <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">f&quot;第<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>次重试失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> decorator</span><br></pre></td></tr></table></figure>
+
+<p>调用流程：</p>
+<ul>
+<li><code>@retry(3)</code> → 先执行 <code>retry(3)</code> 返回 <code>decorator</code></li>
+<li>然后 <code>decorator(func)</code> 才包住你要增强的函数</li>
+</ul>
+<p>看起来复杂，但逻辑很顺：你先把“设定参数”的工作做掉，再交出一个真正的装饰器。</p>
+<hr>
+<h1 id="多个装饰器嵌套，顺序到底谁先谁后？"><a href="#多个装饰器嵌套，顺序到底谁先谁后？" class="headerlink" title="多个装饰器嵌套，顺序到底谁先谁后？"></a>多个装饰器嵌套，顺序到底谁先谁后？</h1><p>先上代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">A</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;A: before&quot;</span>)</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;A: after&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">B</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;B: before&quot;</span>)</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;B: after&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@A</span></span><br><span class="line"><span class="meta">@B</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;run body&quot;</span>)</span><br><span class="line"></span><br><span class="line">run()</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">A: before</span><br><span class="line">B: before</span><br><span class="line">run body</span><br><span class="line">B: after</span><br><span class="line">A: after</span><br></pre></td></tr></table></figure>
+
+<p>顺序解释：</p>
+<ul>
+<li>你可以理解为 <code>run = A(B(run))</code>，即 B 先包，A 后包；</li>
+<li>执行时是“<strong>外层先进</strong>，然后一层层剥开”。</li>
+</ul>
+<hr>
+<h1 id="类装饰器：当你需要保存状态"><a href="#类装饰器：当你需要保存状态" class="headerlink" title="类装饰器：当你需要保存状态"></a>类装饰器：当你需要保存状态</h1><p>普通装饰器只能作用一次，如果你想记录这个函数被调用了几次，怎么办？可以用类来封装状态。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CountCalls</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, func</span>):</span><br><span class="line">        self.func = func</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        self.count += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;第 <span class="subst">&#123;self.count&#125;</span> 次调用&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> self.func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line"><span class="meta">@CountCalls</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">greet</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>调用 <code>greet()</code> 两次，你会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第 1 次调用</span><br><span class="line">Hello</span><br><span class="line">第 2 次调用</span><br><span class="line">Hello</span><br></pre></td></tr></table></figure>
+
+<p>类装饰器的核心是实现 <code>__call__</code>，它允许“实例像函数一样被调用”。</p>
+<hr>
+<h1 id="在-Flask-中一定见过它"><a href="#在-Flask-中一定见过它" class="headerlink" title="在 Flask 中一定见过它"></a>在 Flask 中一定见过它</h1><p>Flask 的路由就是一个装饰器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/hello&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hi&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>你也可以自己写一个装饰器，比如对接口做 token 校验：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">require_token</span>(<span class="params">func</span>):</span><br><span class="line"><span class="meta">    @wraps(<span class="params">func</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        token = request.headers.get(<span class="string">&quot;Authorization&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> token != <span class="string">&quot;secret&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> jsonify(&#123;<span class="string">&quot;error&quot;</span>: <span class="string">&quot;Unauthorized&quot;</span>&#125;), <span class="number">401</span></span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/secure&quot;</span></span>)</span></span><br><span class="line"><span class="meta">@require_token</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">secure_data</span>():</span><br><span class="line">    <span class="keyword">return</span> jsonify(&#123;<span class="string">&quot;data&quot;</span>: <span class="string">&quot;只有授权才能看到&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>装饰器的本质就是在原函数执行前，拦截请求、检查权限、决定放行与否。</p>
+<hr>
+<h1 id="可能踩过的坑"><a href="#可能踩过的坑" class="headerlink" title="可能踩过的坑"></a>可能踩过的坑</h1><p><strong>1. 忘记 return 原函数结果</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">wrong</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        func(*args, **kwargs)</span><br><span class="line">        <span class="comment"># 忘了 return</span></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+
+<p>如果原函数有返回值，直接被吞了，调用者拿不到结果。</p>
+<p><strong>2. 不加 @wraps，函数名变了</strong></p>
+<p>影响调试、文档工具、自动注册机制。</p>
+<p><strong>3. 参数漏写，装饰器不能泛用</strong></p>
+<p>必须用 <code>*args, **kwargs</code> 保证适配任何函数。</p>
+<hr>
+<h1 id="总结：装饰器是代码复用的艺术"><a href="#总结：装饰器是代码复用的艺术" class="headerlink" title="总结：装饰器是代码复用的艺术"></a>总结：装饰器是代码复用的艺术</h1><p>如果写过一段逻辑：</p>
+<ul>
+<li>在多个地方都需要用</li>
+<li>每次都 copy paste 很恶心</li>
+<li>想用最干净的方式“加在函数外面”</li>
+</ul>
+<p>那装饰器就是该学会的技能。</p>
+<p>它并不神秘，只要理解它的本质——<strong>接收函数，返回函数，增强功能</strong>，就能灵活运用。</p>
+<hr>
+<h1 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h1><ol>
+<li>写一个 <code>@timeit</code> 装饰器，打印函数执行耗时</li>
+<li>写一个 <code>@only_once</code> 装饰器，保证函数只执行一次</li>
+<li>写一个 <code>@check_admin</code> 装饰器，只有 admin 用户能访问</li>
+<li>写一个装饰器支持 <code>@logger(level=&quot;info&quot;)</code> 的形式</li>
+<li>写一个 <code>@cache(seconds=5)</code> 装饰器，缓存函数返回结果一段时间</li>
+</ol>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://FRank675/FRank675.github.io">舜桀BB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://frank675/FRank675.github.io/posts/5a1b96bdc521/">https://frank675/FRank675.github.io/posts/5a1b96bdc521/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://FRank675/FRank675.github.io" target="_blank">SunnyALion</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/FRank675.github.io/tags/Python/">Python</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/FRank675.github.io/posts/7470b0126bca/"><img class="next-cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png" onerror="onerror=null;src='/FRank675.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">高效提取数据库分析上下文：如何使用 Parquet 文件为大模型提供数据理解能力</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/FRank675.github.io/posts/c1e43465515b/" title="Python 对象复制的坑：浅拷贝 vs 深拷贝"><img class="cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624193048266.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-24</div><div class="title">Python 对象复制的坑：浅拷贝 vs 深拷贝</div></div></a></div><div><a href="/FRank675.github.io/posts/795db927122f/" title="协程 &amp; 异步编程(asyncio)"><img class="cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250617172154325.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-17</div><div class="title">协程 &amp; 异步编程(asyncio)</div></div></a></div><div><a href="/FRank675.github.io/posts/40889dd62d68/" title="Python常用操作"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-20</div><div class="title">Python常用操作</div></div></a></div><div><a href="/FRank675.github.io/posts/290bdd6d9133/" title="Python"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-05</div><div class="title">Python</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjQyOC8zMjg5MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="this.onerror=null;this.src='/FRank675.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">舜桀BB</div><div class="author-info__description">一个普通的学习者，在追寻自己的自由。</div></div><div class="card-info-data site-data is-center"><a href="/FRank675.github.io/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/FRank675.github.io/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/FRank675.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FRank675"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这个SunnyALion-Blog在2022/5/16诞生啦，开发了三天多，也遇到了很多问题，感谢大神们提供的帮助，在这里我会记载我的生活和学习，分享有趣的事情，我们大家一起成长呀。由于还是创建初期，网页的加载性能可能会比较差，还请多多包含呀！舜桀正在努力完善中~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">装饰器是啥？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A3%85%E9%A5%B0%E5%99%A8%E8%A6%81%E5%B5%8C%E5%A5%97%E8%BF%99%E4%B9%88%E5%A4%9A%E5%B1%82%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么装饰器要嵌套这么多层？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E4%B8%AA%E6%97%A5%E5%BF%97%EF%BC%9A%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AE%9E%E6%88%98%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">加个日志：第一个实战装饰器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E8%83%BD%E4%BC%A0%E5%8F%82%E6%95%B0%E5%90%97%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">装饰器能传参数吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E8%A3%85%E9%A5%B0%E5%99%A8%E5%B5%8C%E5%A5%97%EF%BC%8C%E9%A1%BA%E5%BA%8F%E5%88%B0%E5%BA%95%E8%B0%81%E5%85%88%E8%B0%81%E5%90%8E%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">多个装饰器嵌套，顺序到底谁先谁后？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%9A%E5%BD%93%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BF%9D%E5%AD%98%E7%8A%B6%E6%80%81"><span class="toc-number">6.</span> <span class="toc-text">类装饰器：当你需要保存状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8-Flask-%E4%B8%AD%E4%B8%80%E5%AE%9A%E8%A7%81%E8%BF%87%E5%AE%83"><span class="toc-number">7.</span> <span class="toc-text">在 Flask 中一定见过它</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91"><span class="toc-number">8.</span> <span class="toc-text">可能踩过的坑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E8%A3%85%E9%A5%B0%E5%99%A8%E6%98%AF%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%94%A8%E7%9A%84%E8%89%BA%E6%9C%AF"><span class="toc-number">9.</span> <span class="toc-text">总结：装饰器是代码复用的艺术</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">10.</span> <span class="toc-text">练习题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/FRank675.github.io/posts/5a1b96bdc521/" title="Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png" onerror="this.onerror=null;this.src='/FRank675.github.io/img/404.jpg'" alt="Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）"/></a><div class="content"><a class="title" href="/FRank675.github.io/posts/5a1b96bdc521/" title="Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）">Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）</a><time datetime="2025-06-25T02:39:54.218Z" title="发表于 2025-06-25 10:39:54">2025-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/FRank675.github.io/posts/7470b0126bca/" title="高效提取数据库分析上下文：如何使用 Parquet 文件为大模型提供数据理解能力"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png" onerror="this.onerror=null;this.src='/FRank675.github.io/img/404.jpg'" alt="高效提取数据库分析上下文：如何使用 Parquet 文件为大模型提供数据理解能力"/></a><div class="content"><a class="title" href="/FRank675.github.io/posts/7470b0126bca/" title="高效提取数据库分析上下文：如何使用 Parquet 文件为大模型提供数据理解能力">高效提取数据库分析上下文：如何使用 Parquet 文件为大模型提供数据理解能力</a><time datetime="2025-06-24T15:19:15.357Z" title="发表于 2025-06-24 23:19:15">2025-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/FRank675.github.io/posts/c1e43465515b/" title="Python 对象复制的坑：浅拷贝 vs 深拷贝"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624193048266.png" onerror="this.onerror=null;this.src='/FRank675.github.io/img/404.jpg'" alt="Python 对象复制的坑：浅拷贝 vs 深拷贝"/></a><div class="content"><a class="title" href="/FRank675.github.io/posts/c1e43465515b/" title="Python 对象复制的坑：浅拷贝 vs 深拷贝">Python 对象复制的坑：浅拷贝 vs 深拷贝</a><time datetime="2025-06-24T11:27:37.755Z" title="发表于 2025-06-24 19:27:37">2025-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/FRank675.github.io/posts/10a291913132/" title="LangChain中的Runnable接口"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618102353044.png" onerror="this.onerror=null;this.src='/FRank675.github.io/img/404.jpg'" alt="LangChain中的Runnable接口"/></a><div class="content"><a class="title" href="/FRank675.github.io/posts/10a291913132/" title="LangChain中的Runnable接口">LangChain中的Runnable接口</a><time datetime="2025-06-18T02:04:40.912Z" title="发表于 2025-06-18 10:04:40">2025-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/FRank675.github.io/posts/c7da7bbb1a7b/" title="如何让 LLM 的返回值流式输出？"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250617190557203.png" onerror="this.onerror=null;this.src='/FRank675.github.io/img/404.jpg'" alt="如何让 LLM 的返回值流式输出？"/></a><div class="content"><a class="title" href="/FRank675.github.io/posts/c7da7bbb1a7b/" title="如何让 LLM 的返回值流式输出？">如何让 LLM 的返回值流式输出？</a><time datetime="2025-06-17T10:28:54.187Z" title="发表于 2025-06-17 18:28:54">2025-06-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624233201562.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 舜桀BB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://sunnyalion.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/FRank675.github.io/js/utils.js"></script><script src="/FRank675.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/FRank675.github.io/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer" data-id="7408763913" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><!--link(rel='stylesheet' href=url_for(theme.asset.aplayer_css) media="print" onload="this.media='all'")--><!--script(src=url_for(theme.asset.aplayer_js))--><!--script(src=url_for(theme.asset.meting_js))--><link rel="stylesheet" type="text/css" href="./css/APlayer.min.css"><script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.css"></script><script type="text/javascript" src="https://unpkg.com/meting@2.0.1/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://s3.bmp.ovh/imgs/2022/05/18/ced6f8e7ee5a954f.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/FRank675.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/FRank675.github.io/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
