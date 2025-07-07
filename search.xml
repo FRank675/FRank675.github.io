@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>LeetCode-哈希表</title>
+      <link href="/FRank675.github.io/posts/1a6a73d70e94/"/>
+      <url>/FRank675.github.io/posts/1a6a73d70e94/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\FRank675.github.io\css\APlayer.min.css"><script src="\FRank675.github.io\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\FRank675.github.io\js\Meting.min.js"></script><h1 id="哈希表的基本概念"><a href="#哈希表的基本概念" class="headerlink" title="哈希表的基本概念"></a>哈希表的基本概念</h1><h2 id="什么是哈希表（Hash-Table）？"><a href="#什么是哈希表（Hash-Table）？" class="headerlink" title="什么是哈希表（Hash Table）？"></a>什么是哈希表（Hash Table）？</h2><p>哈希表是一种 <strong>根据“键（Key）”快速查找“值（Value）”</strong> 的数据结构。它内部通常使用 <strong>数组 + 哈希函数</strong> 实现：</p><ul><li><strong>键（key）</strong>：用来唯一标识一个值，比如身份证号、用户名等；</li><li><strong>值（value）</strong>：对应于键的存储内容；</li><li><strong>哈希函数</strong>：将键映射为数组索引（通常是整数）；</li><li><strong>冲突解决</strong>：如果两个键映射到了同一个位置，需要处理冲突，Python中的字典使用了链地址法（开链法）解决。</li></ul><h2 id="Python-中的哈希结构"><a href="#Python-中的哈希结构" class="headerlink" title="Python 中的哈希结构"></a>Python 中的哈希结构</h2><p>Python 中内置了两种最常用的哈希结构：</p><ul><li><code>dict</code>（字典）：键值对的存储</li><li><code>set</code>（集合）：只存储键（不重复）</li></ul><p>例如：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字典</span></span><br><span class="line">d = &#123;<span class="string">&#x27;apple&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;banana&#x27;</span>: <span class="number">5</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(d[<span class="string">&#x27;apple&#x27;</span>])  <span class="comment"># 输出 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 集合</span></span><br><span class="line">s = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="number">2</span> <span class="keyword">in</span> s)  <span class="comment"># 输出 True</span></span><br></pre></td></tr></table></figure><p>它们的 **查找、插入、删除的平均时间复杂度都是 O(1)**，这就是哈希表非常高效的原因。</p><h2 id="哈希表的常见用途"><a href="#哈希表的常见用途" class="headerlink" title="哈希表的常见用途"></a>哈希表的常见用途</h2><p>在 <code>LeetCode</code> 中，哈希结构主要应用于以下场景：</p><ul><li><strong>查找是否存在某个元素（集合 <code>set</code>）</strong></li></ul><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">seen = <span class="built_in">set</span>()</span><br><span class="line"><span class="keyword">if</span> x <span class="keyword">in</span> seen:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;存在&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    seen.add(x)</span><br></pre></td></tr></table></figure><ul><li><strong>计数统计</strong>（字典 <code>dict</code>）</li></ul><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">count = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">    count[num] = count.get(num, <span class="number">0</span>) + <span class="number">1</span></span><br></pre></td></tr></table></figure><p>或者用 <code>collections.Counter</code> 更简洁：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">count = Counter(nums)</span><br></pre></td></tr></table></figure><ul><li><strong>去重</strong>（集合 <code>set</code>）</li></ul><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">unique_nums = <span class="built_in">list</span>(<span class="built_in">set</span>(nums))</span><br></pre></td></tr></table></figure><ul><li><strong>构造映射关系</strong>（字典 <code>dict</code>）</li></ul><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">index_map = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">    index_map[val] = i</span><br></pre></td></tr></table></figure><ul><li><strong>优化暴力搜索为 O(1) 查找</strong>（Two Sum 典型写法）</li></ul><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">nums, target</span>):</span><br><span class="line">    hashmap = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">        <span class="keyword">if</span> target - num <span class="keyword">in</span> hashmap:</span><br><span class="line">            <span class="keyword">return</span> [hashmap[target - num], i]</span><br><span class="line">        hashmap[num] = i</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 哈希表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git命令清单</title>
       <link href="/FRank675.github.io/posts/b8b92854046a/"/>
       <url>/FRank675.github.io/posts/b8b92854046a/</url>
