@@ -1,0 +1,808 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python基础 | SunnyALion</title><meta name="keywords" content="Python"><meta name="author" content="舜桀BB"><meta name="copyright" content="舜桀BB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="📍 第 1 课：Python 基础语法 - 数据类型 &amp; 列表操作📝 知识点 基本数据类型  int（整数）：a &#x3D; 5 float（小数）：b &#x3D; 3.14 str（字符串）：s &#x3D; &quot;hello&quot; bool（布尔）：flag &#x3D; True   列表（list）  创建：nums &#x3D; [1, 2, 3] 访问：nums[0] → 1 修改：nums[1] &#x3D; 10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础">
+<meta property="og:url" content="https://sunnyalion.com/posts/089786ba3aa2/index.html">
+<meta property="og:site_name" content="SunnyALion">
+<meta property="og:description" content="📍 第 1 课：Python 基础语法 - 数据类型 &amp; 列表操作📝 知识点 基本数据类型  int（整数）：a &#x3D; 5 float（小数）：b &#x3D; 3.14 str（字符串）：s &#x3D; &quot;hello&quot; bool（布尔）：flag &#x3D; True   列表（list）  创建：nums &#x3D; [1, 2, 3] 访问：nums[0] → 1 修改：nums[1] &#x3D; 10">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png">
+<meta property="article:published_time" content="2025-08-22T16:13:55.256Z">
+<meta property="article:modified_time" content="2025-08-22T16:16:18.510Z">
+<meta property="article:author" content="舜桀BB">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png"><link rel="shortcut icon" href="https://s3.bmp.ovh/imgs/2022/05/17/cf2ee01082c7d055.png"><link rel="canonical" href="https://sunnyalion.com/posts/089786ba3aa2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b4495a2773355951d53ced4d5ee79d76";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-23 00:16:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/RW/"><i class="fa-fw fa fa-graduation-cap"></i><span> 圣光</span></a></li><li><a class="site-page child" href="/record/"><i class="fa-fw fa fa-paper-plane"></i><span> 打卡</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 复盘</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SunnyALion</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/RW/"><i class="fa-fw fa fa-graduation-cap"></i><span> 圣光</span></a></li><li><a class="site-page child" href="/record/"><i class="fa-fw fa fa-paper-plane"></i><span> 打卡</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 复盘</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-22T16:13:55.256Z" title="发表于 2025-08-23 00:13:55">2025-08-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-22T16:16:18.510Z" title="更新于 2025-08-23 00:16:18">2025-08-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>26分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="📍-第-1-课：Python-基础语法-数据类型-amp-列表操作"><a href="#📍-第-1-课：Python-基础语法-数据类型-amp-列表操作" class="headerlink" title="📍 第 1 课：Python 基础语法 - 数据类型 &amp; 列表操作"></a>📍 第 1 课：Python 基础语法 - 数据类型 &amp; 列表操作</h2><h3 id="📝-知识点"><a href="#📝-知识点" class="headerlink" title="📝 知识点"></a>📝 知识点</h3><ol>
+<li><p><strong>基本数据类型</strong></p>
+<ul>
+<li><code>int</code>（整数）：<code>a = 5</code></li>
+<li><code>float</code>（小数）：<code>b = 3.14</code></li>
+<li><code>str</code>（字符串）：<code>s = &quot;hello&quot;</code></li>
+<li><code>bool</code>（布尔）：<code>flag = True</code></li>
+</ul>
+</li>
+<li><p><strong>列表（list）</strong></p>
+<ul>
+<li>创建：<code>nums = [1, 2, 3]</code></li>
+<li>访问：<code>nums[0]</code> → 1</li>
+<li>修改：<code>nums[1] = 10</code> → <code>[1, 10, 3]</code></li>
+<li>添加：<code>nums.append(4)</code> → <code>[1, 10, 3, 4]</code></li>
+<li>删除：<code>nums.pop()</code> → 删除最后一个</li>
+</ul>
+</li>
+<li><p><strong>列表推导式</strong>（常考！）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">squares = [x*x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>)]</span><br><span class="line"><span class="comment"># [0, 1, 4, 9, 16]</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="💡-小练习"><a href="#💡-小练习" class="headerlink" title="💡 小练习"></a>💡 小练习</h3><ol>
+<li>创建一个列表 <code>[1, 2, 3, 4, 5]</code>，把每个元素平方，得到 <code>[1, 4, 9, 16, 25]</code>。</li>
+<li>写一个函数 <code>filter_even(nums)</code>，输入一个数字列表，返回所有偶数。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> truediv</span><br><span class="line"><span class="keyword">from</span> tokenize <span class="keyword">import</span> endpats</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建一个列表 `[1, 2, 3, 4, 5]`，把每个元素平方，得到 `[1, 4, 9, 16, 25]`。</span></span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">squares = [x*x <span class="keyword">for</span> x <span class="keyword">in</span> nums]</span><br><span class="line"><span class="built_in">print</span>(squares)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 4, 9, 16, 25]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 2. 写一个函数 `filter_even(nums)`，输入一个数字列表，返回所有偶数。</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">filter_even1</span>(<span class="params">nums</span>):</span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            result.append(x)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">print</span>(filter_even1(nums))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[2, 4, 6]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">filter_even2</span>(<span class="params">nums</span>):</span><br><span class="line">    <span class="keyword">return</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> nums <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(filter_even2(nums))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[2, 4, 6]
+</code></pre>
+<h2 id="📍-第-2-课：字符串操作"><a href="#📍-第-2-课：字符串操作" class="headerlink" title="📍 第 2 课：字符串操作"></a>📍 第 2 课：字符串操作</h2><h3 id="📝-常用操作"><a href="#📝-常用操作" class="headerlink" title="📝 常用操作"></a>📝 常用操作</h3><ol>
+<li><strong>创建与访问</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="built_in">print</span>(s[<span class="number">0</span>])   <span class="comment"># h</span></span><br><span class="line"><span class="built_in">print</span>(s[-<span class="number">1</span>])  <span class="comment"># o</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>切片</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(s[<span class="number">1</span>:<span class="number">4</span>])   <span class="comment"># ell</span></span><br><span class="line"><span class="built_in">print</span>(s[::-<span class="number">1</span>])  <span class="comment"># olleh （倒序）</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>常用方法</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s.upper()      <span class="comment"># &quot;HELLO&quot;</span></span><br><span class="line">s.lower()      <span class="comment"># &quot;hello&quot;</span></span><br><span class="line">s.strip()      <span class="comment"># 去掉首尾空格</span></span><br><span class="line">s.split(<span class="string">&quot; &quot;</span>)   <span class="comment"># 按空格分割成列表</span></span><br><span class="line"><span class="string">&quot;-&quot;</span>.join([<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>])  <span class="comment"># &quot;a-b-c&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><strong>判断</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s.startswith(<span class="string">&quot;he&quot;</span>)   <span class="comment"># True</span></span><br><span class="line">s.endswith(<span class="string">&quot;lo&quot;</span>)     <span class="comment"># True</span></span><br><span class="line"><span class="string">&quot;e&quot;</span> <span class="keyword">in</span> s             <span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="💡-小练习-1"><a href="#💡-小练习-1" class="headerlink" title="💡 小练习"></a>💡 小练习</h3><p>写一个函数 <code>count_vowels(s)</code>，统计字符串里有多少个元音字母（a, e, i, o, u，不区分大小写）。</p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">count_vowels(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"><span class="comment"># 输出 3 （e, o, o）</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写一个函数 `count_vowels(s)`，统计字符串里有多少个元音字母（a, e, i, o, u，不区分大小写）。</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">count_vowels</span>(<span class="params">s</span>):</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> c.lower() <span class="keyword">in</span> <span class="string">&quot;aeiou&quot;</span>:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line">s = <span class="string">&quot;aeiouabc&quot;</span></span><br><span class="line"><span class="built_in">print</span>(count_vowels(s))</span><br></pre></td></tr></table></figure>
+
+<pre><code>6
+</code></pre>
+<p>✅ 小总结：</p>
+<p>用 for 遍历字符串，就像遍历列表一样。</p>
+<p>判断条件时，最好把大小写统一（比如 lower()）。</p>
+<p>在 Python 里没有 ++，用 +&#x3D; 1。</p>
+<h2 id="📍-字符串练习题"><a href="#📍-字符串练习题" class="headerlink" title="📍 字符串练习题"></a>📍 字符串练习题</h2><h3 id="练习-1：反转字符串"><a href="#练习-1：反转字符串" class="headerlink" title="练习 1：反转字符串"></a>练习 1：反转字符串</h3><p>写一个函数 <code>reverse_str(s)</code>，输入 <code>&quot;hello&quot;</code>，返回 <code>&quot;olleh&quot;</code>。<br>👉 提示：可以用切片 <code>[::-1]</code>。</p>
+<h3 id="练习-2：判断回文"><a href="#练习-2：判断回文" class="headerlink" title="练习 2：判断回文"></a>练习 2：判断回文</h3><p>写一个函数 <code>is_palindrome(s)</code>，判断字符串是否是回文（正着读和倒着读一样）。<br>例子：</p>
+<ul>
+<li><code>&quot;level&quot;</code> → True</li>
+<li><code>&quot;python&quot;</code> → False</li>
+</ul>
+<p>👉 提示：可以比较 <code>s == s[::-1]</code>。</p>
+<h3 id="练习-3：统计单词频率"><a href="#练习-3：统计单词频率" class="headerlink" title="练习 3：统计单词频率"></a>练习 3：统计单词频率</h3><p>写一个函数 <code>word_count(s)</code>，输入一个句子，输出每个单词出现的次数。<br>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">word_count(<span class="string">&quot;hello world hello&quot;</span>)</span><br><span class="line"><span class="comment"># 输出: &#123;&quot;hello&quot;: 2, &quot;world&quot;: 1&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>👉 提示：可以用 <code>split()</code> 把字符串切成单词，再用字典计数。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.反转字符串</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reverse_str</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> s[::-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="string">&quot;good&quot;</span></span><br><span class="line"><span class="built_in">print</span>(reverse_str(s))</span><br></pre></td></tr></table></figure>
+
+<pre><code>doog
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 2.判断回文</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_palindrome</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> s[::-<span class="number">1</span>] == s</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(is_palindrome(<span class="string">&quot;level&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(is_palindrome(<span class="string">&quot;python&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>True
+False
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 3.统计单词频率</span></span><br><span class="line"><span class="comment"># 方法 1：普通字典 + if 判断</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">word_count</span>(<span class="params">s</span>):</span><br><span class="line">    counts = &#123;&#125;</span><br><span class="line">    words = s.split()</span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> words:</span><br><span class="line">        <span class="keyword">if</span> w <span class="keyword">in</span> counts:</span><br><span class="line">            counts[w] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counts[w] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> counts</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(word_count(<span class="string">&quot;hello world hello&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;hello&#39;: 2, &#39;world&#39;: 1&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方法 2：collections.Counter</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">word_count</span>(<span class="params">s</span>):</span><br><span class="line">    words = s.split()</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dict</span>(Counter(words))</span><br><span class="line"><span class="built_in">print</span>(word_count(<span class="string">&quot;hello world hello&quot;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;hello&#39;: 2, &#39;world&#39;: 1&#125;
+</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>列表推导式 → “一行筛选变换”</li>
+<li>切片 → s[::-1]（反转）、s[a:b]（截取）</li>
+<li>字典计数 → if key in dict else …，或者直接用 Counter</li>
+</ul>
+<h2 id="📍-第-3-课：类与对象"><a href="#📍-第-3-课：类与对象" class="headerlink" title="📍 第 3 课：类与对象"></a>📍 第 3 课：类与对象</h2><h3 id="📝-基础概念"><a href="#📝-基础概念" class="headerlink" title="📝 基础概念"></a>📝 基础概念</h3><ol>
+<li>**类 (class)**：一张“设计图”，定义了对象的属性和方法。</li>
+<li>**对象 (object)**：类的实例，可以用类里定义的功能。</li>
+</ol>
+<hr>
+<h3 id="🔹-示例-1：最简单的类"><a href="#🔹-示例-1：最简单的类" class="headerlink" title="🔹 示例 1：最简单的类"></a>🔹 示例 1：最简单的类</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, age</span>):   <span class="comment"># 构造方法，初始化对象</span></span><br><span class="line">        self.name = name             <span class="comment"># 给对象加属性</span></span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">say_hello</span>(<span class="params">self</span>):             <span class="comment"># 定义一个方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Hi, I am <span class="subst">&#123;self.name&#125;</span>, <span class="subst">&#123;self.age&#125;</span> years old.&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">p1 = Person(<span class="string">&quot;Alice&quot;</span>, <span class="number">20</span>)</span><br><span class="line">p1.say_hello()</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hi, I am Alice, 20 years old.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🔹-示例-2：类的继承"><a href="#🔹-示例-2：类的继承" class="headerlink" title="🔹 示例 2：类的继承"></a>🔹 示例 2：类的继承</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>(<span class="title class_ inherited__">Person</span>):              <span class="comment"># Student 继承 Person</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, age, student_id</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(name, age) <span class="comment"># 调用父类的构造方法</span></span><br><span class="line">        self.student_id = student_id</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">study</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.name&#125;</span> is studying...&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = Student(<span class="string">&quot;Bob&quot;</span>, <span class="number">21</span>, <span class="string">&quot;2024001&quot;</span>)</span><br><span class="line">s1.say_hello()</span><br><span class="line">s1.study()</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="💡-小练习-2"><a href="#💡-小练习-2" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个 <strong>BankAccount 类</strong>：</p>
+<ul>
+<li><p>初始化时有一个 <code>balance</code>（余额，默认 0）</p>
+</li>
+<li><p>方法：</p>
+<ul>
+<li><code>deposit(amount)</code>：存钱</li>
+<li><code>withdraw(amount)</code>：取钱（余额不足时要提示）</li>
+<li><code>get_balance()</code>：返回余额</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BankAccount</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, balance</span>):</span><br><span class="line">        self.balance = balance</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deposit</span>(<span class="params">self, amount</span>):</span><br><span class="line">        self.balance += amount</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">withdraw</span>(<span class="params">self, amount</span>):</span><br><span class="line">        <span class="keyword">if</span> self.balance &gt;= amount:</span><br><span class="line">            self.balance -= amount</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;取钱成功&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;余额不足&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_balance</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.balance</span><br><span class="line"></span><br><span class="line">acct = BankAccount(<span class="number">100</span>)</span><br><span class="line">acct.deposit(<span class="number">50</span>)</span><br><span class="line"><span class="built_in">print</span>(acct.get_balance())  <span class="comment"># 150</span></span><br><span class="line"></span><br><span class="line">acct.withdraw(<span class="number">70</span>)          <span class="comment"># 取钱成功</span></span><br><span class="line"><span class="built_in">print</span>(acct.get_balance())  <span class="comment"># 80</span></span><br><span class="line"></span><br><span class="line">acct.withdraw(<span class="number">100</span>)         <span class="comment"># 余额不足</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>150
+取钱成功
+80
+余额不足
+</code></pre>
+<h2 id="📍-第-4-课：类方法-amp-静态方法"><a href="#📍-第-4-课：类方法-amp-静态方法" class="headerlink" title="📍 第 4 课：类方法 &amp; 静态方法"></a>📍 第 4 课：类方法 &amp; 静态方法</h2><h3 id="1-普通方法（实例方法）"><a href="#1-普通方法（实例方法）" class="headerlink" title="1. 普通方法（实例方法）"></a>1. 普通方法（实例方法）</h3><ul>
+<li>第一个参数是 <code>self</code>，表示对象本身。</li>
+<li>只能通过 <strong>对象</strong> 来调用。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name</span>):</span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">bark</span>(<span class="params">self</span>):  <span class="comment"># 实例方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.name&#125;</span> is barking!&quot;</span>)</span><br><span class="line"></span><br><span class="line">d = Dog(<span class="string">&quot;Lucky&quot;</span>)</span><br><span class="line">d.bark()  <span class="comment"># Lucky is barking!</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-类方法（-classmethod）"><a href="#2-类方法（-classmethod）" class="headerlink" title="2. 类方法（@classmethod）"></a>2. 类方法（@classmethod）</h3><ul>
+<li>第一个参数是 <code>cls</code>，表示类本身。</li>
+<li>常用于 <strong>工厂方法</strong>：创建对象的另一种方式。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name</span>):</span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">from_dict</span>(<span class="params">cls, data</span>):   <span class="comment"># 工厂方法</span></span><br><span class="line">        <span class="keyword">return</span> cls(data[<span class="string">&quot;name&quot;</span>])</span><br><span class="line"></span><br><span class="line">dog_data = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Coco&quot;</span>&#125;</span><br><span class="line">d2 = Dog.from_dict(dog_data)</span><br><span class="line"><span class="built_in">print</span>(d2.name)  <span class="comment"># Coco</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-静态方法（-staticmethod）"><a href="#3-静态方法（-staticmethod）" class="headerlink" title="3. 静态方法（@staticmethod）"></a>3. 静态方法（@staticmethod）</h3><ul>
+<li>没有 <code>self</code> 和 <code>cls</code> 参数。</li>
+<li>更像是“放在类里面的普通函数”，和类逻辑相关，但不依赖类或对象。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MathUtils</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">        <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(MathUtils.add(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment"># 8</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-3"><a href="#💡-小练习-3" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个 <code>Student</code> 类：</p>
+<ul>
+<li><p>属性：<code>name</code></p>
+</li>
+<li><p>方法：</p>
+<ul>
+<li>普通方法：<code>say_hello()</code> → 打印 “I am XXX”</li>
+<li>类方法：<code>from_string(s)</code> → 输入 <code>&quot;Alice&quot;</code>, 返回 <code>Student(&quot;Alice&quot;)</code></li>
+<li>静态方法：<code>is_valid_name(name)</code> → 判断名字是否全是字母</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name</span>):</span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">say_hello</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;I am <span class="subst">&#123;self.name&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">from_string</span>(<span class="params">cls, s</span>):</span><br><span class="line">        <span class="keyword">return</span> cls(s)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_valid_name</span>(<span class="params">name</span>):</span><br><span class="line">        <span class="keyword">return</span> name.isalpha()</span><br><span class="line"></span><br><span class="line">s1 = Student(<span class="string">&quot;Alice&quot;</span>)</span><br><span class="line">s1.say_hello()                  <span class="comment"># I am Alice</span></span><br><span class="line"></span><br><span class="line">s2 = Student.from_string(<span class="string">&quot;Bob&quot;</span>)</span><br><span class="line">s2.say_hello()                  <span class="comment"># I am Bob</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(Student.is_valid_name(<span class="string">&quot;Charlie&quot;</span>))   <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(Student.is_valid_name(<span class="string">&quot;Tom123&quot;</span>))    <span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>I am Alice
+I am Bob
+True
+False
+</code></pre>
+<h2 id="📍-第-5-课：常见魔术方法"><a href="#📍-第-5-课：常见魔术方法" class="headerlink" title="📍 第 5 课：常见魔术方法"></a>📍 第 5 课：常见魔术方法</h2><h3 id="1-str-——-对象的可读字符串"><a href="#1-str-——-对象的可读字符串" class="headerlink" title="1. __str__ —— 对象的可读字符串"></a>1. <code>__str__</code> —— 对象的可读字符串</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, score</span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;Student(name=<span class="subst">&#123;self.name&#125;</span>, score=<span class="subst">&#123;self.score&#125;</span>)&quot;</span></span><br><span class="line"></span><br><span class="line">s = Student(<span class="string">&quot;Alice&quot;</span>, <span class="number">95</span>)</span><br><span class="line"><span class="built_in">print</span>(s)   <span class="comment"># Student(name=Alice, score=95)</span></span><br></pre></td></tr></table></figure>
+
+<p>👉 没有 <code>__str__</code> 的话，<code>print(s)</code> 会显示 <code>&lt;__main__.Student object at 0x...&gt;</code>，不直观。</p>
+<hr>
+<h3 id="2-len-——-定义-len-obj"><a href="#2-len-——-定义-len-obj" class="headerlink" title="2. __len__ —— 定义 len(obj)"></a>2. <code>__len__</code> —— 定义 <code>len(obj)</code></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Classroom</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, students</span>):</span><br><span class="line">        self.students = students</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.students)</span><br><span class="line"></span><br><span class="line">c = Classroom([<span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Charlie&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c))  <span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-iter-和-next-——-让对象可迭代"><a href="#3-iter-和-next-——-让对象可迭代" class="headerlink" title="3. __iter__ 和 __next__ —— 让对象可迭代"></a>3. <code>__iter__</code> 和 <code>__next__</code> —— 让对象可迭代</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Countdown</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, start</span>):</span><br><span class="line">        self.start = start</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):       <span class="comment"># 返回一个迭代器</span></span><br><span class="line">        self.current = self.start</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):       <span class="comment"># 每次迭代返回一个值</span></span><br><span class="line">        <span class="keyword">if</span> self.current &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br><span class="line">        self.current -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.current + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> Countdown(<span class="number">3</span>):</span><br><span class="line">    <span class="built_in">print</span>(num)   <span class="comment"># 3, 2, 1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-4"><a href="#💡-小练习-4" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个 <code>Book</code> 类：</p>
+<ul>
+<li><p>属性：<code>title</code>（书名）、<code>pages</code>（页数）</p>
+</li>
+<li><p>魔术方法：</p>
+<ul>
+<li><code>__str__</code> → 打印时显示 <code>&quot;Book: &lt;title&gt;, &lt;pages&gt; pages&quot;</code></li>
+<li><code>__len__</code> → 返回页数</li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">b = Book(<span class="string">&quot;Python Guide&quot;</span>, <span class="number">350</span>)</span><br><span class="line"><span class="built_in">print</span>(b)         <span class="comment"># Book: Python Guide, 350 pages</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(b))    <span class="comment"># 350</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, title, pages</span>):</span><br><span class="line">        self.title = title</span><br><span class="line">        self.pages = pages</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;Book: <span class="subst">&#123;self.title&#125;</span>, <span class="subst">&#123;self.pages&#125;</span> pages&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.pages</span><br><span class="line"></span><br><span class="line">b = Book(<span class="string">&quot;Python Guide&quot;</span>, <span class="number">350</span>)</span><br><span class="line"><span class="built_in">print</span>(b)         <span class="comment"># Book: Python Guide, 350 pages</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(b))    <span class="comment"># 350</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Book: Python Guide, 350 pages
+350
+</code></pre>
+<h2 id="📍-第-6-课：生成器-Generator"><a href="#📍-第-6-课：生成器-Generator" class="headerlink" title="📍 第 6 课：生成器 (Generator)"></a>📍 第 6 课：生成器 (Generator)</h2><h3 id="1-什么是生成器？"><a href="#1-什么是生成器？" class="headerlink" title="1. 什么是生成器？"></a>1. 什么是生成器？</h3><ul>
+<li>普通函数用 <code>return</code>，一次性返回结果，函数就结束了。</li>
+<li><strong>生成器函数</strong>用 <code>yield</code>，每次返回一个值，但函数不会结束，可以继续执行。</li>
+<li>生成器特别适合处理 <strong>大量数据</strong> 或 <strong>流式数据</strong>。</li>
+</ul>
+<hr>
+<h3 id="2-基本例子"><a href="#2-基本例子" class="headerlink" title="2. 基本例子"></a>2. 基本例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">simple_gen</span>():</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line">g = simple_gen()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(g))  <span class="comment"># 1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(g))  <span class="comment"># 2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(g))  <span class="comment"># 3</span></span><br><span class="line"><span class="comment"># print(next(g)) 会报 StopIteration</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-生成器的好处"><a href="#3-生成器的好处" class="headerlink" title="3. 生成器的好处"></a>3. 生成器的好处</h3><p>节省内存。例如生成 1 到 1000000 的平方：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">squares</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">yield</span> i * i</span><br><span class="line"></span><br><span class="line">gen = squares(<span class="number">1000000</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(gen))  <span class="comment"># 0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(gen))  <span class="comment"># 1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(gen))  <span class="comment"># 4</span></span><br></pre></td></tr></table></figure>
+
+<p>👉 如果用列表，会占用很大内存；生成器是“按需生成”的。</p>
+<hr>
+<h2 id="💡-小练习-5"><a href="#💡-小练习-5" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个生成器函数 <code>countdown(n)</code>，依次返回：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">n, n-1, n-2, ..., 1</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> countdown(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写一个生成器函数 `countdown(n)`，依次返回：n, n-1, n-2, ..., 1</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">countdown</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> countdown(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<pre><code>5
+4
+3
+2
+1
+</code></pre>
+<p>✅ 小结：</p>
+<ul>
+<li><p>用 yield 可以把函数变成生成器。</p>
+</li>
+<li><p>每次迭代时，函数会停在 yield 处，下次从那里继续。</p>
+</li>
+<li><p>生成器适合处理“大量、逐步产生”的数据。</p>
+</li>
+</ul>
+<h2 id="📍-第-7-课：装饰器-Decorator"><a href="#📍-第-7-课：装饰器-Decorator" class="headerlink" title="📍 第 7 课：装饰器 (Decorator)"></a>📍 第 7 课：装饰器 (Decorator)</h2><h3 id="1-装饰器是什么？"><a href="#1-装饰器是什么？" class="headerlink" title="1. 装饰器是什么？"></a>1. 装饰器是什么？</h3><ul>
+<li><strong>本质</strong>：装饰器就是一个函数，用来<strong>增强其他函数的功能</strong>，但不需要修改原函数的代码。</li>
+<li>用 <code>@装饰器名</code> 放在函数定义上方，就能自动应用。</li>
+</ul>
+<hr>
+<h3 id="2-基本例子-1"><a href="#2-基本例子-1" class="headerlink" title="2. 基本例子"></a>2. 基本例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;函数执行前做点事情&quot;</span>)</span><br><span class="line">        func()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;函数执行后做点事情&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@my_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">say_hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello!&quot;</span>)</span><br><span class="line"></span><br><span class="line">say_hello()</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">函数执行前做点事情</span><br><span class="line">Hello!</span><br><span class="line">函数执行后做点事情</span><br></pre></td></tr></table></figure>
+
+<p>👉 <code>@my_decorator</code> 就等价于：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">say_hello = my_decorator(say_hello)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-带参数的函数"><a href="#3-带参数的函数" class="headerlink" title="3. 带参数的函数"></a>3. 带参数的函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">log_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;调用 <span class="subst">&#123;func.__name__&#125;</span>，参数: <span class="subst">&#123;args&#125;</span>, <span class="subst">&#123;kwargs&#125;</span>&quot;</span>)</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;结果: <span class="subst">&#123;result&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@log_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line">add(<span class="number">3</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">调用 add，参数: (3, 5), &#123;&#125;</span><br><span class="line">结果: 8</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-6"><a href="#💡-小练习-6" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个装饰器 <code>timeit</code>，计算函数运行时间。<br>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@timeit</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">slow_func</span>():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000000</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">slow_func()</span><br></pre></td></tr></table></figure>
+
+<p>👉 输出类似：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">函数 slow_func 执行耗时: 0.05 秒</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写一个装饰器 timeit，计算函数运行时间。</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;函数 <span class="subst">&#123;func.__name__&#125;</span> 执行耗时：<span class="subst">&#123;end_time - start_time:<span class="number">.5</span>f&#125;</span> 秒&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">slow_func</span>():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000000</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">slow_func()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>函数 slow_func 执行耗时：0.03480 秒
+</code></pre>
+<h2 id="📍-第-8-课：迭代器-Iterator"><a href="#📍-第-8-课：迭代器-Iterator" class="headerlink" title="📍 第 8 课：迭代器 (Iterator)"></a>📍 第 8 课：迭代器 (Iterator)</h2><h3 id="1-什么是迭代器？"><a href="#1-什么是迭代器？" class="headerlink" title="1. 什么是迭代器？"></a>1. 什么是迭代器？</h3><ul>
+<li><p>**可迭代对象 (Iterable)**：能用 <code>for ... in ...</code> 遍历，比如 <code>list</code>、<code>str</code>、<code>dict</code>。</p>
+</li>
+<li><p>**迭代器 (Iterator)**：一种能逐个取出元素的对象，支持两个方法：</p>
+<ul>
+<li><code>__iter__()</code></li>
+<li><code>__next__()</code></li>
+</ul>
+</li>
+</ul>
+<p>👉 用内置函数 <code>iter()</code> 可以把可迭代对象变成迭代器，用 <code>next()</code> 取元素。</p>
+<hr>
+<h3 id="2-基本例子-2"><a href="#2-基本例子-2" class="headerlink" title="2. 基本例子"></a>2. 基本例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">it = <span class="built_in">iter</span>(nums)       <span class="comment"># 得到一个迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(it))  <span class="comment"># 1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(it))  <span class="comment"># 2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(it))  <span class="comment"># 3</span></span><br><span class="line"><span class="comment"># print(next(it))  # StopIteration（没有元素了）</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-自定义迭代器"><a href="#3-自定义迭代器" class="headerlink" title="3. 自定义迭代器"></a>3. 自定义迭代器</h3><p>我们可以写一个类，让它支持迭代。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Countdown</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, start</span>):</span><br><span class="line">        self.start = start</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):     <span class="comment"># 返回迭代器对象</span></span><br><span class="line">        self.current = self.start</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):     <span class="comment"># 定义取下一个元素的逻辑</span></span><br><span class="line">        <span class="keyword">if</span> self.current &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br><span class="line">        self.current -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.current + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> Countdown(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-7"><a href="#💡-小练习-7" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个迭代器类 <code>EvenNumbers(n)</code>：</p>
+<ul>
+<li>迭代从 <code>0</code> 到 <code>n</code> 之间的所有偶数。</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> EvenNumbers(<span class="number">10</span>):</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0</span><br><span class="line">2</span><br><span class="line">4</span><br><span class="line">6</span><br><span class="line">8</span><br><span class="line">10</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">EvenNumbers</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, end</span>):</span><br><span class="line">        self.end = end</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        self.current = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.current &gt; self.end:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br><span class="line">        result = self.current</span><br><span class="line">        self.current += <span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> EvenNumbers(<span class="number">10</span>):</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0
+2
+4
+6
+8
+10
+</code></pre>
+<p>✅ 小总结：</p>
+<ul>
+<li><p><strong>iter</strong> → 返回迭代器本身</p>
+</li>
+<li><p><strong>next</strong> → 定义“下一个元素怎么产生”，没了就 StopIteration</p>
+</li>
+<li><p>迭代器 &#x3D; 一次性遍历的数据流，和生成器很像（生成器其实就是迭代器的语法糖）。</p>
+</li>
+</ul>
+<h2 id="📍-第-9-课：异常处理"><a href="#📍-第-9-课：异常处理" class="headerlink" title="📍 第 9 课：异常处理"></a>📍 第 9 课：异常处理</h2><h3 id="1-什么是异常？"><a href="#1-什么是异常？" class="headerlink" title="1. 什么是异常？"></a>1. 什么是异常？</h3><p>程序运行时遇到错误时，会抛出异常（Exception），默认会导致程序崩溃。<br>👉 用 <code>try / except</code> 可以优雅地捕获错误，避免程序中断。</p>
+<hr>
+<h3 id="2-基本语法"><a href="#2-基本语法" class="headerlink" title="2. 基本语法"></a>2. 基本语法</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    x = <span class="number">1</span> / <span class="number">0</span>         <span class="comment"># 这里会报错 ZeroDivisionError</span></span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;不能除以 0&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">不能除以 0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-捕获多种异常"><a href="#3-捕获多种异常" class="headerlink" title="3. 捕获多种异常"></a>3. 捕获多种异常</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(<span class="string">&quot;abc&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> ValueError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;输入不是整数&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;除零错误&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-捕获所有异常"><a href="#4-捕获所有异常" class="headerlink" title="4. 捕获所有异常"></a>4. 捕获所有异常</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&quot;not_exist.txt&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:   <span class="comment"># 捕获所有异常</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;出错了:&quot;</span>, e)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-finally-子句（无论如何都会执行）"><a href="#5-finally-子句（无论如何都会执行）" class="headerlink" title="5. finally 子句（无论如何都会执行）"></a>5. finally 子句（无论如何都会执行）</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&quot;data.txt&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(f.read())</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;文件不存在&quot;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;程序结束，关闭资源&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-8"><a href="#💡-小练习-8" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个函数 <code>safe_divide(a, b)</code>：</p>
+<ul>
+<li>返回 <code>a / b</code> 的结果</li>
+<li>如果 <code>b == 0</code>，捕获异常并返回 <code>&quot;除数不能为 0&quot;</code></li>
+</ul>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(safe_divide(<span class="number">10</span>, <span class="number">2</span>))   <span class="comment"># 5.0</span></span><br><span class="line"><span class="built_in">print</span>(safe_divide(<span class="number">8</span>, <span class="number">0</span>))    <span class="comment"># &quot;除数不能为 0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">safe_divide</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> a / b</span><br><span class="line">    <span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;除数不能为 0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(safe_divide(<span class="number">10</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(safe_divide(<span class="number">8</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>5.0
+除数不能为 0
+</code></pre>
+<h2 id="📍-第-10-课：上下文管理器-with"><a href="#📍-第-10-课：上下文管理器-with" class="headerlink" title="📍 第 10 课：上下文管理器 (with)"></a>📍 第 10 课：上下文管理器 (with)</h2><h3 id="1-问题引入"><a href="#1-问题引入" class="headerlink" title="1. 问题引入"></a>1. 问题引入</h3><p>打开文件时，如果忘记 <code>close()</code>，可能会导致资源泄露：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">f.write(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">f.close()   <span class="comment"># 必须手动关闭</span></span><br></pre></td></tr></table></figure>
+
+<p>如果中间报错，<code>f.close()</code> 可能不会执行。</p>
+<hr>
+<h3 id="2-with-自动管理资源"><a href="#2-with-自动管理资源" class="headerlink" title="2. with 自动管理资源"></a>2. with 自动管理资源</h3><p><code>with</code> 语句会在代码块结束时，<strong>自动调用资源的关闭方法</strong>，不管中间有没有异常。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="comment"># 这里自动关闭 f</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-自定义上下文管理器"><a href="#3-自定义上下文管理器" class="headerlink" title="3. 自定义上下文管理器"></a>3. 自定义上下文管理器</h3><p>只要一个类实现了：</p>
+<ul>
+<li><code>__enter__()</code>：进入时执行</li>
+<li><code>__exit__(self, exc_type, exc_val, exc_tb)</code>：退出时执行（不管有没有异常）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyContext</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;进入上下文&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;资源&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_val, exc_tb</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;退出上下文&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>   <span class="comment"># 如果返回 True，异常会被忽略</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> MyContext() <span class="keyword">as</span> res:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;使用中:&quot;</span>, res)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">进入上下文</span><br><span class="line">使用中: 资源</span><br><span class="line">退出上下文</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-9"><a href="#💡-小练习-9" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个上下文管理器 <code>FileWriter</code>：</p>
+<ul>
+<li>初始化时传入文件名</li>
+<li><code>__enter__</code>：打开文件（写模式），返回文件对象</li>
+<li><code>__exit__</code>：关闭文件</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> FileWriter(<span class="string">&quot;output.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">&quot;Hello Python&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># FileWriter：</span></span><br><span class="line"><span class="comment"># 1.初始化时传入文件名</span></span><br><span class="line"><span class="comment"># 2.__enter__：打开文件（写模式），返回文件对象</span></span><br><span class="line"><span class="comment"># 3.__exit__：关闭文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FileWriter</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, file_name</span>):</span><br><span class="line">        self.file_name = file_name</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        self.f = <span class="built_in">open</span>(self.file_name, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> self.f</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_val, exc_tb</span>):</span><br><span class="line">        self.f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> FileWriter(<span class="string">&quot;output.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">&quot;Hello Python&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>✅ 小结：</p>
+<ul>
+<li><p>with &#x3D; 自动帮你调用 <strong>enter</strong> 和 <strong>exit</strong></p>
+</li>
+<li><p>常用于：文件操作、数据库连接、网络请求、锁 (threading.Lock)</p>
+</li>
+<li><p><strong>exit</strong> 的参数 exc_type, exc_val, exc_tb 可以用来处理异常</p>
+</li>
+</ul>
+<h2 id="📍-第-11-课：单元测试-unittest"><a href="#📍-第-11-课：单元测试-unittest" class="headerlink" title="📍 第 11 课：单元测试 (unittest)"></a>📍 第 11 课：单元测试 (unittest)</h2><h3 id="1-为什么要写测试？"><a href="#1-为什么要写测试？" class="headerlink" title="1. 为什么要写测试？"></a>1. 为什么要写测试？</h3><ul>
+<li>确保函数&#x2F;类逻辑正确</li>
+<li>修改代码时防止“牵一发而动全身”</li>
+<li>大厂工程开发必备技能</li>
+</ul>
+<hr>
+<h3 id="2-unittest-最小结构"><a href="#2-unittest-最小结构" class="headerlink" title="2. unittest 最小结构"></a>2. unittest 最小结构</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestAdd</span>(unittest.TestCase):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_add</span>(<span class="params">self</span>):</span><br><span class="line">        self.assertEqual(add(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure>
+
+<p>运行这个脚本，终端会输出绿色 “OK”，说明通过。</p>
+<hr>
+<h3 id="3-常用断言"><a href="#3-常用断言" class="headerlink" title="3. 常用断言"></a>3. 常用断言</h3><ul>
+<li><code>assertEqual(a, b)</code>：判断相等</li>
+<li><code>assertTrue(x)</code> &#x2F; <code>assertFalse(x)</code>：判断真假</li>
+<li><code>assertIn(x, container)</code> &#x2F; <code>assertNotIn(x, container)</code>：判断是否包含</li>
+<li><code>assertRaises(Error, func, *args)</code>：判断是否抛出异常</li>
+</ul>
+<hr>
+<h3 id="4-应用到我们之前的代码"><a href="#4-应用到我们之前的代码" class="headerlink" title="4. 应用到我们之前的代码"></a>4. 应用到我们之前的代码</h3><p>比如 <strong>BankAccount 类</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BankAccount</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, balance=<span class="number">0</span></span>):</span><br><span class="line">        self.balance = balance</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deposit</span>(<span class="params">self, amount</span>):</span><br><span class="line">        self.balance += amount</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">withdraw</span>(<span class="params">self, amount</span>):</span><br><span class="line">        <span class="keyword">if</span> self.balance &gt;= amount:</span><br><span class="line">            self.balance -= amount</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_balance</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.balance</span><br></pre></td></tr></table></figure>
+
+<p>测试样例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestBankAccount</span>(unittest.TestCase):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_deposit_and_balance</span>(<span class="params">self</span>):</span><br><span class="line">        acct = BankAccount(<span class="number">100</span>)</span><br><span class="line">        acct.deposit(<span class="number">50</span>)</span><br><span class="line">        self.assertEqual(acct.get_balance(), <span class="number">150</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_withdraw_success</span>(<span class="params">self</span>):</span><br><span class="line">        acct = BankAccount(<span class="number">80</span>)</span><br><span class="line">        ok = acct.withdraw(<span class="number">30</span>)</span><br><span class="line">        self.assertTrue(ok)</span><br><span class="line">        self.assertEqual(acct.get_balance(), <span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="💡-小练习-10"><a href="#💡-小练习-10" class="headerlink" title="💡 小练习"></a>💡 小练习</h3><p>请你在 <code>TestBankAccount</code> 里再写一个测试：</p>
+<ul>
+<li>初始余额是 50</li>
+<li>尝试取 100（应失败）</li>
+<li>检查返回值为 <code>False</code>，余额依然是 50</li>
+</ul>
+<p>👉 你能写出 <code>test_withdraw_fail_balance_unchanged</code> 吗？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestBankAccount</span>(unittest.TestCase):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_deposit_and_balance</span>(<span class="params">self</span>):</span><br><span class="line">        acct = BankAccount(<span class="number">100</span>)</span><br><span class="line">        acct.deposit(<span class="number">50</span>)</span><br><span class="line">        self.assertEqual(acct.get_balance(), <span class="number">150</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_withdraw_success</span>(<span class="params">self</span>):</span><br><span class="line">        acct = BankAccount(<span class="number">80</span>)</span><br><span class="line">        ok = acct.withdraw(<span class="number">30</span>)</span><br><span class="line">        self.assertTrue(ok)</span><br><span class="line">        self.assertEqual(acct.get_balance(), <span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_withdraw_fail_balance_unchanged</span>(<span class="params">self</span>):</span><br><span class="line">        acct = BankAccount(<span class="number">80</span>)</span><br><span class="line">        fail = acct.withdraw(<span class="number">90</span>)</span><br><span class="line">        self.assertFalse(fail)</span><br><span class="line">        self.assertEqual(acct.get_balance(), <span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📍-第-12-课：日志-logging"><a href="#📍-第-12-课：日志-logging" class="headerlink" title="📍 第 12 课：日志 (logging)"></a>📍 第 12 课：日志 (logging)</h2><h3 id="1-为什么用日志？"><a href="#1-为什么用日志？" class="headerlink" title="1. 为什么用日志？"></a>1. 为什么用日志？</h3><ul>
+<li><code>print()</code> 只能简单输出，不能分级别，也不好存文件。</li>
+<li><code>logging</code> 模块可以记录 <strong>调试、警告、错误</strong> 等信息，并保存到文件，方便排查问题。</li>
+</ul>
+<hr>
+<h3 id="2-logging-的基本用法"><a href="#2-logging-的基本用法" class="headerlink" title="2. logging 的基本用法"></a>2. logging 的基本用法</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.INFO)</span><br><span class="line"></span><br><span class="line">logging.debug(<span class="string">&quot;这是调试信息&quot;</span>)   <span class="comment"># 级别最低，一般开发调试时用</span></span><br><span class="line">logging.info(<span class="string">&quot;程序运行正常&quot;</span>)    <span class="comment"># 常规运行信息</span></span><br><span class="line">logging.warning(<span class="string">&quot;这是警告&quot;</span>)    <span class="comment"># 程序可能有问题</span></span><br><span class="line">logging.error(<span class="string">&quot;这是错误&quot;</span>)      <span class="comment"># 出现错误</span></span><br><span class="line">logging.critical(<span class="string">&quot;严重错误！&quot;</span>)  <span class="comment"># 系统可能要崩溃</span></span><br></pre></td></tr></table></figure>
+
+<p>👉 默认只显示 <code>WARNING</code> 及以上的日志，所以 <code>debug/info</code> 不会输出。</p>
+<hr>
+<h3 id="3-设置日志格式"><a href="#3-设置日志格式" class="headerlink" title="3. 设置日志格式"></a>3. 设置日志格式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.INFO,</span><br><span class="line">    <span class="built_in">format</span>=<span class="string">&quot;%(asctime)s - %(levelname)s - %(message)s&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">logging.info(<span class="string">&quot;程序启动&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2025-08-20 10:23:45,123 - INFO - 程序启动</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-日志写入文件"><a href="#4-日志写入文件" class="headerlink" title="4. 日志写入文件"></a>4. 日志写入文件</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">logging.basicConfig(</span><br><span class="line">    filename=<span class="string">&quot;app.log&quot;</span>,</span><br><span class="line">    level=logging.INFO,</span><br><span class="line">    <span class="built_in">format</span>=<span class="string">&quot;%(asctime)s - %(levelname)s - %(message)s&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">logging.error(<span class="string">&quot;这是写入文件的错误日志&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>👉 会在当前目录生成 <code>app.log</code> 文件。</p>
+<hr>
+<h2 id="💡-小练习-11"><a href="#💡-小练习-11" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>请你用 <code>logging</code> 改造之前的 <code>safe_divide(a, b)</code>：</p>
+<ul>
+<li>除法成功时，记录 <code>INFO</code> 日志，打印结果。</li>
+<li>除以 0 时，记录 <code>ERROR</code> 日志，提示错误。</li>
+</ul>
+<hr>
+<p>👉 你要不要试着写一版改造后的 <code>safe_divide</code>？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.INFO,</span><br><span class="line">    <span class="built_in">format</span>=<span class="string">&quot;%(asctime)s - %(levelname)s - %(message)s&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">safe_divide</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        c = a / b</span><br><span class="line">        logging.info(<span class="string">f&quot;除法成功，结果为:<span class="subst">&#123;c&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> c</span><br><span class="line">    <span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">        logging.error(<span class="string">f&quot;除法失败，不能除以 0&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;除数不能为 0&quot;</span></span><br><span class="line"></span><br><span class="line">safe_divide(<span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">safe_divide(<span class="number">8</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>INFO:root:除法成功，结果为:5.0
+ERROR:root:除法失败，不能除以 0
+
+
+
+
+
+&#39;除数不能为 0&#39;
+</code></pre>
+<p>好👌 我们来进入 <strong>Numpy</strong> —— Python 里做数值计算的必备库。</p>
+<hr>
+<h2 id="📍-第-13-课：Numpy-基础"><a href="#📍-第-13-课：Numpy-基础" class="headerlink" title="📍 第 13 课：Numpy 基础"></a>📍 第 13 课：Numpy 基础</h2><h3 id="1-什么是-Numpy？"><a href="#1-什么是-Numpy？" class="headerlink" title="1. 什么是 Numpy？"></a>1. 什么是 Numpy？</h3><ul>
+<li>一个高性能的 <strong>数值计算库</strong>，支持多维数组（ndarray）。</li>
+<li>比 Python 自带的 <code>list</code> 更快、更省内存。</li>
+<li>是 <strong>pandas、机器学习、深度学习</strong> 的底层依赖。</li>
+</ul>
+<hr>
+<h3 id="2-创建数组"><a href="#2-创建数组" class="headerlink" title="2. 创建数组"></a>2. 创建数组</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])       <span class="comment"># 从列表创建</span></span><br><span class="line">arr2 = np.zeros((<span class="number">2</span>, <span class="number">3</span>))          <span class="comment"># 2x3 全 0 矩阵</span></span><br><span class="line">arr3 = np.ones((<span class="number">3</span>, <span class="number">3</span>))           <span class="comment"># 3x3 全 1 矩阵</span></span><br><span class="line">arr4 = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">2</span>)       <span class="comment"># [0, 2, 4, 6, 8]</span></span><br><span class="line">arr5 = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>)      <span class="comment"># 等间距 [0,0.25,0.5,0.75,1]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-基本属性"><a href="#3-基本属性" class="headerlink" title="3. 基本属性"></a>3. 基本属性</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="built_in">print</span>(arr.shape)   <span class="comment"># (2, 3)   维度</span></span><br><span class="line"><span class="built_in">print</span>(arr.ndim)    <span class="comment"># 2       维度数</span></span><br><span class="line"><span class="built_in">print</span>(arr.size)    <span class="comment"># 6       元素个数</span></span><br><span class="line"><span class="built_in">print</span>(arr.dtype)   <span class="comment"># int64   数据类型</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-运算"><a href="#4-运算" class="headerlink" title="4. 运算"></a>4. 运算</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">b = np.array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a + b)   <span class="comment"># [5 7 9]</span></span><br><span class="line"><span class="built_in">print</span>(a * b)   <span class="comment"># [4 10 18]</span></span><br><span class="line"><span class="built_in">print</span>(a.dot(b)) <span class="comment"># 点积 1*4+2*5+3*6 = 32</span></span><br><span class="line"><span class="built_in">print</span>(np.mean(a)) <span class="comment"># 平均值</span></span><br><span class="line"><span class="built_in">print</span>(np.<span class="built_in">max</span>(b))  <span class="comment"># 最大值</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-索引-amp-切片"><a href="#5-索引-amp-切片" class="headerlink" title="5. 索引 &amp; 切片"></a>5. 索引 &amp; 切片</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">                [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">0</span>, <span class="number">1</span>])   <span class="comment"># 2 （第一行第二列）</span></span><br><span class="line"><span class="built_in">print</span>(arr[:, <span class="number">0</span>])   <span class="comment"># [1 4] （第一列）</span></span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">1</span>, :])   <span class="comment"># [4 5 6] （第二行）</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-12"><a href="#💡-小练习-12" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个函数 <code>vector_stats(arr)</code>，输入一个一维 Numpy 数组，返回：</p>
+<ul>
+<li>平均值</li>
+<li>最大值</li>
+<li>最小值</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([<span class="number">3</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">5</span>])</span><br><span class="line"><span class="built_in">print</span>(vector_stats(a))</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(5.2, 9, 2)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>👉 要不要你来试试写 <code>vector_stats</code>？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">vector_stats</span>(<span class="params">arr</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;mean&quot;</span>: np.mean(arr),</span><br><span class="line">        <span class="string">&quot;max&quot;</span>: np.<span class="built_in">max</span>(arr),</span><br><span class="line">        <span class="string">&quot;min&quot;</span>: np.<span class="built_in">min</span>(arr)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">a = np.array([<span class="number">3</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">5</span>])</span><br><span class="line"><span class="built_in">print</span>(vector_stats(a))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;mean&#39;: 5.2, &#39;max&#39;: 9, &#39;min&#39;: 2&#125;
+</code></pre>
+<p>好，我们来学 <strong>矩阵运算</strong>，这是 Numpy 的核心技能。</p>
+<hr>
+<h2 id="📍-第-14-课：Numpy-矩阵运算"><a href="#📍-第-14-课：Numpy-矩阵运算" class="headerlink" title="📍 第 14 课：Numpy 矩阵运算"></a>📍 第 14 课：Numpy 矩阵运算</h2><h3 id="1-矩阵创建"><a href="#1-矩阵创建" class="headerlink" title="1. 矩阵创建"></a>1. 矩阵创建</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">B = np.array([[<span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">              [<span class="number">7</span>, <span class="number">8</span>]])</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-基本运算"><a href="#2-基本运算" class="headerlink" title="2. 基本运算"></a>2. 基本运算</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(A + B)   <span class="comment"># 矩阵加法 [[6 8], [10 12]]</span></span><br><span class="line"><span class="built_in">print</span>(A - B)   <span class="comment"># 矩阵减法 [[-4 -4], [-4 -4]]</span></span><br><span class="line"><span class="built_in">print</span>(A * B)   <span class="comment"># 对应元素相乘 [[5 12], [21 32]]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-矩阵乘法-dot-x2F"><a href="#3-矩阵乘法-dot-x2F" class="headerlink" title="3. 矩阵乘法 (dot &#x2F; @)"></a>3. 矩阵乘法 (dot &#x2F; @)</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(A.dot(B))</span><br><span class="line"><span class="comment"># [[19 22]</span></span><br><span class="line"><span class="comment">#  [43 50]]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A @ B)   <span class="comment"># 和 A.dot(B) 等价</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-常用矩阵操作"><a href="#4-常用矩阵操作" class="headerlink" title="4. 常用矩阵操作"></a>4. 常用矩阵操作</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(A.T)       <span class="comment"># 转置 [[1 3], [2 4]]</span></span><br><span class="line"><span class="built_in">print</span>(np.linalg.inv(A))   <span class="comment"># 逆矩阵 [[-2.   1. ]</span></span><br><span class="line">                           <span class="comment">#        [ 1.5 -0.5]]</span></span><br><span class="line"><span class="built_in">print</span>(np.linalg.det(A))   <span class="comment"># 行列式 -2.0</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-单位矩阵-amp-矩阵乘法验证"><a href="#5-单位矩阵-amp-矩阵乘法验证" class="headerlink" title="5. 单位矩阵 &amp; 矩阵乘法验证"></a>5. 单位矩阵 &amp; 矩阵乘法验证</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">I = np.eye(<span class="number">2</span>)   <span class="comment"># 2x2 单位矩阵</span></span><br><span class="line"><span class="built_in">print</span>(A @ I)    <span class="comment"># 结果等于 A 本身</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-13"><a href="#💡-小练习-13" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个函数 <code>matrix_ops(A, B)</code>，输入两个二维数组，返回：</p>
+<ul>
+<li>它们的加法结果</li>
+<li>它们的矩阵乘法结果</li>
+<li>A 的转置</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">B = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"><span class="built_in">print</span>(matrix_ops(A, B))</span><br></pre></td></tr></table></figure>
+
+<p>期望输出（可以是元组）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(</span><br><span class="line"> [[ 6  8]</span><br><span class="line">  [10 12]],</span><br><span class="line"></span><br><span class="line"> [[19 22]</span><br><span class="line">  [43 50]],</span><br><span class="line"></span><br><span class="line"> [[1 3]</span><br><span class="line">  [2 4]]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>👉 你要不要先试着写 <code>matrix_ops</code>？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_ops</span>(<span class="params">A, B</span>):</span><br><span class="line">    add = A + B</span><br><span class="line">    muti = A.dot(B)</span><br><span class="line">    <span class="keyword">return</span> add, muti, A.T</span><br><span class="line"></span><br><span class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">B = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(matrix_ops(A, B))</span><br></pre></td></tr></table></figure>
+
+<pre><code>(array([[ 6,  8],
+       [10, 12]]), array([[19, 22],
+       [43, 50]]), array([[1, 3],
+       [2, 4]]))
+</code></pre>
+<p>好👌 我们来学习 <strong>Numpy 随机数与模拟</strong>。</p>
+<hr>
+<h2 id="📍-第-15-课：Numpy-随机数与模拟"><a href="#📍-第-15-课：Numpy-随机数与模拟" class="headerlink" title="📍 第 15 课：Numpy 随机数与模拟"></a>📍 第 15 课：Numpy 随机数与模拟</h2><h3 id="1-生成随机数"><a href="#1-生成随机数" class="headerlink" title="1. 生成随机数"></a>1. 生成随机数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.random.rand(<span class="number">3</span>))       <span class="comment"># [0.1 0.7 0.3]  0~1之间的随机数</span></span><br><span class="line"><span class="built_in">print</span>(np.random.rand(<span class="number">2</span>, <span class="number">3</span>))    <span class="comment"># 2x3 矩阵</span></span><br><span class="line"><span class="built_in">print</span>(np.random.randn(<span class="number">3</span>))      <span class="comment"># 标准正态分布（均值0，方差1）</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-随机整数"><a href="#2-随机整数" class="headerlink" title="2. 随机整数"></a>2. 随机整数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(np.random.randint(<span class="number">0</span>, <span class="number">10</span>, size=<span class="number">5</span>))   <span class="comment"># [2 9 4 7 1]，0~9 的随机整数</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-控制随机性（随机种子）"><a href="#3-控制随机性（随机种子）" class="headerlink" title="3. 控制随机性（随机种子）"></a>3. 控制随机性（随机种子）</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.random.seed(<span class="number">42</span>)</span><br><span class="line"><span class="built_in">print</span>(np.random.rand(<span class="number">3</span>))   <span class="comment"># 每次运行结果相同</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-常用分布"><a href="#4-常用分布" class="headerlink" title="4. 常用分布"></a>4. 常用分布</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(np.random.normal(loc=<span class="number">10</span>, scale=<span class="number">2</span>, size=<span class="number">5</span>))</span><br><span class="line"><span class="comment"># 平均值10，标准差2，生成5个正态分布数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.random.binomial(n=<span class="number">10</span>, p=<span class="number">0.5</span>, size=<span class="number">5</span>))</span><br><span class="line"><span class="comment"># 5次实验，每次进行10次伯努利试验，成功概率0.5</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-随机打乱与抽样"><a href="#5-随机打乱与抽样" class="headerlink" title="5. 随机打乱与抽样"></a>5. 随机打乱与抽样</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = np.arange(<span class="number">10</span>)</span><br><span class="line">np.random.shuffle(arr)       <span class="comment"># 原地打乱</span></span><br><span class="line"><span class="built_in">print</span>(arr)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.random.choice(arr, size=<span class="number">5</span>, replace=<span class="literal">False</span>))</span><br><span class="line"><span class="comment"># 从 arr 中随机抽 5 个不重复元素</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-小练习-14"><a href="#💡-小练习-14" class="headerlink" title="💡 小练习"></a>💡 小练习</h2><p>写一个函数 <code>simulate_dice(n)</code>：</p>
+<ul>
+<li>模拟掷 <code>n</code> 次骰子（点数 1-6）</li>
+<li>返回每个点数出现的次数（用字典表示）</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(simulate_dice(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可能输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;1: 3, 2: 2, 3: 5, 4: 4, 5: 3, 6: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>👉 要不要你来写 <code>simulate_dice</code>？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">simulate_dice</span>(<span class="params">n</span>):</span><br><span class="line">    results = np.random.randint(<span class="number">1</span>, <span class="number">7</span>, size=n)</span><br><span class="line">    counts = &#123;i: <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">7</span>)&#125;</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> results:</span><br><span class="line">        counts[x] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> counts</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(simulate_dice(<span class="number">20</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;1: 0, 2: 3, 3: 6, 4: 5, 5: 5, 6: 1&#125;
+</code></pre>
+<p>好 👍 我们来做个更直观的练习 —— <strong>模拟 10000 次掷骰子并画柱状图</strong>。</p>
+<hr>
+<h2 id="📍-第-16-课：模拟骰子分布-amp-可视化"><a href="#📍-第-16-课：模拟骰子分布-amp-可视化" class="headerlink" title="📍 第 16 课：模拟骰子分布 &amp; 可视化"></a>📍 第 16 课：模拟骰子分布 &amp; 可视化</h2><h3 id="1-用-matplotlib-画图"><a href="#1-用-matplotlib-画图" class="headerlink" title="1. 用 matplotlib 画图"></a>1. 用 <code>matplotlib</code> 画图</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">simulate_dice</span>(<span class="params">n</span>):</span><br><span class="line">    results = np.random.randint(<span class="number">1</span>, <span class="number">7</span>, size=n)</span><br><span class="line">    counts = &#123;i: <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">7</span>)&#125;</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> results:</span><br><span class="line">        counts[x] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> counts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟 10000 次</span></span><br><span class="line">counts = simulate_dice(<span class="number">10000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备数据</span></span><br><span class="line">faces = <span class="built_in">list</span>(counts.keys())      <span class="comment"># [1,2,3,4,5,6]</span></span><br><span class="line">values = <span class="built_in">list</span>(counts.values())   <span class="comment"># 每个点数的次数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 画柱状图</span></span><br><span class="line">plt.bar(faces, values, color=<span class="string">&quot;skyblue&quot;</span>, edgecolor=<span class="string">&quot;black&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;骰子点数&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;出现次数&quot;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;掷骰子 10000 次的分布&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-结果分析"><a href="#2-结果分析" class="headerlink" title="2. 结果分析"></a>2. 结果分析</h3><ul>
+<li>柱状图大致 <strong>接近均匀分布</strong>（每个点数次数接近 10000&#x2F;6 ≈ 1666）</li>
+<li>但每次运行结果略有不同，因为是随机的。</li>
+</ul>
+<hr>
+<p>💡 小练习：<br>你能不能自己试一下，把 <code>simulate_dice(10000)</code> 换成 <code>simulate_dice(600)</code>（相当于每个点数期望出现 100 次），看看柱状图是不是更不均匀？</p>
+<p>要不要你来跑一下这两种情况（10000 次 vs 600 次）并比较？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">simulate_dice</span>(<span class="params">n</span>):</span><br><span class="line">    results = np.random.randint(<span class="number">1</span>, <span class="number">7</span>, size=n)</span><br><span class="line">    counts = &#123;i: <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">7</span>)&#125;</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> results:</span><br><span class="line">        counts[x] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> counts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟 10000 次</span></span><br><span class="line">counts = simulate_dice(<span class="number">1000000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备数据</span></span><br><span class="line">faces = <span class="built_in">list</span>(counts.keys())      <span class="comment"># [1,2,3,4,5,6]</span></span><br><span class="line">values = <span class="built_in">list</span>(counts.values())   <span class="comment"># 每个点数的次数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 画柱状图</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.family&#x27;</span>] = <span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">plt.bar(faces, values, color=<span class="string">&quot;skyblue&quot;</span>, edgecolor=<span class="string">&quot;black&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;骰子点数&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;出现次数&quot;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;掷骰子 10000 次的分布&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250823001258929.png" alt="image-20250823001258268"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://sunnyalion.com">舜桀BB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://sunnyalion.com/posts/089786ba3aa2/">https://sunnyalion.com/posts/089786ba3aa2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://sunnyalion.com" target="_blank">SunnyALion</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/da208aae62fd/"><img class="next-cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python知识库</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/da208aae62fd/" title="Python知识库"><img class="cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-07</div><div class="title">Python知识库</div></div></a></div><div><a href="/posts/5a1b96bdc521/" title="Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）"><img class="cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250625112424246.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-25</div><div class="title">Python 装饰器，别再只会加个 @log 了（彻底搞懂原理 + 应用）</div></div></a></div><div><a href="/posts/c1e43465515b/" title="Python 对象复制的坑：浅拷贝 vs 深拷贝"><img class="cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250624193048266.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-24</div><div class="title">Python 对象复制的坑：浅拷贝 vs 深拷贝</div></div></a></div><div><a href="/posts/795db927122f/" title="协程 &amp; 异步编程(asyncio)"><img class="cover" src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250617172154325.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-17</div><div class="title">协程 &amp; 异步编程(asyncio)</div></div></a></div><div><a href="/posts/40889dd62d68/" title="Python常用操作"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-20</div><div class="title">Python常用操作</div></div></a></div><div><a href="/posts/290bdd6d9133/" title="Python"><img class="cover" src="https://s3.bmp.ovh/imgs/2022/05/16/b87b43cb800bca8b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-05</div><div class="title">Python</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NjQyOC8zMjg5MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s3.bmp.ovh/imgs/2022/05/16/279a172a35ed6d83.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">舜桀BB</div><div class="author-info__description">一个普通的学习者，在追寻自己的自由。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FRank675"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这个SunnyALion-Blog在2022/5/16诞生啦，开发了三天多，也遇到了很多问题，感谢大神们提供的帮助，在这里我会记载我的生活和学习，分享有趣的事情，我们大家一起成长呀。由于还是创建初期，网页的加载性能可能会比较差，还请多多包含呀！舜桀正在努力完善中~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-1-%E8%AF%BE%EF%BC%9APython-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-amp-%E5%88%97%E8%A1%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">📍 第 1 课：Python 基础语法 - 数据类型 &amp; 列表操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%9D-%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">📝 知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0"><span class="toc-number">1.2.</span> <span class="toc-text">💡 小练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-2-%E8%AF%BE%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">📍 第 2 课：字符串操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%9D-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">📝 常用操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-1"><span class="toc-number">2.2.</span> <span class="toc-text">💡 小练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">📍 字符串练习题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-1%EF%BC%9A%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.1.</span> <span class="toc-text">练习 1：反转字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-2%EF%BC%9A%E5%88%A4%E6%96%AD%E5%9B%9E%E6%96%87"><span class="toc-number">3.2.</span> <span class="toc-text">练习 2：判断回文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-3%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%8D%95%E8%AF%8D%E9%A2%91%E7%8E%87"><span class="toc-number">3.3.</span> <span class="toc-text">练习 3：统计单词频率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-3-%E8%AF%BE%EF%BC%9A%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">📍 第 3 课：类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%9D-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">5.1.</span> <span class="toc-text">📝 基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-%E7%A4%BA%E4%BE%8B-1%EF%BC%9A%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%B1%BB"><span class="toc-number">5.2.</span> <span class="toc-text">🔹 示例 1：最简单的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-%E7%A4%BA%E4%BE%8B-2%EF%BC%9A%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-number">5.3.</span> <span class="toc-text">🔹 示例 2：类的继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-2"><span class="toc-number">6.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-4-%E8%AF%BE%EF%BC%9A%E7%B1%BB%E6%96%B9%E6%B3%95-amp-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">📍 第 4 课：类方法 &amp; 静态方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95%EF%BC%88%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-number">7.1.</span> <span class="toc-text">1. 普通方法（实例方法）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%B1%BB%E6%96%B9%E6%B3%95%EF%BC%88-classmethod%EF%BC%89"><span class="toc-number">7.2.</span> <span class="toc-text">2. 类方法（@classmethod）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%EF%BC%88-staticmethod%EF%BC%89"><span class="toc-number">7.3.</span> <span class="toc-text">3. 静态方法（@staticmethod）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-3"><span class="toc-number">8.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-5-%E8%AF%BE%EF%BC%9A%E5%B8%B8%E8%A7%81%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">📍 第 5 课：常见魔术方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-str-%E2%80%94%E2%80%94-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8F%AF%E8%AF%BB%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">9.1.</span> <span class="toc-text">1. __str__ —— 对象的可读字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-len-%E2%80%94%E2%80%94-%E5%AE%9A%E4%B9%89-len-obj"><span class="toc-number">9.2.</span> <span class="toc-text">2. __len__ —— 定义 len(obj)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-iter-%E5%92%8C-next-%E2%80%94%E2%80%94-%E8%AE%A9%E5%AF%B9%E8%B1%A1%E5%8F%AF%E8%BF%AD%E4%BB%A3"><span class="toc-number">9.3.</span> <span class="toc-text">3. __iter__ 和 __next__ —— 让对象可迭代</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-4"><span class="toc-number">10.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-6-%E8%AF%BE%EF%BC%9A%E7%94%9F%E6%88%90%E5%99%A8-Generator"><span class="toc-number">11.</span> <span class="toc-text">📍 第 6 课：生成器 (Generator)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9F"><span class="toc-number">11.1.</span> <span class="toc-text">1. 什么是生成器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E6%9C%AC%E4%BE%8B%E5%AD%90"><span class="toc-number">11.2.</span> <span class="toc-text">2. 基本例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">11.3.</span> <span class="toc-text">3. 生成器的好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-5"><span class="toc-number">12.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-7-%E8%AF%BE%EF%BC%9A%E8%A3%85%E9%A5%B0%E5%99%A8-Decorator"><span class="toc-number">13.</span> <span class="toc-text">📍 第 7 课：装饰器 (Decorator)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">13.1.</span> <span class="toc-text">1. 装饰器是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E6%9C%AC%E4%BE%8B%E5%AD%90-1"><span class="toc-number">13.2.</span> <span class="toc-text">2. 基本例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">13.3.</span> <span class="toc-text">3. 带参数的函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-6"><span class="toc-number">14.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-8-%E8%AF%BE%EF%BC%9A%E8%BF%AD%E4%BB%A3%E5%99%A8-Iterator"><span class="toc-number">15.</span> <span class="toc-text">📍 第 8 课：迭代器 (Iterator)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%9F"><span class="toc-number">15.1.</span> <span class="toc-text">1. 什么是迭代器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E6%9C%AC%E4%BE%8B%E5%AD%90-2"><span class="toc-number">15.2.</span> <span class="toc-text">2. 基本例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">15.3.</span> <span class="toc-text">3. 自定义迭代器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-7"><span class="toc-number">16.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-9-%E8%AF%BE%EF%BC%9A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">17.</span> <span class="toc-text">📍 第 9 课：异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8%EF%BC%9F"><span class="toc-number">17.1.</span> <span class="toc-text">1. 什么是异常？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">17.2.</span> <span class="toc-text">2. 基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8D%95%E8%8E%B7%E5%A4%9A%E7%A7%8D%E5%BC%82%E5%B8%B8"><span class="toc-number">17.3.</span> <span class="toc-text">3. 捕获多种异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E5%BC%82%E5%B8%B8"><span class="toc-number">17.4.</span> <span class="toc-text">4. 捕获所有异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-finally-%E5%AD%90%E5%8F%A5%EF%BC%88%E6%97%A0%E8%AE%BA%E5%A6%82%E4%BD%95%E9%83%BD%E4%BC%9A%E6%89%A7%E8%A1%8C%EF%BC%89"><span class="toc-number">17.5.</span> <span class="toc-text">5. finally 子句（无论如何都会执行）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-8"><span class="toc-number">18.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-10-%E8%AF%BE%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8-with"><span class="toc-number">19.</span> <span class="toc-text">📍 第 10 课：上下文管理器 (with)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="toc-number">19.1.</span> <span class="toc-text">1. 问题引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-with-%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90"><span class="toc-number">19.2.</span> <span class="toc-text">2. with 自动管理资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">19.3.</span> <span class="toc-text">3. 自定义上下文管理器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-9"><span class="toc-number">20.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-11-%E8%AF%BE%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-unittest"><span class="toc-number">21.</span> <span class="toc-text">📍 第 11 课：单元测试 (unittest)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%86%99%E6%B5%8B%E8%AF%95%EF%BC%9F"><span class="toc-number">21.1.</span> <span class="toc-text">1. 为什么要写测试？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-unittest-%E6%9C%80%E5%B0%8F%E7%BB%93%E6%9E%84"><span class="toc-number">21.2.</span> <span class="toc-text">2. unittest 最小结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E6%96%AD%E8%A8%80"><span class="toc-number">21.3.</span> <span class="toc-text">3. 常用断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%BA%94%E7%94%A8%E5%88%B0%E6%88%91%E4%BB%AC%E4%B9%8B%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">21.4.</span> <span class="toc-text">4. 应用到我们之前的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-10"><span class="toc-number">21.5.</span> <span class="toc-text">💡 小练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-12-%E8%AF%BE%EF%BC%9A%E6%97%A5%E5%BF%97-logging"><span class="toc-number">22.</span> <span class="toc-text">📍 第 12 课：日志 (logging)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%97%A5%E5%BF%97%EF%BC%9F"><span class="toc-number">22.1.</span> <span class="toc-text">1. 为什么用日志？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-logging-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">22.2.</span> <span class="toc-text">2. logging 的基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F"><span class="toc-number">22.3.</span> <span class="toc-text">3. 设置日志格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-number">22.4.</span> <span class="toc-text">4. 日志写入文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-11"><span class="toc-number">23.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-13-%E8%AF%BE%EF%BC%9ANumpy-%E5%9F%BA%E7%A1%80"><span class="toc-number">24.</span> <span class="toc-text">📍 第 13 课：Numpy 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-Numpy%EF%BC%9F"><span class="toc-number">24.1.</span> <span class="toc-text">1. 什么是 Numpy？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-number">24.2.</span> <span class="toc-text">2. 创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="toc-number">24.3.</span> <span class="toc-text">3. 基本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%BF%90%E7%AE%97"><span class="toc-number">24.4.</span> <span class="toc-text">4. 运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%B4%A2%E5%BC%95-amp-%E5%88%87%E7%89%87"><span class="toc-number">24.5.</span> <span class="toc-text">5. 索引 &amp; 切片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-12"><span class="toc-number">25.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-14-%E8%AF%BE%EF%BC%9ANumpy-%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97"><span class="toc-number">26.</span> <span class="toc-text">📍 第 14 课：Numpy 矩阵运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA"><span class="toc-number">26.1.</span> <span class="toc-text">1. 矩阵创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="toc-number">26.2.</span> <span class="toc-text">2. 基本运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95-dot-x2F"><span class="toc-number">26.3.</span> <span class="toc-text">3. 矩阵乘法 (dot &#x2F; @)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E6%93%8D%E4%BD%9C"><span class="toc-number">26.4.</span> <span class="toc-text">4. 常用矩阵操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5-amp-%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E9%AA%8C%E8%AF%81"><span class="toc-number">26.5.</span> <span class="toc-text">5. 单位矩阵 &amp; 矩阵乘法验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-13"><span class="toc-number">27.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-15-%E8%AF%BE%EF%BC%9ANumpy-%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%8E%E6%A8%A1%E6%8B%9F"><span class="toc-number">28.</span> <span class="toc-text">📍 第 15 课：Numpy 随机数与模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="toc-number">28.1.</span> <span class="toc-text">1. 生成随机数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9A%8F%E6%9C%BA%E6%95%B4%E6%95%B0"><span class="toc-number">28.2.</span> <span class="toc-text">2. 随机整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%A7%E5%88%B6%E9%9A%8F%E6%9C%BA%E6%80%A7%EF%BC%88%E9%9A%8F%E6%9C%BA%E7%A7%8D%E5%AD%90%EF%BC%89"><span class="toc-number">28.3.</span> <span class="toc-text">3. 控制随机性（随机种子）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B8%B8%E7%94%A8%E5%88%86%E5%B8%83"><span class="toc-number">28.4.</span> <span class="toc-text">4. 常用分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%9A%8F%E6%9C%BA%E6%89%93%E4%B9%B1%E4%B8%8E%E6%8A%BD%E6%A0%B7"><span class="toc-number">28.5.</span> <span class="toc-text">5. 随机打乱与抽样</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%B0%8F%E7%BB%83%E4%B9%A0-14"><span class="toc-number">29.</span> <span class="toc-text">💡 小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8D-%E7%AC%AC-16-%E8%AF%BE%EF%BC%9A%E6%A8%A1%E6%8B%9F%E9%AA%B0%E5%AD%90%E5%88%86%E5%B8%83-amp-%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">30.</span> <span class="toc-text">📍 第 16 课：模拟骰子分布 &amp; 可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%A8-matplotlib-%E7%94%BB%E5%9B%BE"><span class="toc-number">30.1.</span> <span class="toc-text">1. 用 matplotlib 画图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="toc-number">30.2.</span> <span class="toc-text">2. 结果分析</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/089786ba3aa2/" title="Python基础"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python基础"/></a><div class="content"><a class="title" href="/posts/089786ba3aa2/" title="Python基础">Python基础</a><time datetime="2025-08-22T16:13:55.256Z" title="发表于 2025-08-23 00:13:55">2025-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/da208aae62fd/" title="Python知识库"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python知识库"/></a><div class="content"><a class="title" href="/posts/da208aae62fd/" title="Python知识库">Python知识库</a><time datetime="2025-07-07T07:59:04.600Z" title="发表于 2025-07-07 15:59:04">2025-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1a6a73d70e94/" title="LeetCode-哈希表"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode-哈希表"/></a><div class="content"><a class="title" href="/posts/1a6a73d70e94/" title="LeetCode-哈希表">LeetCode-哈希表</a><time datetime="2025-07-07T05:53:45.749Z" title="发表于 2025-07-07 13:53:45">2025-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b8b92854046a/" title="Git命令清单"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git命令清单"/></a><div class="content"><a class="title" href="/posts/b8b92854046a/" title="Git命令清单">Git命令清单</a><time datetime="2025-07-05T10:43:24.317Z" title="发表于 2025-07-05 18:43:24">2025-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/a8303a2b9a84/" title="使用 LangGraph 来构建 SQL Agent"><img src="https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250627151311921.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 LangGraph 来构建 SQL Agent"/></a><div class="content"><a class="title" href="/posts/a8303a2b9a84/" title="使用 LangGraph 来构建 SQL Agent">使用 LangGraph 来构建 SQL Agent</a><time datetime="2025-06-27T06:49:58.292Z" title="发表于 2025-06-27 14:49:58">2025-06-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://raw.githubusercontent.com/FRank675/Pictures/main/img/20250618140708835.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 舜桀BB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://sunnyalion.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer" data-id="7408763913" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><!--link(rel='stylesheet' href=url_for(theme.asset.aplayer_css) media="print" onload="this.media='all'")--><!--script(src=url_for(theme.asset.aplayer_js))--><!--script(src=url_for(theme.asset.meting_js))--><link rel="stylesheet" type="text/css" href="./css/APlayer.min.css"><script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.css"></script><script type="text/javascript" src="https://unpkg.com/meting@2.0.1/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://s3.bmp.ovh/imgs/2022/05/18/ced6f8e7ee5a954f.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
