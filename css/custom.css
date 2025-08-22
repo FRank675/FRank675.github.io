@@ -1,4 +1,4 @@
-/*哔哩哔哩视频适配*/
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\FRank675.github.io\css\APlayer.min.css"><script src="\FRank675.github.io\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\FRank675.github.io\js\Meting.min.js"></script>/*哔哩哔哩视频适配*/
 .aspect-ratio {position: relative;width: 100%;height: 0;padding-bottom: 75%;margin: 3% auto;text-align: center;}      
 .aspect-ratio iframe {
     position: absolute;
