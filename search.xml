@@ -17,8 +17,6 @@
           
           <category> 链表 </category>
           
-          <category> 找中点&amp;判断环 </category>
-          
       </categories>
       
       
@@ -47,8 +45,6 @@
           <category> LeetCode </category>
           
           <category> 链表 </category>
-          
-          <category> 合并有序链表 </category>
           
       </categories>
       
@@ -79,8 +75,6 @@
           
           <category> 链表 </category>
           
-          <category> 反转链表 </category>
-          
       </categories>
       
       
@@ -110,8 +104,6 @@
           
           <category> 链表 </category>
           
-          <category> LRU Cache </category>
-          
       </categories>
       
       
@@ -140,8 +132,6 @@
           <category> LeetCode </category>
           
           <category> 数组&amp;字符串 </category>
-          
-          <category> 双指针 </category>
           
       </categories>
       
@@ -174,8 +164,6 @@
           
           <category> 数组&amp;字符串 </category>
           
-          <category> 前缀和 &amp; 差分 </category>
-          
       </categories>
       
       
@@ -206,8 +194,6 @@
           <category> LeetCode </category>
           
           <category> 数组&amp;字符串 </category>
-          
-          <category> 排序&amp;贪心 </category>
           
       </categories>
       
